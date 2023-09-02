@@ -1,5 +1,9 @@
 const express = require('express')
 const app = express()
+const booksRouter = require('./routes/books')
+
+app.use(express.json())
+app.use('/api', booksRouter)
 
 app.use('/', (req, res) => {
   res.json('Server running...')
