@@ -6,8 +6,19 @@ exports.createBook = async (req, res) => {
 
 exports.createTable = async (req, res) => {
   try {
-    const response = await db.query('CREATE TABLE books')
-    res.json({message: 'table was created', res: response})
+    // const response = await db.query('CREATE TABLE books (title varchar(255), author varchar(255));')
+    res.json({message: 'this is a response'})
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+exports.getBooks = async (req, res) => {
+  try {
+    const books = await db.query('select * from books')
+    res.json({
+      books: books,
+    })
   } catch (error) {
     console.log(error)
   }
