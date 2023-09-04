@@ -16,8 +16,9 @@ exports.createTable = async (req, res) => {
 exports.getBooks = async (req, res) => {
   try {
     const books = await db.query('select * from books')
+    console.log('get BOOOKS!!!')
     res.json({
-      books: books,
+      books: books.rows[0],
     })
   } catch (error) {
     console.log(error)
