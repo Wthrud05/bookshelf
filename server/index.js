@@ -1,14 +1,32 @@
+// Base imports
+const {PORT} = require('./constants')
 const express = require('express')
-const app = express()
-const booksRouter = require('./routes/books')
-require('dotenv').config()
+const cors = require('cors')
 
+const app = express()
+
+// Routes
+const booksRouter = require('./routes/books')
+
+// Middlewares
 app.use(express.json())
+app.use(cors())
 app.use('/api', booksRouter)
-console.log(process.env.POSTGRES_URL)
+
+// Server
 
 app.use('/', (req, res) => {
   res.json('Server running...')
 })
 
-app.listen(5000, console.log('Server work on port 5000'))
+const start = () => {
+  try {
+    app.listen(PORT, (req, res) => {
+      console.log(`Server running on port ${PORT}`)
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+start()

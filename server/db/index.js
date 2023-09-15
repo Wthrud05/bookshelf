@@ -1,11 +1,9 @@
 const {Pool} = require('pg')
-require('dotenv').config()
+const {POSTGRES_URL} = require('../constants/index')
 
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL + '?sslmode=require',
+  connectionString: POSTGRES_URL + '?sslmode=require',
 })
-
-console.log(process.env.POSTGRES_URL)
 
 pool.connect((err) => {
   if (err) throw err
