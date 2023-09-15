@@ -7,11 +7,14 @@ const app = express()
 
 // Routes
 const booksRouter = require('./routes/books')
+const authRouter = require('./routes/auth')
 
 // Middlewares
 app.use(express.json())
 app.use(cors())
+
 app.use('/api', booksRouter)
+app.use('/api', authRouter)
 
 // Server
 
