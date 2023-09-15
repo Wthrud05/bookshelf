@@ -73,12 +73,12 @@ exports.login = async (req, res) => {
 }
 
 exports.logout = async (req, res) => {
-  const {name} = req.body
+  const {user_id} = req.body
 
   try {
-    const user = db.query('select * from users where name = $1', [name])
+    const user = await db.query('select * from users where user_id = $1', [user_id])
 
-    if (!user.rows.length) {
+    if (!user.rows) {
       return res.status(500).json({
         message: 'Пользователь не найден',
       })
@@ -99,19 +99,21 @@ exports.deleteUser = async (req, res) => {
   const {user_id} = req.body
 
   try {
-    const user = db.query('delete from users where user_id = $1', [user_id])
-    // const books = db.query('delete from books where user_id = $1', [user_id])
-    // const subs = db.query('delete from subs where user_id = $1', [user_id])
+    const user = await db.query('delete from users where user_id = $1', [user_id])
+    console.log(user.rows)
 
-    if (!user.rows.length) {
-      return res.status(500).json({
-        message: 'Пользователь не найден',
-      })
-    } else {
-      return res.status(200).json({
+    if (user.rows.length) {
+      res.status(200).json({
         message: 'Аккаунт удален',
       })
+    } else {
+      res.status(500).json({
+        message: 'Пользователь не найден',
+      })
     }
+
+    // const books = await db.query('delete from books where user_id = $1', [user_id])
+    // const subs = await db.query('delete from subs where user_id = $1', [user_id])
   } catch (error) {
     console.log(error.message)
     return res.status(500).json({

@@ -13,9 +13,12 @@ exports.getBooks = async (req, res) => {
 }
 
 exports.createBook = async (req, res) => {
-  const {title, author} = req.body
+  const {title, author, user_id, cover, read_date} = req.body
   try {
-    const book = db.query('insert into books (title, author) values ($1, $2)', [title, author])
+    const book = db.query(
+      'insert into books (title, author, user_id, cover, read_date) values ($1, $2, $2, $3, $4, $5)',
+      [title, author, user_id, cover, read_date],
+    )
   } catch (error) {
     console.log(error.message)
     return res.status(500).json({
