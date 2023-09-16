@@ -15,7 +15,7 @@ exports.createBook = async (req, res) => {
   const {title, author, user_id, cover, read_date} = req.body
   try {
     const book = await db.query(
-      'insert into books (title, author, user_id, cover, read_date) values ($1, $2, $2, $3, $4, $5) returning *',
+      'insert into books (title, author, user_id, cover, read_date) values ($1, $2, $3, $4, $5) returning *',
       [title, author, user_id, cover, read_date],
     )
     console.log(book.rows[0])
