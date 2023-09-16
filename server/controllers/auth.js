@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
         [name, hashedPass],
       )
       res.status(200).json({
-        message: `User ${user.rows[0].name} successfully registered!`,
+        message: `Пользователь ${user.rows[0].name} зарегистрирован успешно!`,
         user: {
           id: user.rows[0].user_id,
           name: user.rows[0].name,
