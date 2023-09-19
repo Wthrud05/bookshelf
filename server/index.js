@@ -2,6 +2,7 @@
 const {PORT} = require('./constants')
 const express = require('express')
 const cors = require('cors')
+const multer = require('multer')
 
 const app = express()
 
@@ -14,16 +15,35 @@ const subsRouter = require('./routes/subs')
 // Middlewares
 app.use(express.json())
 app.use(cors())
+app.use('/uploads', express.static('uploads'))
 
 app.use('/api', booksRouter)
 app.use('/api', authRouter)
 app.use('/api', usersRouter)
 app.use('/api', subsRouter)
+app.use('/', (req, res) => {
+  res.json('Server running...')
+})
+
+// Upload files
+
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, 'uploads')
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname)
+  },
+})
+
+const uploads = multer({storage: storage})
 
 // Server
 
-app.use('/', (req, res) => {
-  res.json('Server running...')
+app.post('/api/uploads', uploads.single('files'), (req, res) => {
+  console.log(req.body)
+  console.log(req.files)
+  res.json({url: `/uploads/${req.file.originalname}`})
 })
 
 const start = () => {
