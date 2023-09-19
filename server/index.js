@@ -8,6 +8,8 @@ const app = express()
 // Routes
 const booksRouter = require('./routes/books')
 const authRouter = require('./routes/auth')
+const usersRouter = require('./routes/users')
+const subsRouter = require('./routes/subs')
 
 // Middlewares
 app.use(express.json())
@@ -15,6 +17,8 @@ app.use(cors())
 
 app.use('/api', booksRouter)
 app.use('/api', authRouter)
+app.use('/api', usersRouter)
+app.use('/api', subsRouter)
 
 // Server
 

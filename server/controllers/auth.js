@@ -99,21 +99,12 @@ exports.deleteUser = async (req, res) => {
   const {user_id} = req.body
 
   try {
-    const user = await db.query('delete from users where user_id = $1', [user_id])
-    console.log(user.rows)
-
-    if (user.rows.length) {
-      res.status(200).json({
-        message: 'Аккаунт удален',
-      })
-    } else {
-      res.status(500).json({
-        message: 'Пользователь не найден',
-      })
-    }
-
-    // const books = await db.query('delete from books where user_id = $1', [user_id])
-    // const subs = await db.query('delete from subs where user_id = $1', [user_id])
+    const user = await db.query('delete from users where user_id = $1 returning *', [user_id])
+    res.status(200).json({
+      message: 'Аккаунт удален',
+    })
+    const books = await db.query('delete from books where user_id = $1', [user_id])
+    const subs = await db.query('delete from subs where user_id = $1', [user_id])
   } catch (error) {
     console.log(error.message)
     return res.status(500).json({
