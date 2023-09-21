@@ -21,9 +21,6 @@ app.use('/api', booksRouter)
 app.use('/api', authRouter)
 app.use('/api', usersRouter)
 app.use('/api', subsRouter)
-app.use('/', (req, res) => {
-  res.json('Server running...')
-})
 
 // Upload files
 
@@ -41,9 +38,11 @@ const uploads = multer({storage: storage})
 // Server
 
 app.post('/api/uploads', uploads.single('files'), (req, res) => {
-  console.log(req.body)
-  console.log(req.files)
   res.json({url: `/uploads/${req.file.originalname}`})
+})
+
+app.use('/', (req, res) => {
+  res.json('Server running...')
 })
 
 const start = () => {
