@@ -1,10 +1,14 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
+import styles from './NavItem.module.scss'
 
-const NavItem = ({name, path}) => {
+const NavItem = ({name, path, icon}) => {
   return (
-    <li>
-      <NavLink to={path}>{name}</NavLink>
+    <li className={styles.NavItem}>
+      <NavLink className={({isActive}) => (isActive ? styles.Active : '')} to={path}>
+        <img src={icon} alt="icon" />
+        {name}
+      </NavLink>
     </li>
   )
 }
