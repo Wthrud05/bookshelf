@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useAuth} from './hooks/useAuth'
+import {useNavigate} from 'react-router-dom'
 import {Routes, Route} from 'react-router-dom'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -10,6 +12,13 @@ import UserPage from './pages/UserPage/UserPage'
 import AboutPage from './pages/AboutPage/AboutPage'
 
 function App() {
+  const isAuth = useAuth()
+  const navigator = useNavigate()
+
+  useEffect(() => {
+    isAuth ? navigator('/') : navigator('/login')
+  }, [])
+
   return (
     <div className="App">
       <Header />

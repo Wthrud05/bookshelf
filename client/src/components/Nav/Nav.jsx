@@ -4,6 +4,7 @@ import styles from './Nav.module.scss'
 import main from '../../assets/main.svg'
 import profile from '../../assets/profile.svg'
 import about from '../../assets/about.svg'
+import {useLocation} from 'react-router-dom'
 const nav = [
   {name: 'Главная', path: '/', icon: main},
   {name: 'Профиль', path: '/profile', icon: profile},
@@ -11,13 +12,19 @@ const nav = [
 ]
 
 const Nav = () => {
+  const location = useLocation()
+
   return (
     <div className={styles.Nav}>
-      <ul>
-        {nav.map((i) => (
-          <NavItem key={i.name} name={i.name} path={i.path} icon={i.icon} />
-        ))}
-      </ul>
+      {location.pathname === '/register' || location.pathname === '/login' ? (
+        ''
+      ) : (
+        <ul>
+          {nav.map((i) => (
+            <NavItem key={i.name} name={i.name} path={i.path} icon={i.icon} />
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

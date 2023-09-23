@@ -3,11 +3,14 @@ import Logo from '../../assets/Logo.jpg'
 import Nav from '../Nav/Nav'
 import styles from './Header.module.scss'
 import {NavLink} from 'react-router-dom'
+import {useAuth} from '../../hooks/useAuth'
 
 const Header = () => {
+  const isAuth = useAuth()
+
   return (
     <div className={styles.Header}>
-      <NavLink to={'/'}>
+      <NavLink to={isAuth ? '/' : '/login'}>
         <svg
           width="89"
           height="59"

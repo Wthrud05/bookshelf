@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+@mixin input($width, $height, $fz, $radius) {
+  border: 3px solid $drak-grey;
+  border-radius: $radius;
+  width: $width;
+  height: $height;
+  padding: 15px 40px;
+  font-size: $fz;
+  transition: $tr-300;
+
+  &::placeholder {
+    transition: $tr-300;
+  }
+
+  &:focus {
+    &::placeholder {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    border-color: $black;
+  }
+}
+
+@mixin button($width, $height, $fz, $radius) {
+  border: none;
+  outline: none;
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  font-size: $fz;
+  font-weight: $bold;
+  background: $black;
+  color: $white;
+  cursor: pointer;
+  transition: $tr-300;
+
+  &:hover {
+    background-color: $drak-grey;
+  }
+}

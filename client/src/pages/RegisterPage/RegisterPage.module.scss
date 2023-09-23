@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.Register {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .Pattern {
+    margin-top: 40px;
+    width: 400px;
+  }
+
+  span {
+    font-size: $font-s;
+    color: $black;
+    font-weight: $semibold;
+  }
+
+  a {
+    font-weight: $bold;
+    text-decoration: underline;
+  }
+}
