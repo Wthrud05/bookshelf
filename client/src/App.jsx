@@ -12,7 +12,7 @@ import UserPage from './pages/UserPage/UserPage'
 import AboutPage from './pages/AboutPage/AboutPage'
 
 function App() {
-  const isAuth = useAuth()
+  const {isAuth} = useAuth()
   const navigator = useNavigate()
 
   useEffect(() => {

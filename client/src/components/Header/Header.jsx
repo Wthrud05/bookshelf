@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom'
 import {useAuth} from '../../hooks/useAuth'
 
 const Header = () => {
-  const isAuth = useAuth()
+  const {isAuth} = useAuth()
 
   return (
     <div className={styles.Header}>

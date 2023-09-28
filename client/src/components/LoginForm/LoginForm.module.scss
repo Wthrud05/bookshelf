@@ -12,7 +12,7 @@
     margin-bottom: 15px
   }
 
-  div {
+  .InputBox {
     margin-bottom: 20px;
     position: relative;
 
@@ -24,6 +24,10 @@
       width: 22px;
       height: 22px;
     }
+
+    &:last-of-type {
+      margin-bottom: 10px;
+    }
   }
 
   input {
@@ -31,6 +35,33 @@
   }
 
   button {
-    @include button(400px, 50px, 20px, 15px)
+    @include button(400px, 50px, 20px, 15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    span {
+      color: $white;      
+    }
+  }
+
+  .Error {
+    color: $red;
+    height: 20px;
+    font-weight: $bold;
+
+    b {
+      color: $red;
+      transition: .3s;
+      opacity: 0;
+    }
+
+    .ErrorText {
+      color: $red;
+      transition: .3s;
+      opacity: 1;
+    }
   }
 }
+

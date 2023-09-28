@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.ProfilePage {
+
+  button {
+    @include button(150px, 45px, 18px, 12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -43,7 +43,7 @@ exports.login = async (req, res) => {
 
     if (!user.rows.length) {
       res.status(500).json({
-        message: 'Неверное имя пользователя',
+        message: 'Неверное имя пользователя или пароль',
       })
     } else {
       brcypt.compare(password, user.rows[0].password, (err, isMatch) => {
@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
           })
         } else {
           res.status(500).json({
-            message: 'Неверный пароль',
+            message: 'Неверное имя пользователя или пароль ',
           })
         }
       })

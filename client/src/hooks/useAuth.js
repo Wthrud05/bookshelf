@@ -1,3 +1,5 @@
 export const useAuth = () => {
-  return !!localStorage.getItem('user')
+  const isAuth = !!localStorage.getItem('user')
+  const user = JSON.parse(localStorage.getItem('user'))
+  return {isAuth, user}
 }
