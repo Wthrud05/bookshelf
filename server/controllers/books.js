@@ -1,13 +1,19 @@
 const db = require('../db')
 
-exports.getBooks = async (req, res) => {
+exports.getBooksByUser = async (req, res) => {
+  const {id} = req.body
+  console.log('GET BOOKS', id)
+
   try {
-    const books = await db.query('select * from books')
-    res.json({
+    const books = await db.query('select * from books where user_id = $1', [id])
+    res.status(200).json({
       books: books.rows,
     })
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
+    return res.status(500).json({
+      message: 'Что-то пошло не так',
+    })
   }
 }
 

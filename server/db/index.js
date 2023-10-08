@@ -6,6 +6,7 @@ const pool = new Pool({
 })
 
 pool.connect((err) => {
+  console.log('GG')
   if (err) throw err
   console.log('Connect to PostgreSQL successfully!')
 })

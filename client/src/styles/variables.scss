@@ -10,14 +10,15 @@ $bold: 700;
 $white: #fff;
 $black: #000;
 $grey: #adadad;
-$drak-grey: #232323;
+$dark-grey: #232323;
 $red: #da2b2b;
-
+$accent: #5dc6fae6;
 // Shadows
 
 $shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 $-shadow: 0px -1px 2px rgba(0, 0, 0, 0.3);
-$t-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+$t-shadow: 1px 1px 2px $accent;
+$bx-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 
 // Font-size
 
@@ -27,11 +28,12 @@ $font-s: 18px;
 $font-m: 24px;
 $font-xl: 36px;
 
-// Background
-
-$bg-black: #000;
-
 // Transition
 
 $tr-200: 0.2s;
 $tr-300: 0.3s;
+$tr-500: 0.5s;
+
+// Gradients
+
+$radial-grey: radial-gradient(circle, rgb(239, 239, 239) 0%, rgb(158, 158, 158) 70%);

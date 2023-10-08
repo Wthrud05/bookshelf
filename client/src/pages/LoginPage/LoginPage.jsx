@@ -46,7 +46,6 @@ const LoginPage = () => {
         navigator('/')
       }
     } catch (error) {
-      console.log(error.message)
       dispatch(setLoading({loading: false}))
     }
   }

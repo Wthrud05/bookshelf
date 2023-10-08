@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.SortItem {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: $tr-300;
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
+
+  &:first-of-type {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+
+  &:last-of-type {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}

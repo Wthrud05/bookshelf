@@ -19,10 +19,11 @@
     font-size: $font-s;
     color: $black;
     font-weight: $semibold;
-  }
 
-  a {
-    font-weight: $bold;
-    text-decoration: underline;
+    a {
+      font-weight: $bold;
+      text-decoration: underline;
+      text-shadow: $t-shadow;
+    }
   }
 }

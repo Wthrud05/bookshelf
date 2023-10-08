@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.HomePage {
+  text-align: center;
+  padding-top: 10px;
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .BooksList {
+    display: grid;
+    grid-template-columns: repeat(5, 245px);
+    grid-template-rows: 320px;
+    justify-content: space-between;
+    align-content: center;
+    justify-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lobster&display=swap');
 @import './variables.scss';
 
 @mixin input($width, $height, $fz, $radius) {
-  border: 3px solid $drak-grey;
+  font-family: 'Lobster', cursive;
+  border: 3px solid $dark-grey;
   border-radius: $radius;
   width: $width;
   height: $height;
@@ -23,19 +25,26 @@
 }
 
 @mixin button($width, $height, $fz, $radius) {
+  font-family: 'Lobster', cursive;
+  letter-spacing: 2px;
   border: none;
   outline: none;
   width: $width;
   height: $height;
   border-radius: $radius;
   font-size: $fz;
-  font-weight: $bold;
   background: $black;
   color: $white;
   cursor: pointer;
-  transition: $tr-300;
+  transition: $tr-200;
+  border: 3px solid transparent;
 
   &:hover {
-    background-color: $drak-grey;
+    background-color: $dark-grey;
+  }
+
+  &:active {
+    border: 3px solid $black;
+    transform: scale(0.98);
   }
 }
