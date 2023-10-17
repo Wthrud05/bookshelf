@@ -48,10 +48,7 @@ const AddBookForm = () => {
       const formData = new FormData()
       formData.append('files', file)
 
-      return await axios.post(
-        'https://bookshelf-server-blush.vercel.app/api/books/api/uploads',
-        formData,
-      )
+      return await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads', formData)
     } catch (error) {
       console.log(error)
     }
@@ -81,7 +78,7 @@ const AddBookForm = () => {
       }
 
       const res = await axios.post(
-        'https://bookshelf-server-blush.vercel.app/api/books/api/books-create',
+        'https://bookshelf-server-blush.vercel.app/api/books-create',
         book,
       )
 
