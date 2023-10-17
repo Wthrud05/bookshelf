@@ -7,7 +7,7 @@ const Book = ({book}) => {
     <div className={styles.Book}>
       <Link to={`/book/${book.book_id}`}>
         {book.cover ? (
-          <img src={`http://localhost:5000${book.cover}`} alt="cover" />
+          <img src={`https://bookshelf-server-blush.vercel.app/api${book.cover}`} alt="cover" />
         ) : (
           <div className={styles.Placeholder}>
             <h4>{book.title}</h4>
