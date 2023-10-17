@@ -1,0 +1,231 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.AddBookForm {
+
+  .Loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin-top: 30px;
+      color: $dark-grey;
+    }
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+  
+  .Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .Options {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+
+      .Cover {
+
+        img {
+          width: 200px;
+          height: 300px;
+          border-radius: 10px;
+          box-shadow: $bx-shadow-5;
+        }
+
+        .UserPreview {
+          position: relative;
+          height: 300px;
+
+          .Cross {
+            @include button(22px, 22px, 0, 10px);
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, .5);
+            opacity: .85;
+
+            &:hover {
+              opacity: 1;
+              background: $black;
+            }
+
+
+            img {
+              box-shadow: none;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      
+        .Preview {
+          width: 200px;
+          height: 300px;
+          border-radius: 10px;
+          box-shadow: $bx-shadow-5;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: $radial-grey;
+  
+          h4 {
+            font-size: $font-s;
+            hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            width: 80%;
+          }
+  
+          div {
+            width: 50px;
+            height: 2px;
+            background: $black;
+            margin: 5px 0;
+          }
+  
+          span {
+            font-size: $font-xs;
+          }
+        }
+      }
+
+      .isAudio {
+        width: 200px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 100px;
+          height: 100px;
+          opacity: 1;
+        }
+
+        span {
+          margin-bottom: 10px;
+          font-size: $font-s;
+        }
+
+        .Checkbox {
+          position: relative;
+          width: 24px;
+          height: 24px;
+          border-radius: 3px;
+          outline: 2px solid $black;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          user-select: none;
+
+          .Check {
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            width: 22px;
+            height: 22px;
+            opacity: 0;
+            transition: $tr-200;
+          }
+
+          .Checked {
+            opacity: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: $tr-200;
+          }
+        }
+      }
+    }
+    
+
+    .InputBox {
+      position: relative;
+      margin-bottom: 10px;
+
+      input {
+        @include input(400px, 40px, 16px, 10px);
+      }
+
+      img {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+      }
+
+      textarea {
+        @include input(400px, 80px, 16px, 10px);
+        resize: none;
+      }
+
+      &:nth-child(4) {
+        img {
+          top: 30%;
+          transform: translateY(-30%);
+        }
+      }
+    }
+
+    button {
+      @include button(400px, 40px, 16px, 10px);
+    }
+
+    .Buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        @include button(190px, 40px, 16px, 10px);
+      }
+
+      .AddBook {
+        &:disabled {
+            background: $dark-grey;
+            cursor: default;
+
+            &:hover {
+
+            }
+        }
+      }
+
+      .Cancel {
+        background-color: $red;
+
+        &:hover {
+          background-color: $hover-red;
+        }
+      }
+    }
+  }
+}

@@ -52,6 +52,7 @@ const start = () => {
     })
   } catch (error) {
     console.log(error)
+    console.log('1111')
   }
 }
 

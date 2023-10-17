@@ -2,40 +2,34 @@ import React, {useEffect, useRef, useState} from 'react'
 import styles from './Controls.module.scss'
 import arrowDown from '../../assets/arrow-down.svg'
 import SortItem from '../SortItem/SortItem'
+import {useDispatch, useSelector} from 'react-redux'
+import {open} from '../../redux/modal/slice'
+import {useClickOutside} from '../../hooks/useClickOutside'
 
 const Controls = () => {
   const [isOpen, setIsOpen] = useState(false)
   const sort = ['Умолчанию', 'Дате', 'Алфавиту']
   const sortRef = useRef(null)
-  const spanRef = useRef(null)
-  const imgRef = useRef(null)
 
-  useEffect(() => {
-    const outsideClickHandler = (e) => {
-      if (
-        e.target !== sortRef.current &&
-        e.target !== spanRef.current &&
-        e.target !== imgRef.current
-      )
-        setIsOpen(false)
-    }
-
-    document.body.addEventListener('click', outsideClickHandler)
-
-    return () => {
-      document.body.removeEventListener('click', outsideClickHandler)
-    }
-  }, [])
+  useClickOutside(sortRef, () => {
+    setIsOpen(false)
+  })
+  const isModalOpen = useSelector((state) => state.modal.isOpen)
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.Controls}>
-      <button>
+      <button
+        onClick={() => {
+          dispatch(open())
+        }}
+      >
         <span>Добавить</span>
         <span className={styles.Cross}>+</span>
       </button>
       <div className={styles.Sort} onClick={() => setIsOpen(!isOpen)} ref={sortRef}>
-        <span ref={spanRef}>Сортировать по</span>
-        <img ref={imgRef} className={isOpen ? styles.Open : ''} src={arrowDown} alt="arrow-down" />
+        <span>Сортировать по</span>
+        <img className={isOpen ? styles.Open : ''} src={arrowDown} alt="arrow-down" />
         {isOpen && (
           <ul className={styles.SortList}>
             {sort.map((item) => (

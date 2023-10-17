@@ -2,8 +2,8 @@
 @import '../../styles/mixins.scss';
 
 .Book {
-  height: 100%;
-  width: 100%;
+  height: 350px;
+  width: 240px;
   transition: $tr-300;
   cursor: pointer;
   border-radius: 10px;

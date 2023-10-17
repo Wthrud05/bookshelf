@@ -10,6 +10,7 @@
   padding: 15px 40px;
   font-size: $fz;
   transition: $tr-300;
+  overflow-x: hidden;
 
   &::placeholder {
     transition: $tr-300;
@@ -20,7 +21,8 @@
       transform: translateX(100px);
       opacity: 0;
     }
-    border-color: $black;
+    border: 3px solid $black;
+    box-shadow: $bx-shadow;
   }
 }
 
@@ -44,7 +46,6 @@
   }
 
   &:active {
-    border: 3px solid $black;
     transform: scale(0.98);
   }
 }

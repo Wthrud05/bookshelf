@@ -10,15 +10,18 @@ $bold: 700;
 $white: #fff;
 $black: #000;
 $grey: #adadad;
-$dark-grey: #232323;
-$red: #da2b2b;
+$dark-grey: #3b3b3b;
+$red: #ec1d1d;
+$hover-red: #e14343;
 $accent: #5dc6fae6;
+$bg-trasnparent: rgba(0, 0, 0, 0.7);
 // Shadows
 
 $shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 $-shadow: 0px -1px 2px rgba(0, 0, 0, 0.3);
 $t-shadow: 1px 1px 2px $accent;
 $bx-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+$bx-shadow-5: 0px 0px 5px rgba(0, 0, 0, 0.8);
 
 // Font-size
 

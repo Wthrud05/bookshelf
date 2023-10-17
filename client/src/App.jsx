@@ -11,7 +11,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import UserPage from './pages/UserPage/UserPage'
 import AboutPage from './pages/AboutPage/AboutPage'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {setUser} from './redux/auth/slice'
 
 function App() {
@@ -19,6 +19,8 @@ function App() {
 
   const navigator = useNavigate()
   const dispatch = useDispatch()
+
+  const isModalOpen = useSelector((state) => state.modal.isOpen)
 
   useEffect(() => {
     isAuth ? navigator('/') : navigator('/login')

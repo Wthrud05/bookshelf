@@ -18,13 +18,12 @@ exports.getBooksByUser = async (req, res) => {
 }
 
 exports.createBook = async (req, res) => {
-  const {title, author, user_id, cover, read_date, isAudio} = req.body
+  const {title, author, user_id, cover, read_date, isAudio, description} = req.body
   try {
     const book = await db.query(
-      'insert into books (title, author, user_id, cover, read_date, isAudio) values ($1, $2, $3, $4, $5, $6) returning *',
-      [title, author, user_id, cover, read_date, isAudio],
+      'insert into books (title, author, user_id, cover, read_date, isAudio, description) values ($1, $2, $3, $4, $5, $6, $7) returning *',
+      [title, author, user_id, cover, read_date, isAudio, description],
     )
-    console.log(book.rows[0])
     res.status(200).json({
       message: 'Книга добавлена',
       book: book.rows[0],

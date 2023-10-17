@@ -3,7 +3,6 @@ import styles from './LoginForm.module.scss'
 import username from '../../assets/user.svg'
 import pass from '../../assets/pass.svg'
 import BookLoader from '../BookLoader/BookLoader'
-import {useDispatch} from 'react-redux'
 
 const LoginForm = ({title, handler, error, loading}) => {
   const [name, setName] = useState('')
@@ -41,8 +40,6 @@ const LoginForm = ({title, handler, error, loading}) => {
       )}
       <button
         onClick={() => {
-          // setName('')
-          // setPassword('')
           handler(name, password)
         }}
       >

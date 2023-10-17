@@ -6,8 +6,8 @@ const Book = ({book}) => {
   return (
     <div className={styles.Book}>
       <Link to={`/book/${book.book_id}`}>
-        {book.cover.length ? (
-          <img src={'http://localhost:5000/uploads/gerard.jpg'} alt="cover" />
+        {book.cover ? (
+          <img src={`http://localhost:5000${book.cover}`} alt="cover" />
         ) : (
           <div className={styles.Placeholder}>
             <h4>{book.title}</h4>

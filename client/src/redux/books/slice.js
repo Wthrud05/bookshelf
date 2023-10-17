@@ -11,10 +11,13 @@ const booksSlice = createSlice({
   initialState,
   reducers: {
     setBooks: (state, action) => {
-      state.books = action.payload
+      state.books = action.payload.books
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload.loading
     },
   },
 })
 
 export default booksSlice.reducer
-export const {setBooks} = booksSlice.actions
+export const {setBooks, setLoading} = booksSlice.actions
