@@ -1,5 +1,6 @@
 // Base imports
 const {PORT} = require('./constants')
+const fs = require('fs')
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
@@ -26,6 +27,9 @@ app.use('/api', subsRouter)
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
+    if (!fs.existsSync('uploads')) {
+      fs.mkdir('uploads')
+    }
     callback(null, 'uploads')
   },
   filename: function (req, file, callback) {

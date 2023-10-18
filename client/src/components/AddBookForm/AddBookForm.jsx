@@ -48,6 +48,9 @@ const AddBookForm = () => {
       const formData = new FormData()
       formData.append('files', file)
 
+      // https://bookshelf-server-blush.vercel.app/api/uploads
+      // http://localhost:5000/api/uploads
+
       return await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads', formData)
     } catch (error) {
       console.log(error)
@@ -76,6 +79,9 @@ const AddBookForm = () => {
         isAudio: isAudio,
         description: description,
       }
+
+      // https://bookshelf-server-blush.vercel.app/api/books-create
+      // http://localhost:5000/api/books-create
 
       const res = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/books-create',
