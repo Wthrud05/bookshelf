@@ -23,6 +23,8 @@ const HomePage = () => {
       const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {
         id: user.id,
       })
+      // http://localhost:5000/api/books
+      // https://bookshelf-server-blush.vercel.app/api/books
       const items = await res.data.books
       dispatch(setBooks({books: items}))
     } catch (error) {
@@ -60,5 +62,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-
-// comment

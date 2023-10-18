@@ -44,43 +44,43 @@ const AddBookForm = () => {
     console.log(blob)
   }
 
-  const uploadFileHandler = async (file) => {
-    try {
-      console.log(file)
-      const formData = new FormData()
-      formData.append('files', file)
-      console.log(formData.get('files'))
+  // const uploadFileHandler = async (file) => {
+  //   try {
+  //     console.log(file)
+  //     const formData = new FormData()
+  //     formData.append('files', file)
+  //     console.log(formData.get('files'))
 
-      // https://bookshelf-server-blush.vercel.app/api/uploads
-      // http://localhost:5000/api/uploads
+  //     // https://bookshelf-server-blush.vercel.app/api/uploads
+  //     // http://localhost:5000/api/uploads
 
-      return await axios.post('http://localhost:5000/api/uploads', formData, {
-        headers: 'multipart/form-data',
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     return await axios.post('http://localhost:5000/api/uploads', formData, {
+  //       headers: 'multipart/form-data',
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   const createBookHandler = async () => {
     dispatch(setLoading({loading: true}))
 
     try {
-      let cover = ''
+      // let cover = ''
 
-      if (file.length !== 0) {
-        const response = await uploadFileHandler(file)
-        console.log(response)
-        cover = await response.data.url
-      } else {
-        cover = ''
-      }
+      // if (file.length !== 0) {
+      //   const response = await uploadFileHandler(file)
+      //   console.log(response)
+      //   cover = await response.data.url
+      // } else {
+      //   cover = ''
+      // }
 
       const book = {
         title: title,
         author: author,
         user_id: user.id,
-        cover: cover,
+        cover: preview, // !!!!!! cover
         read_date: date,
         isAudio: isAudio,
         description: description,
