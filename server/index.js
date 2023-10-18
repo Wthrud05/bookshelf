@@ -51,12 +51,15 @@ app.use('/', (req, res) => {
 
 const start = () => {
   try {
+    if (!fs.existsSync('uploads')) {
+      fs.mkdirSync('uploads')
+    }
+
     app.listen(PORT, (req, res) => {
       console.log(`Server running on port ${PORT}`)
     })
   } catch (error) {
     console.log(error)
-    console.log('1111')
   }
 }
 

@@ -41,17 +41,22 @@ const AddBookForm = () => {
 
     const blob = URL.createObjectURL(file)
     setPreview(blob)
+    console.log(blob)
   }
 
   const uploadFileHandler = async (file) => {
     try {
+      console.log(file)
       const formData = new FormData()
       formData.append('files', file)
+      console.log(formData.get('files'))
 
       // https://bookshelf-server-blush.vercel.app/api/uploads
       // http://localhost:5000/api/uploads
 
-      return await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads', formData)
+      return await axios.post('http://localhost:5000/api/uploads', formData, {
+        headers: 'multipart/form-data',
+      })
     } catch (error) {
       console.log(error)
     }
@@ -65,6 +70,7 @@ const AddBookForm = () => {
 
       if (file.length !== 0) {
         const response = await uploadFileHandler(file)
+        console.log(response)
         cover = await response.data.url
       } else {
         cover = ''
@@ -88,6 +94,8 @@ const AddBookForm = () => {
         book,
       )
 
+      console.log(data)
+
       const newBook = data.book
       console.log(newBook)
 
@@ -108,7 +116,6 @@ const AddBookForm = () => {
       inputRef.current.value = ''
     } catch (error) {
       console.log(error)
-      // dispatch()
     } finally {
       dispatch(setLoading({loading: false}))
     }
