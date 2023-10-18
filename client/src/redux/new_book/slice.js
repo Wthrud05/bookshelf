@@ -2,15 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
   loading: false,
-  newBook: {
-    title: '',
-    author: '',
-    user_id: '',
-    cover: '',
-    read_date: '',
-    is_audio: false,
-    description: '',
-  },
+  newBook: {},
   error: '',
 }
 

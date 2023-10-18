@@ -83,14 +83,16 @@ const AddBookForm = () => {
       // https://bookshelf-server-blush.vercel.app/api/books-create
       // http://localhost:5000/api/books-create
 
-      const res = await axios.post(
+      const {data} = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/books-create',
         book,
       )
 
-      dispatch(setNewBook({newBook: book}))
+      const newBook = data.book
 
-      const items = [...books, book]
+      dispatch(setNewBook({book: newBook}))
+
+      const items = [...books, newBook]
 
       dispatch(setBooks({books: items}))
       dispatch(close())
@@ -103,8 +105,6 @@ const AddBookForm = () => {
       setFile('')
       setPreview('')
       inputRef.current.value = ''
-
-      console.log(res)
     } catch (error) {
       console.log(error)
       dispatch()

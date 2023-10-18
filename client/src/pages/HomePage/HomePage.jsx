@@ -36,8 +36,8 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    if (!books.length) getBooks()
-  }, [books])
+    getBooks()
+  }, [])
 
   return (
     <div className={styles.HomePage}>
