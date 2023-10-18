@@ -28,7 +28,7 @@ app.use('/api', subsRouter)
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
     if (!fs.existsSync('uploads')) {
-      fs.mkdir('uploads')
+      fs.mkdirSync('uploads')
     }
     callback(null, 'uploads')
   },

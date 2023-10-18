@@ -89,6 +89,7 @@ const AddBookForm = () => {
       )
 
       const newBook = data.book
+      console.log(newBook)
 
       dispatch(setNewBook({book: newBook}))
 
@@ -107,7 +108,7 @@ const AddBookForm = () => {
       inputRef.current.value = ''
     } catch (error) {
       console.log(error)
-      dispatch()
+      // dispatch()
     } finally {
       dispatch(setLoading({loading: false}))
     }
