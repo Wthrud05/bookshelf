@@ -30,18 +30,25 @@ const AddBookForm = () => {
 
   const [file, setFile] = useState('')
   const [preview, setPreview] = useState('')
+  const [url, setUrl] = useState('')
 
   const {user} = useAuth()
 
   const inputRef = useRef(null)
 
-  const uploadPrviewHandler = (e) => {
+  const uploadPrviewHandler = async (e) => {
     const file = e.target.files[0]
     setFile(file)
+    console.log(file)
 
     const blob = URL.createObjectURL(file)
     setPreview(blob)
     console.log(blob)
+
+    const url = await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads')
+    console.log(url)
+    const res = await url.json()
+    console.log(res)
   }
 
   // const uploadFileHandler = async (file) => {
@@ -80,7 +87,7 @@ const AddBookForm = () => {
         title: title,
         author: author,
         user_id: user.id,
-        cover: preview, // !!!!!! cover
+        cover: url, // !!!!!! cover
         read_date: date,
         isAudio: isAudio,
         description: description,

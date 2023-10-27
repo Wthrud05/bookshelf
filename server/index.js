@@ -4,6 +4,7 @@ const fs = require('fs')
 const express = require('express')
 const cors = require('cors')
 const multer = require('multer')
+const {put} = require('@vercel/blob')
 
 const app = express()
 
@@ -41,8 +42,19 @@ const uploads = multer({storage: storage})
 
 // Server
 
-app.post('/api/uploads', uploads.single('files'), (req, res) => {
-  res.json({url: `/uploads/${req.file.originalname}`})
+// app.post('/api/uploads', uploads.single('files'), (req, res) => {
+//   res.json({url: `/uploads/${req.file.originalname}`})
+// })
+
+app.post('/api/uploads', async (req, res) => {
+  const {file} = req.body
+  const blob = await put(file.name, file, {access: 'public', contentType: 'multipart/form-data'})
+
+  if (!blob) {
+    return res.status(500).json({access: false})
+  }
+
+  res.json({blob, access: true})
 })
 
 app.use('/', (req, res) => {
@@ -58,5 +70,7 @@ const start = () => {
     console.log(error)
   }
 }
+
+console.log(process.env.BLOB_READ_WRITE_TOKEN)
 
 start()

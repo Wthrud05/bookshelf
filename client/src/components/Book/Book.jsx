@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 
 const Book = ({book}) => {
   console.log(book.cover)
+  // const url = URL.createObjectURL(book.cover)
+  // console.log(url)
   return (
     <div className={styles.Book}>
       <Link to={`/book/${book.book_id}`}>
