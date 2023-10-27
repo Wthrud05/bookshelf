@@ -16,7 +16,11 @@ const subsRouter = require('./routes/subs')
 
 // Middlewares
 app.use(express.json())
-app.use(cors())
+app.use(
+  cors({
+    origin: '*',
+  }),
+)
 app.use('/uploads', express.static('uploads'))
 
 app.use('/api', booksRouter)
