@@ -45,7 +45,7 @@ const AddBookForm = () => {
     setPreview(blob)
     console.log(blob)
 
-    const url = await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads')
+    const url = await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads', file)
     console.log(url)
     const res = await url.json()
     console.log(res)
