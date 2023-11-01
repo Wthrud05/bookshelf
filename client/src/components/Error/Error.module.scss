@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.Error {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: $light-red;
+  border: 1px solid $red;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $tr-300;
+  opacity: 0;
+
+  h3 {
+    margin: 0;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    cursor: pointer;
+    transition: $tr-200;
+    transform: translate(0, -50%);
+
+    &:hover {
+      opacity: .5;
+    }
+  }
+}
+
+.Show {
+  top: 0;
+  opacity: 1;
+}

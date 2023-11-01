@@ -98,7 +98,7 @@
             width: 80%;
           }
   
-          div {
+          .Border {
             width: 50px;
             height: 2px;
             background: $black;
@@ -212,10 +212,6 @@
         &:disabled {
             background: $dark-grey;
             cursor: default;
-
-            &:hover {
-
-            }
         }
       }
 

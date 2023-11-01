@@ -15,12 +15,17 @@ import iCheck from '../../assets/check.svg'
 import audiobook from '../../assets/audiobook.svg'
 import audiobookGrey from '../../assets/audiobook-grey.svg'
 import cross from '../../assets/cross.svg'
+import Error from '../Error/Error'
 
 const AddBookForm = () => {
+  const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
+
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
   const loading = useSelector((state) => state.newBook.loading)
   const error = useSelector((state) => state.newBook.error)
+
+  const [coverLoading, setCoverLoading] = useState(false)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -36,97 +41,76 @@ const AddBookForm = () => {
 
   const inputRef = useRef(null)
 
+  const reset = () => {
+    setTitle('')
+    setAuthor('')
+    setDate('')
+    setDescription('')
+    setIsAudio(false)
+    setFile('')
+    setPreview('')
+  }
+
   const uploadPrviewHandler = async (e) => {
     const file = e.target.files[0]
     setFile(file)
-    console.log(file)
 
-    const blob = URL.createObjectURL(file)
-    setPreview(blob)
-    console.log(blob)
+    const form = new FormData()
+    form.append('image', file)
 
-    const url = await axios.post('https://bookshelf-server-blush.vercel.app/api/uploads', file)
-    console.log(url)
-    const res = await url.json()
-    console.log(res)
+    setCoverLoading(true)
+    dispatch(setError({error: ''}))
+
+    try {
+      const {data} = await axios.post(updUrl, form)
+      setUrl(data.data.url)
+      const blob = URL.createObjectURL(file)
+      setPreview(blob)
+    } catch (error) {
+      console.log(error)
+      dispatch(setError({error: 'Произошла ошибка при загрузке обложки'}))
+    }
+    setCoverLoading(false)
   }
-
-  // const uploadFileHandler = async (file) => {
-  //   try {
-  //     console.log(file)
-  //     const formData = new FormData()
-  //     formData.append('files', file)
-  //     console.log(formData.get('files'))
-
-  //     // https://bookshelf-server-blush.vercel.app/api/uploads
-  //     // http://localhost:5000/api/uploads
-
-  //     return await axios.post('http://localhost:5000/api/uploads', formData, {
-  //       headers: 'multipart/form-data',
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   const createBookHandler = async () => {
     dispatch(setLoading({loading: true}))
+    dispatch(setError({error: ''}))
 
     try {
-      // let cover = ''
-
-      // if (file.length !== 0) {
-      //   const response = await uploadFileHandler(file)
-      //   console.log(response)
-      //   cover = await response.data.url
-      // } else {
-      //   cover = ''
-      // }
-
       const book = {
         title: title,
         author: author,
         user_id: user.id,
-        cover: url, // !!!!!! cover
+        cover: url,
         read_date: date,
         isAudio: isAudio,
         description: description,
       }
-
-      // https://bookshelf-server-blush.vercel.app/api/books-create
-      // http://localhost:5000/api/books-create
 
       const {data} = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/books-create',
         book,
       )
 
-      console.log(data)
-
       const newBook = data.book
-      console.log(newBook)
-
       dispatch(setNewBook({book: newBook}))
-
       const items = [...books, newBook]
 
       dispatch(setBooks({books: items}))
       dispatch(close())
 
-      setTitle('')
-      setAuthor('')
-      setDate('')
-      setDescription('')
-      setIsAudio(false)
-      setFile('')
-      setPreview('')
+      reset()
       inputRef.current.value = ''
     } catch (error) {
       console.log(error)
+      dispatch(setError({error: 'Произошла ошибка при загрузке книги'}))
     } finally {
       dispatch(setLoading({loading: false}))
     }
   }
+
+  console.log(coverLoading)
 
   return (
     <div className={styles.AddBookForm}>
@@ -200,9 +184,15 @@ const AddBookForm = () => {
               </div>
             ) : (
               <div className={styles.Preview}>
-                <h4>{title}</h4>
-                <div></div>
-                <span>{author}</span>
+                {coverLoading ? (
+                  <BookLoader h={'30px'} w={'30px'} black={true} />
+                ) : (
+                  <>
+                    <h4>{title}</h4>
+                    <div className={styles.Border}></div>
+                    <span>{author}</span>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -224,14 +214,25 @@ const AddBookForm = () => {
         <div className={styles.Buttons}>
           <button
             className={styles.AddBook}
-            disabled={title.length < 3 || author.length < 3}
+            disabled={title.length < 3 || author.length < 3 || coverLoading}
             onClick={createBookHandler}
           >
             {loading ? 'Loading...' : 'Добавить книгу'}
           </button>
-          <button className={styles.Cancel}>Отмена</button>
+          <button
+            className={styles.Cancel}
+            onClick={() => {
+              reset()
+              dispatch(close())
+            }}
+          >
+            Отмена
+          </button>
         </div>
       </div>
+      <Error>
+        <h3>{error}</h3>
+      </Error>
     </div>
   )
 }
