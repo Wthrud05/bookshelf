@@ -7,14 +7,10 @@ const Error = ({children}) => {
   const error = useSelector((state) => state.newBook.error)
   const [isOpen, setIsOpen] = useState(false)
 
-  console.log(error)
-
   useEffect(() => {
     error.length ? setIsOpen(true) : setIsOpen(false)
     setTimeout(() => setIsOpen(false), 3000)
   }, [error])
-
-  console.log(isOpen)
 
   return (
     <div className={isOpen ? styles.Error + ' ' + styles.Show : styles.Error}>

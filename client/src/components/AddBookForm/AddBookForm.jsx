@@ -18,7 +18,11 @@ import cross from '../../assets/cross.svg'
 import Error from '../Error/Error'
 
 const AddBookForm = () => {
-  const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
+  const updUrl =
+    import.meta.env.VITE_UPLOAD_IMG_URL ||
+    'https://api.imgbb.com/1/upload?key=1b998a39935a4772cf928e5a2554270e'
+
+  console.log(import.meta.env.VITE_UPLOAD_IMG_URL)
 
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
@@ -109,8 +113,6 @@ const AddBookForm = () => {
       dispatch(setLoading({loading: false}))
     }
   }
-
-  console.log(coverLoading)
 
   return (
     <div className={styles.AddBookForm}>
