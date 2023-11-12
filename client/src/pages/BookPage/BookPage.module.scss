@@ -1,0 +1,247 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.Book {
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  column-gap: 30px;
+  height: 100%;
+
+  .Loader {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      margin-bottom: 20px;
+    }
+  }
+
+  .Info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+
+    .Details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 1 auto;
+  
+      h1, h3, span, p {
+        margin-bottom: 10px;
+      }
+  
+      h1 {
+        font-size: $font-xxl;
+      }
+  
+      h3 {
+        font-size: $font-l;
+      }
+  
+      span, p {
+        font-size: $font-m;
+      }
+  
+      img {
+        width: 200px;
+        height: 65px;
+        margin-bottom: 30px;
+      }
+
+      .updTitle {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        img {
+          width: 40px;
+          height: 30px;
+          margin: 0;
+          margin-left: 5px;
+        }
+
+        h3 {
+          margin: 0;
+          font-size: $font-l;
+        }
+      }
+
+      .InputBox {
+        position: relative;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+
+        input, textarea {
+          @include input(500px, 45px, $font-s, 10px);
+        }
+        
+        textarea {
+          resize: none;
+          overflow-x: hidden;
+          height: 150px;
+        }
+
+        img {
+          width: 15px;
+          height: 15px;
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          transform: translateY(-50%);
+        }  
+
+        &:nth-child(5) {
+          img {
+            top: 17%;
+            transform: translateY(-17%);
+          }
+        }
+      }
+    }
+
+    .Buttons {
+      width: 40%;
+      display: flex;
+      justify-content: space-around;
+  
+      button {
+        &:disabled {
+          background-color: $grey;
+
+          &:hover {
+            background-color: $grey;
+          }
+        }
+        @include button(150px, 40px, $font-s, 10px);
+      }
+
+      .Del {
+        background-color: $red;
+  
+          &:hover {
+            background-color: $hover-red;
+          }
+      }
+    }
+
+    .Error {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: $font-xs;
+      color: $red;
+    }
+  }
+
+  .Cover, .Placeholder {
+    width: 350px;
+    height: 550px;
+
+    img {
+      width: 350px;
+      height: 550px;
+    }
+  }
+
+  .Cover {
+    img {
+      border-radius: 10px;
+      box-shadow: $bx-shadow;
+    }
+
+    .Placeholder {
+      background: #000;
+      background: $radial-grey;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      text-align: center;
+
+      h4 {
+        font-size: $font-xl;
+      }
+
+      div {
+        width: 50%;
+        height: 5px;
+        background: $black;
+        margin: 10px 0;
+      }
+    }
+
+    .UpdateCover {
+      position: relative;
+      height: 550px;
+
+      .UpdateCoverButtons {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        background-color: $bg-trasnparent-light;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding: 10px 0;
+
+        button {
+          @include button(120px, 30px, $font-xs, 7px)
+        }
+      }
+    }
+
+    .CoverLoading {
+      position: relative;
+      width: 350px;
+      height: 550px;
+      border-radius: 10px;
+      box-shadow: $bx-shadow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      h3 {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .ModalDelete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+
+    .ModalButtons {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+
+      button {
+        @include button(100px, 30px, $font-xs, 10px)
+      }
+
+      .Del {
+        background-color: $red;
+  
+          &:hover {
+            background-color: $hover-red;
+          }
+      }
+    }
+  }
+}

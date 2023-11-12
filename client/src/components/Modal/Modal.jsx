@@ -11,7 +11,7 @@ const Modal = ({children}) => {
   const isOpen = useSelector((state) => state.modal.isOpen)
 
   useClickOutside(modalRef, () => {
-    dispatch(close()) // Вызывается при клике на любой элемент в HomePage
+    dispatch(close())
   })
 
   useEffect(() => {

@@ -15,14 +15,10 @@ import iCheck from '../../assets/check.svg'
 import audiobook from '../../assets/audiobook.svg'
 import audiobookGrey from '../../assets/audiobook-grey.svg'
 import cross from '../../assets/cross.svg'
-import Error from '../Error/Error'
+import ModalError from '../ModalError/ModalError'
 
 const AddBookForm = () => {
-  const updUrl =
-    import.meta.env.VITE_UPLOAD_IMG_URL ||
-    'https://api.imgbb.com/1/upload?key=1b998a39935a4772cf928e5a2554270e'
-
-  console.log(import.meta.env.VITE_UPLOAD_IMG_URL)
+  const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
 
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
@@ -53,6 +49,7 @@ const AddBookForm = () => {
     setIsAudio(false)
     setFile('')
     setPreview('')
+    inputRef.current.value = ''
   }
 
   const uploadPrviewHandler = async (e) => {
@@ -83,8 +80,11 @@ const AddBookForm = () => {
 
     try {
       const book = {
-        title: title,
-        author: author,
+        title: title.charAt(0).toUpperCase() + title.slice(1),
+        author: author
+          .split(' ')
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+          .join(' '),
         user_id: user.id,
         cover: url,
         read_date: date,
@@ -105,7 +105,6 @@ const AddBookForm = () => {
       dispatch(close())
 
       reset()
-      inputRef.current.value = ''
     } catch (error) {
       console.log(error)
       dispatch(setError({error: 'Произошла ошибка при загрузке книги'}))
@@ -232,9 +231,9 @@ const AddBookForm = () => {
           </button>
         </div>
       </div>
-      <Error>
+      <ModalError>
         <h3>{error}</h3>
-      </Error>
+      </ModalError>
     </div>
   )
 }

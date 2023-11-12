@@ -17,6 +17,22 @@ exports.getBooksByUser = async (req, res) => {
   }
 }
 
+exports.getOneBook = async (req, res) => {
+  const {id} = req.body
+
+  try {
+    const book = await db.query('select * from books where book_id = $1', [id])
+    res.status(200).json({
+      book: book.rows[0],
+    })
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).json({
+      message: 'Что-то пошло не так',
+    })
+  }
+}
+
 exports.createBook = async (req, res) => {
   const {title, author, user_id, cover, read_date, isAudio, description} = req.body
   try {
@@ -36,13 +52,14 @@ exports.createBook = async (req, res) => {
   }
 }
 
-exports.upadteBook = async (req, res) => {
-  const {book_id, title, author, cover, read_date} = req.body
+exports.updateBook = async (req, res) => {
+  const {book_id, title, author, cover, read_date, description} = req.body
+  console.log(book_id)
 
   try {
     const book = await db.query(
-      'update books set title = $1, author = $2, cover = $3, read_date = $4 where book_id = $5 returning *',
-      [title, author, cover, read_date, book_id],
+      'update books set title = $1, author = $2, cover = $3, read_date = $4 , description = $5 where book_id = $6 returning *',
+      [title, author, cover, read_date, description, book_id],
     )
     res.status(200).json({
       message: `Книга ${book.rows[0].title} изменена`,
@@ -58,6 +75,7 @@ exports.upadteBook = async (req, res) => {
 
 exports.deleteBook = async (req, res) => {
   const {id} = req.body
+  console.log(id)
 
   try {
     const book = await db.query('delete from books where book_id = $1', [id])

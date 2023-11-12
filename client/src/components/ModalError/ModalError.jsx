@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import styles from './Error.module.scss'
+import styles from './ModalError.module.scss'
 import {useSelector} from 'react-redux'
 import cross from '../../assets/cross-black.svg'
 

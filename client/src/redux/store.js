@@ -3,6 +3,7 @@ import authReducer from './auth/slice'
 import booksReducer from './books/slice'
 import modalReducer from './modal/slice'
 import newBookReducer from './new_book/slice'
+import bookReducer from './book/slice'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     books: booksReducer,
     modal: modalReducer,
     newBook: newBookReducer,
+    book: bookReducer,
   },
 })

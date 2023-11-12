@@ -20,12 +20,11 @@ const HomePage = () => {
   const getBooks = async () => {
     dispatch(setLoading({loading: true}))
     try {
-      const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {
+      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {
         id: user.id,
       })
-      // http://localhost:5000/api/books
-      // https://bookshelf-server-blush.vercel.app/api/books
-      const items = await res.data.books
+      const items = await data.books
+      console.log(items)
       dispatch(setBooks({books: items}))
     } catch (error) {
       console.log(error)

@@ -16,6 +16,12 @@ pool.connect((err) => {
   console.log('GG')
   if (err) {
     console.log('Произошла ошибка подключения к Базе Данных')
+    pool.connect((e) => {
+      if (e) {
+        console.log('Error while connect to DB')
+      }
+      console.log('Reconnect!')
+    })
     throw err
   }
   console.log('Connect to PostgreSQL successfully!')
