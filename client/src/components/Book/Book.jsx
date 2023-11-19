@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './Book.module.scss'
-import link from '../../assets/link.svg'
 import {Link} from 'react-router-dom'
 
 const Book = ({book}) => {

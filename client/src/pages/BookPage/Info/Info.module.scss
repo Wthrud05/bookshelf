@@ -1,0 +1,118 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.Info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+
+  .Details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 auto;
+
+    img {
+      width: 200px;
+      height: 65px;
+      margin-bottom: 30px;
+    }
+  
+    h1, h3, span, p {
+      margin-bottom: 10px;
+    }
+  
+    h1 {
+      font-size: $font-xxl;
+    }
+  
+    h3 {
+      font-size: $font-l;
+    }
+  
+    span, p {
+      font-size: $font-m;
+    }
+
+    .updTitle {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      img {
+        width: 40px;
+        height: 30px;
+        margin: 0;
+        margin-left: 5px;
+      }
+      h3 {
+        margin: 0;
+        font-size: $font-l;
+      }
+    }
+
+    .InputBox {
+      position: relative;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+
+      input, textarea {
+        @include input(500px, 45px, $font-s, 10px);
+      }
+      
+      textarea {
+        resize: none;
+        overflow-x: hidden;
+        height: 150px;
+      }
+
+      img {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+      }  
+
+      &:nth-child(5) {
+        img {
+          top: 17%;
+          transform: translateY(-17%);
+        }
+      }
+    }
+  }
+
+  .Error {
+    color: $red;
+    margin-bottom: 15px;
+    font-size: $font-s;
+  }
+
+  .Buttons {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      &:disabled {
+        background-color: $grey;
+
+        &:hover {
+          background-color: $grey;
+        }
+      }
+      @include button(150px, 40px, $font-s, 10px);
+    }
+
+    .Del {
+      background-color: $red;
+
+        &:hover {
+          background-color: $hover-red;
+        }
+    }
+  }
+}
