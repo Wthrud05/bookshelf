@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from './Book.module.scss'
 import {Link} from 'react-router-dom'
+import headphones from '../../assets/headphones.svg'
 
 const Book = ({book}) => {
   return (
     <div className={styles.Book}>
       <Link to={`/book/${book.book_id}`}>
+        {book.isaudio && <img className={styles.Audio} src={headphones} alt="audio" />}
         {book.cover ? (
           <>
             <div className={styles.Icon}>

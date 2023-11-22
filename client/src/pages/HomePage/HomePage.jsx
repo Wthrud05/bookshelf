@@ -4,7 +4,7 @@ import Controls from '../../components/Controls/Controls'
 import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
-import {setBooks, setLoading} from '../../redux/books/slice'
+import {setBooks, setBooksCount, setLoading} from '../../redux/books/slice'
 import Book from '../../components/Book/Book'
 import Modal from '../../components/Modal/Modal'
 import AddBookForm from '../../components/AddBookForm/AddBookForm'
@@ -15,7 +15,6 @@ const HomePage = () => {
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
   const isLoading = useSelector((state) => state.books.loading)
-  // const isModalOpen = useSelector((state) => state.modal.isOpen) // ???
 
   const getBooks = async () => {
     dispatch(setLoading({loading: true}))
@@ -26,6 +25,7 @@ const HomePage = () => {
       const items = await data.books
       console.log(items)
       dispatch(setBooks({books: items}))
+      dispatch(setBooksCount({booksCount: items.length}))
     } catch (error) {
       console.log(error)
     } finally {

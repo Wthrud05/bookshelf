@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {useAuth} from '../../hooks/useAuth'
-import {setLoading, setUser, removeUser} from '../../redux/auth/slice'
-import axios from 'axios'
+import {setLoading, removeUser} from '../../redux/auth/slice'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 import styles from './ProfilePage.module.scss'
 import BookLoader from '../../components/BookLoader/BookLoader'
+import Avatar from '../../components/Avatar/Avatar'
+import pattern from '../../assets/pattern.jpg'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const ProfilePage = () => {
   const userName = useSelector((state) => state.auth.name)
   const userId = useSelector((state) => state.auth.id)
   const loading = useSelector((state) => state.auth.loading)
+  const booksCount = useSelector((state) => state.books.booksCount)
 
   const logout = async (id) => {
     try {
@@ -36,10 +38,15 @@ const ProfilePage = () => {
 
   return (
     <div className={styles.ProfilePage}>
-      <h1>Здравствуйте {userName}!</h1>
-      <button onClick={() => logout(userId)}>
+      <Avatar />
+      <h1 className={styles.Username}>{userName}</h1>
+      <span>
+        Книг: <b>{booksCount}</b>
+      </span>
+      <button className={styles.Logout} onClick={() => logout(userId)}>
         {loading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
       </button>
+      <img className={styles.Pattern} src={pattern} alt="pattern" />
     </div>
   )
 }

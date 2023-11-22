@@ -4,13 +4,14 @@ import BookLoader from '../../../components/BookLoader/BookLoader'
 import {useDispatch, useSelector} from 'react-redux'
 import {setCover, setLoading, setError, setIsTouched} from '../../../redux/book/slice'
 import axios from 'axios'
+import headphones from '../../../assets/headphones.svg'
 
 const Cover = () => {
   const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
   const inputRef = useRef(null)
 
   const {isUpdate, loading} = useSelector((state) => state.book)
-  const {cover} = useSelector((state) => state.book.book)
+  const {cover, isaudio} = useSelector((state) => state.book.book)
 
   const dispatch = useDispatch()
 
@@ -33,6 +34,7 @@ const Cover = () => {
 
   return (
     <div className={styles.Cover}>
+      {isaudio && <img className={styles.Audio} src={headphones} alt="audio" />}
       {loading ? (
         <BookLoader w={'30px'} h={'30px'} black={true} />
       ) : (

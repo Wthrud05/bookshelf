@@ -4,7 +4,7 @@ import axios from 'axios'
 import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
 import {setLoading, setNewBook, setError} from '../../redux/new_book/slice'
-import {setBooks} from '../../redux/books/slice'
+import {setBooks, setBooksCount} from '../../redux/books/slice'
 import {close} from '../../redux/modal/slice'
 import BookLoader from '../BookLoader/BookLoader'
 import iTitle from '../../assets/title.svg'
@@ -24,6 +24,7 @@ const AddBookForm = () => {
   const books = useSelector((state) => state.books.books)
   const loading = useSelector((state) => state.newBook.loading)
   const error = useSelector((state) => state.newBook.error)
+  const booksCount = useSelector((state) => state.books.booksCount)
 
   const [coverLoading, setCoverLoading] = useState(false)
 
@@ -102,6 +103,7 @@ const AddBookForm = () => {
       const items = [...books, newBook]
 
       dispatch(setBooks({books: items}))
+      dispatch(setBooksCount({booksCount: booksCount + 1}))
       dispatch(close())
 
       reset()
