@@ -57,7 +57,7 @@ const BookPage = () => {
         title: book.title,
         author: book.author,
         cover: book.cover,
-        read_date: book.date,
+        read_date: book.read_date,
         description: book.description,
       })
 

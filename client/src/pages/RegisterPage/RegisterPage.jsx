@@ -38,6 +38,7 @@ const RegisterPage = () => {
               dispatch(setError({error: msg}))
             }
           })
+        console.log(res)
         const {id, name} = await res.data.user
         dispatch(setUser({id, name}))
         localStorage.setItem('user', JSON.stringify({id, name}))
