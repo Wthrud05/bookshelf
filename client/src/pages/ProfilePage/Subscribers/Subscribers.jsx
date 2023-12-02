@@ -16,10 +16,9 @@ const Subscribers = ({fn}) => {
   const getSubscribers = async () => {
     dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios.post(
-        'https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/subscribers',
-        {id: user_id},
-      )
+      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/subscribers', {
+        id: user_id,
+      })
       dispatch(setSubscribers({subscribers: data.subs}))
     } catch (error) {
       console.log(error)

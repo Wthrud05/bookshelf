@@ -5,8 +5,6 @@ import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
 import {setError, setLoading, setSubscriptions} from '../../../redux/user/slice'
 import {open} from '../../../redux/modal/slice'
-import Modal from '../../../components/Modal/Modal'
-import UserList from '../../../components/UserList/UserList'
 
 const Subscriptions = ({fn}) => {
   const dispatch = useDispatch()
@@ -21,7 +19,7 @@ const Subscriptions = ({fn}) => {
     dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios.post(
-        'https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/subscriptions',
+        'https://bookshelf-server-blush.vercel.app/api/subscriptions',
         {id: user_id},
       )
       dispatch(setSubscriptions({subscriptions: data.subs}))

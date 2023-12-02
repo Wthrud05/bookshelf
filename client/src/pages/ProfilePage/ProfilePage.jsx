@@ -35,10 +35,11 @@ const ProfilePage = () => {
     try {
       dispatch(setLoading({loading: true}))
 
-      const res = await axios.post(
-        'https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/logout',
-        {user_id: id},
-      )
+      //  https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/logout ???
+
+      const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/logout', {
+        user_id: id,
+      })
       const msg = await res.data.message
       localStorage.removeItem('user')
       dispatch(setLoading({loading: false}))
