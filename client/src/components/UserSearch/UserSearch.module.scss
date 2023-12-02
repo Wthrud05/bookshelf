@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.UserSearch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    font-size: $font-m;
+    margin-bottom: 20px;
+  }
+
+  .InputBox {
+    position: relative;
+
+    input {
+      @include input(400px, 40px, 18px, 10px);
+    }
+
+    .Icon, .Cross {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+    }
+
+    .Icon {
+      left: 10px;
+    }
+
+    .Cross {
+      background: none;
+      outline: none;
+      border: none;
+      right: 10px;
+      cursor: pointer;
+      transition: $tr-200;
+
+      &:hover {
+        opacity: .7;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

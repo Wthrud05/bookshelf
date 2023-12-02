@@ -11,7 +11,7 @@ export const userInfo = [
     img: '/statuses/literature encyclopedia.svg',
   },
   {
-    books: [100, 999999],
+    books: [100, Infinity],
     status: 'Книжный магнат',
     img: '/statuses/book tycoon.svg',
   },

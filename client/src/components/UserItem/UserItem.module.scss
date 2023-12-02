@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.UserItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  padding: 10px 30px;
+  border-radius: 15px;
+  transition: $tr-200;
+
+  &:hover {
+    background: $light;
+  }
+  
+  .UserAvatar {
+    background: $radial-grey;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding-bottom: 5px;
+    margin-right: 20px;
+
+    box-shadow: $bx-shadow-5;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  h4 {
+    font-size: $font-s;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.UserList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+
+  h3 {
+    font-size: $font-m;
+  }
+
+  ul {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 0 10px;
+
+    &::-webkit-scrollbar {
+      width: 7px;
+      background-color: $light;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $grey;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: $-shadow;
+    }
+  }
+
+  .Loader {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    h3 {
+      font-size: $font-l;
+      margin-bottom: 30px;
+    }
+  }
+}

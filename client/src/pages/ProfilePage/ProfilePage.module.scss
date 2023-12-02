@@ -8,15 +8,36 @@
   margin-top: 35px;
   position: relative;
 
-  .Logout {
+  .Actions {
     position: absolute;
     top: 0;
     right: 0;
-
-    @include button(100px, 35px, $font-xs, 12px);
     display: flex;
-    justify-content: center;
-    align-items: center;
+
+    .Logout {
+      @include button(100px, 35px, $font-xs, 12px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .SearchUser {
+      background: none;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      margin-right: 20px;
+      transition: $tr-200;
+
+      &:hover {
+        opacity: .8;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 
   .Username {
@@ -25,11 +46,20 @@
 
   span {
     font-size: $font-m;
+    margin-bottom: 20px;
+  }
+
+  .Socials {
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+    border-top: 1px solid $grey;
+    padding-top: 20px;
   }
 
   .Pattern {
     width: 250px;
     height: 85px;
-    margin-top: 30px;
+    margin-top: 15px;
   }
 }

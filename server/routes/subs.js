@@ -1,8 +1,9 @@
 const {Router} = require('express')
-const {getSubs, follow, unfollow} = require('../controllers/subs')
+const {follow, unfollow, getSubscriptions, getSubscribers} = require('../controllers/subs')
 const router = new Router()
 
-router.post('/subs', getSubs)
+router.post('/subscriptions', getSubscriptions)
+router.post('/subscribers', getSubscribers)
 router.post('/sub', follow)
 router.delete('/sub', unfollow)
 
