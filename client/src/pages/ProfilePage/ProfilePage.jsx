@@ -14,17 +14,19 @@ import Modal from '../../components/Modal/Modal'
 import UserList from '../../components/UserList/UserList'
 import UserSearch from '../../components/UserSearch/UserSearch'
 import search from '../../assets/search-user.svg'
+import UserData from '../../components/UserData/UserData'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
   const navigator = useNavigate()
 
   const userName = useSelector((state) => state.auth.name)
-  const loading = useSelector((state) => state.user.loading)
+  const loading = useSelector((state) => state.user.loading) // Когда идет загрузка подписок показывать лоадер всей страницы
   const authLoading = useSelector((state) => state.auth.loading)
 
+  const {booksCount} = useSelector((state) => state.books)
+
   const userId = useSelector((state) => state.auth.id)
-  const booksCount = useSelector((state) => state.books.booksCount)
 
   const subscribers = useSelector((state) => state.user.subscribers)
   const subscriptions = useSelector((state) => state.user.subscriptions)
@@ -34,8 +36,6 @@ const ProfilePage = () => {
   const logout = async (id) => {
     try {
       dispatch(setLoading({loading: true}))
-
-      //  https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/logout ???
 
       const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/logout', {
         user_id: id,
@@ -58,30 +58,35 @@ const ProfilePage = () => {
   return (
     <>
       <div className={styles.ProfilePage}>
-        <Avatar />
-        <h1 className={styles.Username}>{userName}</h1>
-        <span>
-          Книг: <b>{booksCount}</b>
-        </span>
-        <div className={styles.Socials}>
-          <Subscriptions fn={getNameHandler} />
-          <Subscribers fn={getNameHandler} />
-        </div>
-        <img className={styles.Pattern} src={pattern} alt="pattern" />
-        <div className={styles.Actions}>
-          <button
-            className={styles.SearchUser}
-            onClick={() => {
-              setType('Поиск')
-              dispatch(open())
-            }}
-          >
-            <img src={search} alt="search" />
-          </button>
-          <button className={styles.Logout} onClick={() => logout(userId)}>
-            {authLoading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
-          </button>
-        </div>
+        {loading ? (
+          <div>
+            <h3>Загрузка...</h3>
+            <BookLoader w={'30px'} h={'30px'} black={true} />
+          </div>
+        ) : (
+          <>
+            <UserData count={booksCount} name={userName} />
+            <div className={styles.Socials}>
+              <Subscriptions fn={getNameHandler} />
+              <Subscribers fn={getNameHandler} />
+            </div>
+            <img className={styles.Pattern} src={pattern} alt="pattern" />
+            <div className={styles.Actions}>
+              <button
+                className={styles.SearchUser}
+                onClick={() => {
+                  setType('Поиск')
+                  dispatch(open())
+                }}
+              >
+                <img src={search} alt="search" />
+              </button>
+              <button className={styles.Logout} onClick={() => logout(userId)}>
+                {authLoading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
       <Modal>

@@ -39,13 +39,17 @@
   color: $white;
   cursor: pointer;
   transition: $tr-200;
-  border: 3px solid transparent;
 
   &:hover {
-    background-color: $dark-grey;
+    opacity: 0.9;
   }
 
   &:active {
     transform: scale(0.98);
+  }
+
+  &:disabled {
+    background-color: $light-grey;
+    color: $light;
   }
 }

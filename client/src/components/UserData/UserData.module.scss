@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.UserData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .Username {
+    margin-bottom: 10px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  span {
+    font-size: $font-m;
+    margin-bottom: 20px;
+  }
+}
+
+.TargetUserData {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $grey;
+  
+  div {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      @include button(120px, 30px, 14px, 10px);
+      margin-top: 15px;
+    }
+  }
+
+  
+}

@@ -53,10 +53,12 @@ exports.follow = async (req, res) => {
 
 exports.unfollow = async (req, res) => {
   const {id} = req.body
+  console.log(id)
   try {
     const sub = await db.query('delete from subs where sub_id = $1', [id])
     res.status(200).json({
       message: 'Подписка отменена успешно',
+      sub: sub.rows[0],
     })
   } catch (error) {
     console.log(error.messgae)

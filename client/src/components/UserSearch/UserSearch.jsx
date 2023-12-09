@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styles from './UserSearch.module.scss'
 import search from '../../assets/search-user-grey.svg'
 import axios from 'axios'
@@ -13,6 +13,8 @@ const UserSearch = () => {
   const dispatch = useDispatch()
   const {users, searchStr, loading} = useSelector((state) => state.users)
   const {isOpen} = useSelector((state) => state.modal)
+
+  const inputRef = useRef(null)
   const [value, setValue] = useState('')
 
   const getUsers = async () => {
@@ -25,8 +27,11 @@ const UserSearch = () => {
       console.log(error)
     } finally {
       dispatch(setLoading({loading: false}))
+      inputRef.current.focus()
     }
   }
+
+  console.log(inputRef.current)
 
   const updateInputHandler = (e) => {
     setValue(e.target.value)
@@ -54,13 +59,17 @@ const UserSearch = () => {
     dispatch(setSearchStr({str: ''}))
   }, [isOpen])
 
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
+
   return (
     <div className={styles.UserSearch}>
       <h3>Поиск пользователей</h3>
       <div className={styles.InputBox}>
         <img className={styles.Icon} src={search} alt="search" />
         <input
-          disabled={loading}
+          ref={inputRef}
           value={value}
           onChange={(e) => updateInputHandler(e)}
           type="text"

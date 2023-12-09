@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.UserPage {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  margin-top: 35px;
+
+  .Loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      margin-bottom: 20px;
+    }
+  }
+}

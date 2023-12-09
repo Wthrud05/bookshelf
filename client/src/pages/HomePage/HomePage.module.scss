@@ -10,13 +10,9 @@
     margin-bottom: 10px;
   }
 
-  .BooksList {
-    display: grid;
-    grid-template-columns: repeat(5, 240px);
-    justify-content: space-between;
-    align-content: center;
-    justify-items: center;
-    gap: 30px;
-    margin-bottom: 20px;
+  .Loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

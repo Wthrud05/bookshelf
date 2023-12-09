@@ -14,7 +14,7 @@ const Subscribers = ({fn}) => {
   const subscribers = useSelector((state) => state.user.subscribers)
 
   const getSubscribers = async () => {
-    dispatch(setLoading({loading: true}))
+    // dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/subscribers', {
         id: user_id,
@@ -33,27 +33,19 @@ const Subscribers = ({fn}) => {
   }, [])
 
   return (
-    <>
-      <div className={styles.Subscribers}>
-        {loading ? (
-          <span>Загрузка...</span>
-        ) : (
-          <>
-            <div
-              className={styles.Header}
-              onClick={() => {
-                fn('Подписчики')
-                dispatch(open())
-              }}
-            >
-              <h3>Мои подписчики</h3>
-              <img src={subs} alt="subs" />
-            </div>
-            <span>{subscribers.length}</span>
-          </>
-        )}
+    <div className={styles.Subscribers}>
+      <div
+        className={styles.Header}
+        onClick={() => {
+          fn('Подписчики')
+          dispatch(open())
+        }}
+      >
+        <h3>Мои подписчики</h3>
+        <img src={subs} alt="subs" />
       </div>
-    </>
+      <span>{subscribers.length}</span>
+    </div>
   )
 }
 

@@ -15,6 +15,7 @@ const BookPage = () => {
   const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
 
   const {id} = useParams()
+  console.log(id)
   const {isUpdate} = useSelector((state) => state.book)
   const [loading, setLoading] = useState(false)
 

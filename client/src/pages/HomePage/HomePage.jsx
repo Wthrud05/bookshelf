@@ -5,16 +5,16 @@ import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
 import {setBooks, setBooksCount, setLoading} from '../../redux/books/slice'
-import Book from '../../components/Book/Book'
 import Modal from '../../components/Modal/Modal'
 import AddBookForm from '../../components/AddBookForm/AddBookForm'
+import BookList from '../../components/BookList/BookList'
+import BookLoader from '../../components/BookLoader/BookLoader'
 
 const HomePage = () => {
   const {user} = useAuth()
 
   const dispatch = useDispatch()
-  const books = useSelector((state) => state.books.books)
-  const isLoading = useSelector((state) => state.books.loading)
+  const {books, loading} = useSelector((state) => state.books)
 
   const getBooks = async () => {
     dispatch(setLoading({loading: true}))
@@ -44,14 +44,13 @@ const HomePage = () => {
     <div className={styles.HomePage}>
       <h1>Мои книги</h1>
       <Controls />
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className={styles.BooksList}>
-          {books.map((book) => (
-            <Book book={book} key={book.book_id} />
-          ))}
+      {loading ? (
+        <div className={styles.Loader}>
+          <h1>Загрузка…</h1>
+          <BookLoader w={'50px'} h={'50px'} black={true} />
         </div>
+      ) : (
+        <BookList books={books} />
       )}
       <Modal>
         <AddBookForm />

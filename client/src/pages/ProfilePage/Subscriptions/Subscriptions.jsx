@@ -16,7 +16,7 @@ const Subscriptions = ({fn}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const getSubscriptions = async () => {
-    dispatch(setLoading({loading: true}))
+    // dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/subscriptions',
@@ -36,27 +36,19 @@ const Subscriptions = ({fn}) => {
   }, [])
 
   return (
-    <>
-      <div className={styles.Subscriptions}>
-        {loading ? (
-          <span>Загрузка</span>
-        ) : (
-          <>
-            <div
-              className={styles.Header}
-              onClick={() => {
-                dispatch(open())
-                fn('Подписки')
-              }}
-            >
-              <h3>Мои подписки</h3>
-              <img src={subscribtions} alt="subs" />
-            </div>
-            <span>{subscriptions.length}</span>
-          </>
-        )}
+    <div className={styles.Subscriptions}>
+      <div
+        className={styles.Header}
+        onClick={() => {
+          dispatch(open())
+          fn('Подписки')
+        }}
+      >
+        <h3>Мои подписки</h3>
+        <img src={subscribtions} alt="subs" />
       </div>
-    </>
+      <span>{subscriptions.length}</span>
+    </div>
   )
 }
 

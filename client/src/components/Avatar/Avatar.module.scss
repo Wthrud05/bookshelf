@@ -29,3 +29,31 @@
     height: 150px;
   }
 }
+
+.UserAvatar {
+  background: $radial-grey;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  span {
+    width: 120px;
+    font-size: $font-s;
+    font-weight: $bold;
+    text-decoration: underline;
+    letter-spacing: 2px;
+    color: $red;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}

@@ -9,23 +9,24 @@ const UserItem = ({user, name}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const clickHandler = () => {
+    dispatch(close())
+    setTimeout(() => {
+      navigate(`/user/${user.sub_id}`)
+      {
+        name === 'Подписки' && navigate(`/user/${user.sub_id}`)
+      }
+      {
+        name === 'Подписчики' && navigate(`/user/${user.user_id}`)
+      }
+      {
+        name === 'Пользователи' && navigate(`/user/${user.user_id}`)
+      }
+    }, 0)
+  }
+
   return (
-    <div
-      className={styles.UserItem}
-      onClick={() => {
-        navigate(`/user/:${user.sub_id}`)
-        {
-          name === 'Подписки' && navigate(`/user/:${user.sub_id}`)
-        }
-        {
-          name === 'Подписчики' && navigate(`/user/:${user.user_id}`)
-        }
-        {
-          name === 'Пользователи' && navigate(`/user/:${user.user_id}`)
-        }
-        dispatch(close())
-      }}
-    >
+    <div className={styles.UserItem} onClick={clickHandler}>
       <div className={styles.UserAvatar}>
         <img src={reader} alt="user" />
       </div>
