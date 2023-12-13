@@ -37,6 +37,7 @@
     position: relative;
     transition: $tr-200;
     cursor: pointer;
+    width: 130px;
 
     &:hover {
       background: $dark-grey;
@@ -46,9 +47,11 @@
       width: 25px;
       height: 25px;
       margin-left: 5px;
+      transition: $tr-200;
     }
 
     .Open {
+      transition: $tr-200;
       transform: rotate(180deg);
     }
     

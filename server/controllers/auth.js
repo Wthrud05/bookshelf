@@ -95,6 +95,26 @@ exports.logout = async (req, res) => {
   }
 }
 
+exports.changeName = async (req, res) => {
+  const {name, id} = req.body
+  console.log(name, id)
+
+  try {
+    const user = await db.query('update users set name = $1 where user_id = $2 returning *', [
+      name,
+      id,
+    ])
+    res.status(200).json({
+      message: 'Имя пользователя изменено',
+    })
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).json({
+      error: 'Что-то пошло не так',
+    })
+  }
+}
+
 exports.deleteUser = async (req, res) => {
   const {user_id} = req.body
 

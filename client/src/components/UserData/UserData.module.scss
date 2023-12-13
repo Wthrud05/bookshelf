@@ -7,6 +7,49 @@
   align-items: center;
   justify-content: center;
 
+  .Data {
+    position: relative;
+
+    .ChangeBtn {
+      position: absolute;
+      top: 0px;
+      right: -30px;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 5px;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .ChangeName {
+      display: flex;
+
+      input {
+        @include input(250px, 30px, $font-s, 10px);
+        padding: 10px 20px;
+      }
+
+
+      div {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 5px 0;
+
+        button {
+          @include button(100px, 30px, 14px, 10px)
+        }
+      }
+    }
+  }
+
   .Username {
     margin-bottom: 10px;
   }
@@ -28,8 +71,9 @@
   align-items: center;
   margin-bottom: 20px;
   border-bottom: 1px solid $grey;
-  
-  div {
+
+  .Data {
+    position: relative;
     margin-left: 30px;
     display: flex;
     flex-direction: column;
@@ -39,7 +83,5 @@
       @include button(120px, 30px, 14px, 10px);
       margin-top: 15px;
     }
-  }
-
-  
+  }  
 }

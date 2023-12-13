@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Avatar.module.scss'
-import {userInfo} from '../../utils/userData'
+import {userInfo} from '../../utils/data'
 
 const Avatar = ({count}) => {
   const currentStatus = userInfo.reduce((acc, curr) => {

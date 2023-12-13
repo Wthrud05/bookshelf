@@ -5,16 +5,16 @@ import SortItem from '../SortItem/SortItem'
 import {useDispatch, useSelector} from 'react-redux'
 import {open} from '../../redux/modal/slice'
 import {useClickOutside} from '../../hooks/useClickOutside'
+import {sortTypes} from '../../utils/data'
 
 const Controls = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const sort = ['Умолчанию', 'Дате', 'Алфавиту']
   const sortRef = useRef(null)
 
   useClickOutside(sortRef, () => {
     setIsOpen(false)
   })
-  const isModalOpen = useSelector((state) => state.modal.isOpen)
+  const {sortType} = useSelector((state) => state.user)
   const dispatch = useDispatch()
 
   return (
@@ -28,12 +28,12 @@ const Controls = () => {
         <span className={styles.Cross}>+</span>
       </button>
       <div className={styles.Sort} onClick={() => setIsOpen(!isOpen)} ref={sortRef}>
-        <span>Сортировать по</span>
+        <span>{sortType || 'Новые'}</span>
         <img className={isOpen ? styles.Open : ''} src={arrowDown} alt="arrow-down" />
         {isOpen && (
           <ul className={styles.SortList}>
-            {sort.map((item) => (
-              <SortItem title={item} key={item} />
+            {sortTypes.map((item) => (
+              <SortItem category={item} key={item} />
             ))}
           </ul>
         )}

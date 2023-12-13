@@ -10,6 +10,16 @@
     margin-bottom: 10px;
   }
 
+  .Count {
+    font-size: $font-m;
+    font-weight: $bold;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 7px;
+    text-decoration-color: $accent;
+  }
+
   .Loader {
     display: flex;
     flex-direction: column;

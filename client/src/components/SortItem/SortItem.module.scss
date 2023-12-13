@@ -1,10 +1,12 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.SortItem {
+.SortItem, .SortItemActive {
   padding: 10px 20px;
   cursor: pointer;
   transition: $tr-300;
+  width: 100%;
+  text-align: center;
 
   &:hover {
     background: $black;
@@ -20,4 +22,9 @@
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
   }
+}
+
+.SortItemActive {
+    background: $dark-grey;
+    color: $white;
 }

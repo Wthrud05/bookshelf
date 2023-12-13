@@ -54,7 +54,6 @@ exports.createBook = async (req, res) => {
 
 exports.updateBook = async (req, res) => {
   const {book_id, title, author, cover, read_date, description} = req.body
-  console.log(book_id)
 
   try {
     const book = await db.query(

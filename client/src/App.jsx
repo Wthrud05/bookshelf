@@ -13,6 +13,7 @@ import UserPage from './pages/UserPage/UserPage'
 import AboutPage from './pages/AboutPage/AboutPage'
 import {useDispatch, useSelector} from 'react-redux'
 import {setUser} from './redux/auth/slice'
+import {setSortType} from './redux/user/slice'
 
 function App() {
   const {user, isAuth} = useAuth()
@@ -20,11 +21,19 @@ function App() {
   const navigator = useNavigate()
   const dispatch = useDispatch()
 
-  const isModalOpen = useSelector((state) => state.modal.isOpen)
+  const {sortType} = useSelector((state) => state.user)
+  const category = JSON.parse(localStorage.getItem('sort'))
 
   useEffect(() => {
     isAuth ? navigator('/') : navigator('/login')
     user ? dispatch(setUser({id: user.id, name: user.name})) : null
+
+    if (!JSON.parse(localStorage.getItem('sort'))) {
+      localStorage.setItem('sort', JSON.stringify('Новые'))
+      dispatch(setSortType({sortType: 'Новые'}))
+    }
+
+    category ? dispatch(setSortType({sortType: category})) : null
   }, [])
 
   return (

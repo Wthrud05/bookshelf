@@ -5,7 +5,9 @@ import {useIsUser} from '../../hooks/useIsUser'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
-import {setIsSubscribed, setLoading} from '../../redux/target_user/slice'
+import {setIsSubscribed} from '../../redux/target_user/slice'
+import pen from '../../assets/pen.svg'
+import {setUser} from '../../redux/auth/slice'
 
 const UserData = ({count, name}) => {
   const dispatch = useDispatch()
@@ -17,6 +19,10 @@ const UserData = ({count, name}) => {
 
   const [isUser, setIsUser] = useState(false)
   const res = useIsUser()
+
+  const [nameValue, setNameValue] = useState(userName)
+  const [isUpdate, setIsUpdate] = useState(false)
+  const [isTouched, setIsTouched] = useState(false)
 
   useEffect(() => {
     setIsUser(res)
@@ -49,11 +55,71 @@ const UserData = ({count, name}) => {
     }
   }
 
+  const changeNameHandler = async () => {
+    try {
+      const res = await axios.post('http://localhost:5000/api/change-name', {
+        name: nameValue,
+        id: userId,
+      })
+      dispatch(setUser({name: nameValue, id: userId}))
+      localStorage.setItem('user', JSON.stringify({id: userId, name: nameValue}))
+      setIsTouched(false)
+      setIsUpdate(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className={isUser ? styles.TargetUserData : styles.UserData}>
       <Avatar count={count} />
-      <div>
-        {loading ? <h1>Имя</h1> : <h1 className={styles.Username}>{name}</h1>}
+      <div className={styles.Data}>
+        {loading ? (
+          <div>
+            <h1>Имя</h1>
+          </div>
+        ) : (
+          <div>
+            {isUser && <h1 className={styles.Username}>{name}</h1>}
+            {!isUser && (
+              <div>
+                {isUpdate ? (
+                  <div className={styles.ChangeName}>
+                    <input
+                      type="text"
+                      value={nameValue}
+                      onChange={(e) => {
+                        setIsTouched(true)
+                        setNameValue(e.target.value)
+                      }}
+                    />
+                    <div>
+                      <button disabled={!isTouched} onClick={changeNameHandler}>
+                        Ок
+                      </button>
+                      <button
+                        onClick={() => {
+                          setNameValue(userName)
+                          setIsTouched(false)
+                          setIsUpdate(false)
+                        }}
+                      >
+                        Отмена
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <button className={styles.ChangeBtn} onClick={() => setIsUpdate(true)}>
+                      <img src={pen} alt="pen" />
+                    </button>
+                    <h1 className={styles.Username}>{name}</h1>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
         <span>
           Книг: <b>{count}</b>
         </span>

@@ -9,8 +9,13 @@
   border-radius: 10px;
   position: relative;
   background: $light;
-  position: relative;
   text-align: center;
+
+  .ReadDate {
+    font-size: $font-s;
+    color: $white;
+    text-shadow: $t-shadow;
+  }
 
   .Audio {
     width: 40px;

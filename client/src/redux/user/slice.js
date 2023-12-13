@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   subscriptions: [],
   subscribers: [],
+  sortType: '',
   error: '',
 }
 
@@ -17,6 +18,9 @@ const userSlice = createSlice({
     setSubscribers: (state, action) => {
       state.subscribers = action.payload.subscribers
     },
+    setSortType: (state, action) => {
+      state.sortType = action.payload.sortType
+    },
     setLoading: (state, action) => {
       state.loading = action.payload.loading
     },
@@ -26,5 +30,6 @@ const userSlice = createSlice({
   },
 })
 
-export const {setSubscriptions, setSubscribers, setLoading, setError} = userSlice.actions
+export const {setSubscriptions, setSubscribers, setSortType, setLoading, setError} =
+  userSlice.actions
 export default userSlice.reducer

@@ -14,6 +14,7 @@ const Book = ({book}) => {
         {book.cover ? (
           <>
             <div className={styles.Icon}>
+              <span className={styles.ReadDate}>{book.read_date}</span>
               {isUser && (
                 <svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
                   <path
