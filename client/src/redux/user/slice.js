@@ -18,9 +18,6 @@ const userSlice = createSlice({
     setSubscribers: (state, action) => {
       state.subscribers = action.payload.subscribers
     },
-    setSortType: (state, action) => {
-      state.sortType = action.payload.sortType
-    },
     setLoading: (state, action) => {
       state.loading = action.payload.loading
     },

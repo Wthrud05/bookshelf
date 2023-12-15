@@ -1,30 +1,48 @@
-export const filterByParam = (arr, str) => {
+export const filterUsersByParam = (arr, str) => {
   return arr.filter((item) => item.name.toLowerCase().includes(str.toLowerCase()))
 }
 
-export const sortByType = (type, arr) => {
-  console.log(type)
-  let sortArr = []
+export const filterBooksByParam = (arr, str, param) => {
+  switch (param) {
+    case 'Название':
+      return arr.filter((item) => item.title.toLowerCase().includes(str.toLowerCase()))
+
+    case 'Автор':
+      return arr.filter((item) => item.author.toLowerCase().includes(str.toLowerCase()))
+
+    case '':
+      return arr
+  }
+}
+
+export const sortByType = (type, arr, str, searchType) => {
   switch (type) {
     case 'Новые':
-      sortArr = arr.sort((a, b) => b.book_id - a.book_id)
-      break
+      return filterBooksByParam(
+        arr.sort((a, b) => b.book_id - a.book_id),
+        str,
+        searchType,
+      )
 
     case 'Старые':
-      sortArr = arr.sort((a, b) => a.book_id - b.book_id)
-      break
+      return filterBooksByParam(
+        arr.sort((a, b) => a.book_id - b.book_id),
+        str,
+        searchType,
+      )
 
     case 'Печатные':
-      sortArr = arr
-        .sort((a, b) => b.book_id - a.book_id)
-        .filter((item) => (item.isaudio ? null : item))
-      break
+      return filterBooksByParam(
+        arr.sort((a, b) => b.book_id - a.book_id).filter((item) => (item.isaudio ? null : item)),
+        str,
+        searchType,
+      )
 
     case 'Аудио':
-      sortArr = arr
-        .sort((a, b) => b.book_id - a.book_id)
-        .filter((item) => (item.isaudio ? item : null))
-      break
+      return filterBooksByParam(
+        arr.sort((a, b) => b.book_id - a.book_id).filter((item) => (item.isaudio ? item : null)),
+        str,
+        searchType,
+      )
   }
-  return sortArr
 }

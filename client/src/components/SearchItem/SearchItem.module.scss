@@ -1,17 +1,11 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.SortItem, .SortItemActive {
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: $tr-300;
-  width: 100%;
-  text-align: center;
 
-  &:hover {
-    background: $black;
-    color: $white;
-  }
+.SearchItem, .SearchItemActive {
+  font-size: $font-xs;
+  padding: 10px 0;
+  transition: $tr-200;
 
   &:first-of-type {
     border-top-right-radius: 10px;
@@ -22,9 +16,14 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
   }
+
+  &:hover {
+    background: $black;
+    color: $white;
+  }
 }
 
-.SortItemActive {
+.SearchItemActive {
   background: $dark-grey;
   color: $white;
 }

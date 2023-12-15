@@ -9,9 +9,15 @@ const BookList = ({books}) => {
 
   return (
     <div className={styles.BookList}>
-      {books.map((book, id) => (
-        <Book key={id} book={book} />
-      ))}
+      {books.length ? (
+        <>
+          {books.map((book, id) => (
+            <Book key={id} book={book} />
+          ))}
+        </>
+      ) : (
+        <h1>Не нашлось ни одной книги</h1>
+      )}
     </div>
   )
 }

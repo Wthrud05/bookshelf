@@ -18,3 +18,4 @@ export const userInfo = [
 ]
 
 export const sortTypes = ['Новые', 'Старые', 'Печатные', 'Аудио']
+export const searchTypes = ['Название', 'Автор']

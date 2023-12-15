@@ -3,7 +3,7 @@
 
 @mixin input($width, $height, $fz, $radius) {
   font-family: 'Lobster', cursive;
-  border: 3px solid $dark-grey;
+  border: 3px solid $middle-grey;
   border-radius: $radius;
   width: $width;
   height: $height;
@@ -24,6 +24,13 @@
     border: 3px solid $black;
     box-shadow: $bx-shadow;
   }
+
+  &:hover {
+    border: 3px solid $dark-grey;
+    &::placeholder {
+      color: $black;
+    }
+  }
 }
 
 @mixin button($width, $height, $fz, $radius) {
@@ -43,7 +50,6 @@
 
   &:hover {
     opacity: 0.85;
-    // background-color: $dark-grey;
   }
 
   &:active {

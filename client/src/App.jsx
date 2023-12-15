@@ -21,7 +21,7 @@ function App() {
   const navigator = useNavigate()
   const dispatch = useDispatch()
 
-  const {sortType} = useSelector((state) => state.user)
+  const {sortType} = useSelector((state) => state.books)
   const category = JSON.parse(localStorage.getItem('sort'))
 
   useEffect(() => {
@@ -30,10 +30,7 @@ function App() {
 
     if (!JSON.parse(localStorage.getItem('sort'))) {
       localStorage.setItem('sort', JSON.stringify('Новые'))
-      dispatch(setSortType({sortType: 'Новые'}))
     }
-
-    category ? dispatch(setSortType({sortType: category})) : null
   }, [])
 
   return (

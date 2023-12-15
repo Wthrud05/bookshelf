@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
 import styles from './SortItem.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {setSortType} from '../../redux/user/slice'
+import {setSortType} from '../../redux/books/slice'
 
-const SortItem = ({category = 'Новые', handler}) => {
+const SortItem = ({category}) => {
   const dispatch = useDispatch()
-  const {sortType} = useSelector((state) => state.user)
+  const {sortType} = useSelector((state) => state.books)
 
   return (
     <li

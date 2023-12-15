@@ -6,7 +6,7 @@ import UserList from '../UserList/UserList'
 import cross from '../../assets/cross-black.svg'
 import {useDispatch, useSelector} from 'react-redux'
 import {setLoading, setSearchStr, setUsers} from '../../redux/users/slice'
-import {filterByParam} from '../../utils/helpers'
+import {filterUsersByParam} from '../../utils/helpers'
 import {debounce} from 'lodash'
 
 const UserSearch = () => {
@@ -21,7 +21,7 @@ const UserSearch = () => {
     dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios('https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/users')
-      const filteredUsers = filterByParam(data.users, searchStr)
+      const filteredUsers = filterUsersByParam(data.users, searchStr)
       dispatch(setUsers({users: filteredUsers}))
     } catch (error) {
       console.log(error)
@@ -30,8 +30,6 @@ const UserSearch = () => {
       inputRef.current.focus()
     }
   }
-
-  console.log(inputRef.current)
 
   const updateInputHandler = (e) => {
     setValue(e.target.value)

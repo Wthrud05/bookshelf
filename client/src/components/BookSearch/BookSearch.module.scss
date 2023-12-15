@@ -1,0 +1,65 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.BookSearch {
+  position: relative;
+
+  .Search {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+  }
+
+  .SearchType {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    border-left: 1px solid $grey;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 10;
+    width: 100px;
+
+    span {
+      font-size: $font-xxs;
+      margin-right: 5px;
+    }
+
+    img {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    transition: $tr-200;
+    opacity: .7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .SearchList {
+      width: 120px;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      background: $white;
+      border-radius: 10px;
+      box-shadow: $bx-shadow;
+    }
+  }
+
+  input {
+    @include input(450px, 40px, 16px, 15px);
+    padding: 15px 100px 15px 40px;
+  }
+}
