@@ -24,7 +24,9 @@ const HomePage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
+      user
+        ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
+        : null
     }, 10)
   }, [sortType, searchStr, searchType])
 

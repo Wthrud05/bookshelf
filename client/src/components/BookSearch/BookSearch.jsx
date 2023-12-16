@@ -14,6 +14,7 @@ import {useClickOutside} from '../../hooks/useClickOutside'
 const BookSearch = () => {
   const dispatch = useDispatch()
   const {user} = useAuth()
+  console.log(user)
   const {searchStr, sortType, searchType} = useSelector((state) => state.books)
 
   const [value, setValue] = useState('')
@@ -42,7 +43,9 @@ const BookSearch = () => {
   }
 
   useEffect(() => {
-    dispatch(getBooksThunk({id: user.id, sortType, str: value, searchType: searchType}))
+    user
+      ? dispatch(getBooksThunk({id: user.id, sortType, str: value, searchType: searchType}))
+      : null
   }, [searchStr])
 
   return (
