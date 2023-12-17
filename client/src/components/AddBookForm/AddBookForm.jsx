@@ -7,10 +7,10 @@ import {setLoading, setNewBook, setError} from '../../redux/new_book/slice'
 import {setBooks, setBooksCount} from '../../redux/books/slice'
 import {close} from '../../redux/modal/slice'
 import BookLoader from '../BookLoader/BookLoader'
-import iTitle from '../../assets/title.svg'
-import iAauthor from '../../assets/user.svg'
-import iDate from '../../assets/date-grey.svg'
-import iAbout from '../../assets/about-grey.svg'
+import Title from '../../assets/title.svg?react'
+import Author from '../../assets/user.svg?react'
+import Date from '../../assets/date-grey.svg?react'
+import About from '../../assets/about-grey.svg?react'
 import iCheck from '../../assets/check.svg'
 import audiobook from '../../assets/audiobook.svg'
 import audiobookGrey from '../../assets/audiobook-grey.svg'
@@ -108,7 +108,6 @@ const AddBookForm = () => {
 
       reset()
     } catch (error) {
-      console.log(error)
       dispatch(setError({error: 'Произошла ошибка при загрузке книги'}))
     } finally {
       dispatch(setLoading({loading: false}))
@@ -134,7 +133,7 @@ const AddBookForm = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <img src={iTitle} alt="title" />
+          <Title className={styles.Icon} />
         </div>
         <div className={styles.InputBox}>
           <input
@@ -143,7 +142,7 @@ const AddBookForm = () => {
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
-          <img src={iAauthor} alt="author" />
+          <Author className={styles.Icon} />
         </div>
         <div className={styles.InputBox}>
           <input
@@ -152,7 +151,7 @@ const AddBookForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <img src={iDate} alt="date" />
+          <Date className={styles.Icon} />
         </div>
         <div className={styles.InputBox}>
           <textarea
@@ -160,7 +159,7 @@ const AddBookForm = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
-          <img src={iAbout} alt="about" />
+          <About className={styles.Icon} />
         </div>
         <input
           type="file"

@@ -13,7 +13,7 @@ import UserPage from './pages/UserPage/UserPage'
 import AboutPage from './pages/AboutPage/AboutPage'
 import {useDispatch, useSelector} from 'react-redux'
 import {setUser} from './redux/auth/slice'
-import {setSortType} from './redux/user/slice'
+import {setSortType} from './redux/books/slice'
 
 function App() {
   const {user, isAuth} = useAuth()
@@ -30,6 +30,9 @@ function App() {
 
     if (!JSON.parse(localStorage.getItem('sort'))) {
       localStorage.setItem('sort', JSON.stringify('Новые'))
+      dispatch(setSortType({sortType: 'Новые'}))
+    } else {
+      dispatch(setSortType({sortType: category}))
     }
   }, [])
 

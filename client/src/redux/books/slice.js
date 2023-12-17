@@ -62,6 +62,12 @@ const booksSlice = createSlice({
         state.booksCount = action.payload.count
         state.currentBooksCount = action.payload.currentCount
         state.status = 'Success'
+      }),
+      builder.addCase(getBooksThunk.rejected, (state, action) => {
+        state.books = []
+        state.booksCount = 0
+        state.currentBooksCount = 0
+        state.status = 'Error'
       })
   },
 })

@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
 import {setError, setLoading, setSubscriptions} from '../../../redux/user/slice'
 import {open} from '../../../redux/modal/slice'
+import BookLoader from '../../../components/BookLoader/BookLoader'
 
 const Subscriptions = ({fn}) => {
   const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const Subscriptions = ({fn}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const getSubscriptions = async () => {
-    // dispatch(setLoading({loading: true}))
+    dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/subscriptions',
@@ -47,7 +48,13 @@ const Subscriptions = ({fn}) => {
         <h3>Мои подписки</h3>
         <img src={subscribtions} alt="subs" />
       </div>
-      <span>{subscriptions.length}</span>
+      {loading ? (
+        <div className={styles.Loader}>
+          <BookLoader w={'15px'} h={'15px'} black={true} />
+        </div>
+      ) : (
+        <span>{subscriptions.length}</span>
+      )}
     </div>
   )
 }

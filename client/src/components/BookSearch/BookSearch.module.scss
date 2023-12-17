@@ -12,6 +12,10 @@
     transform: translateY(-50%);
     width: 25px;
     height: 25px;
+
+    path {
+      transition: $tr-300
+    }
   }
 
   .SearchType {
@@ -61,5 +65,21 @@
   input {
     @include input(450px, 40px, 16px, 15px);
     padding: 15px 100px 15px 40px;
+
+    &:hover ~ {
+      .Search {
+        path {
+          fill: $black;
+        }
+      }
+    }
+
+    &:focus ~ {
+      .Search {
+        path {
+          fill: $black;
+        }
+      }
+    }
   }
 }

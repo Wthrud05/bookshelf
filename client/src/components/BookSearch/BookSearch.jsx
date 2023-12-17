@@ -4,17 +4,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getBooksThunk, setSearchStr} from '../../redux/books/slice'
 import {useAuth} from '../../hooks/useAuth'
 import {debounce} from 'lodash'
-import {searchTypes, sortTypes} from '../../utils/data'
-import search from '../../assets/book-search.svg'
-import arrow from '../../assets/arrow-down-black.svg'
-import SortItem from '../SortItem/SortItem'
-import SearchItem from '../SearchItem/SearchItem'
+import {searchTypes} from '../../utils/data'
 import {useClickOutside} from '../../hooks/useClickOutside'
+import Search from '../../assets/book-search.svg?react'
+import arrow from '../../assets/arrow-down-black.svg'
+import SearchItem from '../SearchItem/SearchItem'
 
 const BookSearch = () => {
   const dispatch = useDispatch()
   const {user} = useAuth()
-  console.log(user)
   const {searchStr, sortType, searchType} = useSelector((state) => state.books)
 
   const [value, setValue] = useState('')
@@ -37,11 +35,6 @@ const BookSearch = () => {
     setIsOpen(false)
   })
 
-  const clearInputHandler = () => {
-    setValue('')
-    dispatch(setSearchStr({str: ''}))
-  }
-
   useEffect(() => {
     user
       ? dispatch(getBooksThunk({id: user.id, sortType, str: value, searchType: searchType}))
@@ -50,13 +43,14 @@ const BookSearch = () => {
 
   return (
     <div className={styles.BookSearch}>
-      <img className={styles.Search} src={search} alt="search" />
       <input
         value={value}
         onChange={(e) => inputChangeHander(e)}
         type="text"
         placeholder="Найти книгу"
       />
+      {/* <img className={styles.Search} src={search} alt="search" /> */}
+      <Search className={styles.Search} />
       <div className={styles.SearchType} ref={typeRef} onClick={() => setIsOpen(!isOpen)}>
         <span>{searchType}</span>
         <img src={arrow} alt="arrow" />

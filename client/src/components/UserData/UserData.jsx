@@ -8,6 +8,7 @@ import {useParams} from 'react-router-dom'
 import {setIsSubscribed} from '../../redux/target_user/slice'
 import pen from '../../assets/pen.svg'
 import {setUser} from '../../redux/auth/slice'
+import BookLoader from '../BookLoader/BookLoader'
 
 const UserData = ({count, name}) => {
   const dispatch = useDispatch()
@@ -36,7 +37,6 @@ const UserData = ({count, name}) => {
         name: userName,
         sub_name: name,
       })
-      console.log(data)
       dispatch(setIsSubscribed(true))
     } catch (error) {
       console.log(error)
@@ -75,8 +75,8 @@ const UserData = ({count, name}) => {
       <Avatar count={count} />
       <div className={styles.Data}>
         {loading ? (
-          <div>
-            <h1>Имя</h1>
+          <div className={styles.Loader}>
+            <BookLoader w={'30px'} h={'30px'} black={true} />
           </div>
         ) : (
           <div>

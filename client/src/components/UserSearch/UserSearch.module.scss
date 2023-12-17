@@ -16,6 +16,22 @@
 
     input {
       @include input(400px, 40px, 18px, 10px);
+
+      &:hover ~ {
+        .Icon {
+          path {
+            fill: $black;
+          }
+        }
+      }
+
+      &:focus ~ {
+        .Icon {
+          path {
+            fill: $black;
+          }
+        }
+      }
     }
 
     .Icon, .Cross {
@@ -28,6 +44,9 @@
 
     .Icon {
       left: 10px;
+      path {
+        transition: $tr-300;
+      }
     }
 
     .Cross {

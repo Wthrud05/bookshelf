@@ -16,22 +16,60 @@
     margin-bottom: 20px;
     position: relative;
 
-     img {
+    // &:hover {
+    //   .Icon {
+    //     path {
+    //       fill: #000;
+    //     }
+    //   }
+    // }
+
+    input {
+      @include input(400px, 50px, 18px, 15px);
+
+      &:focus ~ {
+        .Icon {
+          path {
+            fill: $black;
+          }
+        }
+      }
+
+      &:hover ~ {
+        .Icon {
+          path {
+            fill: $black;
+          }
+        }
+      }
+    }
+
+    .ShowHidePass {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+     .Icon {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       left: 10px;
       width: 22px;
       height: 22px;
+
+      path {
+        transition: $tr-300;
+      }
     }
 
     &:last-of-type {
       margin-bottom: 10px;
     }
-  }
-
-  input {
-    @include input(400px, 50px, 18px, 15px);
   }
 
   button {

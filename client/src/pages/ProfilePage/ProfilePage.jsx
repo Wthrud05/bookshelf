@@ -58,35 +58,26 @@ const ProfilePage = () => {
   return (
     <>
       <div className={styles.ProfilePage}>
-        {loading ? (
-          <div>
-            <h3>Загрузка...</h3>
-            <BookLoader w={'30px'} h={'30px'} black={true} />
-          </div>
-        ) : (
-          <>
-            <UserData count={booksCount} name={userName} />
-            <div className={styles.Socials}>
-              <Subscriptions fn={getNameHandler} />
-              <Subscribers fn={getNameHandler} />
-            </div>
-            <img className={styles.Pattern} src={pattern} alt="pattern" />
-            <div className={styles.Actions}>
-              <button
-                className={styles.SearchUser}
-                onClick={() => {
-                  setType('Поиск')
-                  dispatch(open())
-                }}
-              >
-                <img src={search} alt="search" />
-              </button>
-              <button className={styles.Logout} onClick={() => logout(userId)}>
-                {authLoading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
-              </button>
-            </div>
-          </>
-        )}
+        <UserData count={booksCount} name={userName} />
+        <div className={styles.Socials}>
+          <Subscriptions fn={getNameHandler} />
+          <Subscribers fn={getNameHandler} />
+        </div>
+        <img className={styles.Pattern} src={pattern} alt="pattern" />
+        <div className={styles.Actions}>
+          <button
+            className={styles.SearchUser}
+            onClick={() => {
+              setType('Поиск')
+              dispatch(open())
+            }}
+          >
+            <img src={search} alt="search" />
+          </button>
+          <button className={styles.Logout} onClick={() => logout(userId)}>
+            {authLoading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
+          </button>
+        </div>
       </div>
 
       <Modal>

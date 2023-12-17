@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styles from './UserSearch.module.scss'
-import search from '../../assets/search-user-grey.svg'
+import Search from '../../assets/search-user-grey.svg?react'
 import axios from 'axios'
 import UserList from '../UserList/UserList'
 import cross from '../../assets/cross-black.svg'
@@ -59,13 +59,12 @@ const UserSearch = () => {
 
   useEffect(() => {
     inputRef.current.focus()
-  }, [])
+  }, [isOpen])
 
   return (
     <div className={styles.UserSearch}>
       <h3>Поиск пользователей</h3>
       <div className={styles.InputBox}>
-        <img className={styles.Icon} src={search} alt="search" />
         <input
           ref={inputRef}
           value={value}
@@ -73,6 +72,7 @@ const UserSearch = () => {
           type="text"
           placeholder="Введите имя пользователя"
         />
+        <Search className={styles.Icon} />
         {value && (
           <button className={styles.Cross} onClick={clearInputHandler}>
             <img src={cross} alt="cross" />

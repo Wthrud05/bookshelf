@@ -171,24 +171,60 @@
 
       input {
         @include input(400px, 40px, 16px, 10px);
+
+        &:focus ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+
+        &:hover ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
       }
 
-      img {
-        width: 15px;
-        height: 15px;
+      .Icon {
+        width: 18px;
+        height: 18px;
         position: absolute;
         top: 50%;
         left: 10px;
         transform: translateY(-50%);
+
+        path {
+          transition: $tr-300
+        }
       }
 
       textarea {
         @include input(400px, 80px, 16px, 10px);
         resize: none;
+
+        &:focus ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+
+        &:hover ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
       }
 
       &:nth-child(4) {
-        img {
+        .Icon {
           top: 30%;
           transform: translateY(-30%);
         }

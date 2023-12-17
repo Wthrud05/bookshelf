@@ -17,6 +17,12 @@ const HomePage = () => {
   const {books, status, booksCount, currentBooksCount} = useSelector((state) => state.books)
   const {sortType, searchType, searchStr} = useSelector((state) => state.books)
 
+  const getBooks = () => {
+    user && sortType
+      ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
+      : null
+  }
+
   useEffect(() => {
     dispatch(setSortType({sortType: JSON.parse(localStorage.getItem('sort'))}))
     dispatch(setSearchStr({str: ''}))
@@ -24,11 +30,9 @@ const HomePage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      user
-        ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
-        : null
-    }, 10)
-  }, [sortType, searchStr, searchType])
+      getBooks()
+    }, 100)
+  }, [sortType, searchStr])
 
   return (
     <div className={styles.HomePage}>
