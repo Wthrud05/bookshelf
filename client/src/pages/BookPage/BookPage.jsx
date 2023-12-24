@@ -5,11 +5,12 @@ import styles from './BookPage.module.scss'
 import Modal from '../../components/Modal/Modal'
 import BookLoader from '../../components/BookLoader/BookLoader'
 import {useDispatch, useSelector} from 'react-redux'
-import {open, close} from '../../redux/modal/slice'
+import {close} from '../../redux/modal/slice'
 import {setBook, setError, setIsTouched, setIsUpdate} from '../../redux/book/slice'
 import Cover from './Cover/Cover'
 import Placeholder from './Placeholder/Placeholder'
 import Info from './Info/Info'
+import {motion} from 'framer-motion'
 
 const BookPage = () => {
   const {id} = useParams()
@@ -99,7 +100,13 @@ const BookPage = () => {
   return (
     <>
       {book ? (
-        <div className={styles.Book}>
+        <motion.div
+          className={styles.Book}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
+          exit={{opacity: 0}}
+          transition={{duration: 0.2}}
+        >
           {loading ? (
             <div className={styles.Loader}>
               <h1>Загрузка...</h1>
@@ -122,7 +129,7 @@ const BookPage = () => {
               </div>
             </div>
           </Modal>
-        </div>
+        </motion.div>
       ) : (
         <h1>Произошла ошибка!</h1>
       )}

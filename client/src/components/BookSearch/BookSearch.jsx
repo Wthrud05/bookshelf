@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import styles from './BookSearch.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {getBooksThunk, setSearchStr} from '../../redux/books/slice'
-import {useAuth} from '../../hooks/useAuth'
+import {setSearchStr} from '../../redux/books/slice'
 import {debounce} from 'lodash'
 import {searchTypes} from '../../utils/data'
 import {useClickOutside} from '../../hooks/useClickOutside'
@@ -12,8 +11,7 @@ import SearchItem from '../SearchItem/SearchItem'
 
 const BookSearch = () => {
   const dispatch = useDispatch()
-  const {user} = useAuth()
-  const {searchStr, sortType, searchType} = useSelector((state) => state.books)
+  const {searchType} = useSelector((state) => state.books)
 
   const [value, setValue] = useState('')
   const [isOpen, setIsOpen] = useState(false)
@@ -35,12 +33,6 @@ const BookSearch = () => {
     setIsOpen(false)
   })
 
-  useEffect(() => {
-    user
-      ? dispatch(getBooksThunk({id: user.id, sortType, str: value, searchType: searchType}))
-      : null
-  }, [searchStr])
-
   return (
     <div className={styles.BookSearch}>
       <input
@@ -49,7 +41,6 @@ const BookSearch = () => {
         type="text"
         placeholder="Найти книгу"
       />
-      {/* <img className={styles.Search} src={search} alt="search" /> */}
       <Search className={styles.Search} />
       <div className={styles.SearchType} ref={typeRef} onClick={() => setIsOpen(!isOpen)}>
         <span>{searchType}</span>

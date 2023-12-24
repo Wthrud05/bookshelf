@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react'
 import styles from './SearchItem.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {getBooksThunk, setSearchType} from '../../redux/books/slice'
+import {setSearchType} from '../../redux/books/slice'
 import {useAuth} from '../../hooks/useAuth'
 
 const SearchItem = ({type}) => {
-  const {user} = useAuth()
-
   const dispatch = useDispatch()
   const {searchType} = useSelector((state) => state.books)
 

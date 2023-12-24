@@ -3,8 +3,8 @@ import styles from './HomePage.module.scss'
 import Controls from '../../components/Controls/Controls'
 import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
-import {getBooksThunk, setSearchStr} from '../../redux/books/slice'
-import {setSortType} from '../../redux/books/slice'
+import {getBooksThunk} from '../../redux/books/slice'
+import {motion} from 'framer-motion'
 import Modal from '../../components/Modal/Modal'
 import AddBookForm from '../../components/AddBookForm/AddBookForm'
 import BookList from '../../components/BookList/BookList'
@@ -23,19 +23,26 @@ const HomePage = () => {
       : null
   }
 
-  useEffect(() => {
-    dispatch(setSortType({sortType: JSON.parse(localStorage.getItem('sort'))}))
-    dispatch(setSearchStr({str: ''}))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(setSortType({sortType: JSON.parse(localStorage.getItem('sort'))}))
+  //   dispatch(setSearchStr({str: ''}))
+  // }, [])
 
   useEffect(() => {
-    setTimeout(() => {
-      getBooks()
-    }, 100)
+    // setTimeout(() => {
+    //   getBooks()
+    // }, 100)
+    getBooks()
   }, [sortType, searchStr])
 
   return (
-    <div className={styles.HomePage}>
+    <motion.div
+      className={styles.HomePage}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.2}}
+    >
       <h1>Мои книги</h1>
       <span className={styles.Count}>
         {currentBooksCount} / {booksCount}
@@ -52,7 +59,7 @@ const HomePage = () => {
       <Modal>
         <AddBookForm />
       </Modal>
-    </div>
+    </motion.div>
   )
 }
 

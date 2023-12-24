@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import styles from './Book.module.scss'
 import {Link, useLocation} from 'react-router-dom'
 import headphones from '../../assets/headphones.svg'

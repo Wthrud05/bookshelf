@@ -1,0 +1,93 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.AboutPage {
+
+  * {
+    color: $white;
+    letter-spacing: 2px;
+  }
+
+  .FirstScreen {
+    position: relative;
+    height: calc(101vh - 65px);
+    background-image: url('../../assets/aboutpage-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: $white;
+      width: 500px;
+      font-size: $font-m;
+      text-align: center;
+      text-shadow: $bx-shadow;
+    }
+    
+    .Triangle {
+      position: absolute;
+      bottom: 0;
+      border: 30px solid transparent;
+      border-top: 30px solid $white;
+      border-radius: 10px;
+      filter: blur(1px);
+    }
+  }
+
+  .SecondScreen {
+    height: 100%;
+    padding: 80px 0;
+    background: rgb(47,47,47);
+    background: radial-gradient(circle, rgba(47,47,47,1) 0%, rgba(0,0,0,1) 100%);
+    
+    .Header {
+      text-align: center;
+      margin-bottom: 100px;
+
+      img {
+        width: 250px;
+      }
+
+      h1 {
+        font-size: $font-l;
+      }
+    }
+
+    .Section {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 100px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        img {
+          width: 65px;
+          height: 65px;
+          margin-bottom: 20px;
+        }
+
+        h3 {
+          font-size: $font-m;
+          width: 450px;
+        }
+      }
+    }
+  }
+}

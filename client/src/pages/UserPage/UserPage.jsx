@@ -13,6 +13,7 @@ import {
 } from '../../redux/target_user/slice'
 import BookList from '../../components/BookList/BookList'
 import BookLoader from '../../components/BookLoader/BookLoader'
+import {motion} from 'framer-motion'
 
 const UserPage = () => {
   const {id} = useParams()
@@ -52,7 +53,13 @@ const UserPage = () => {
   }, [])
 
   return (
-    <div className={styles.UserPage}>
+    <motion.div
+      className={styles.UserPage}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.2}}
+    >
       <>
         <UserData count={booksCount} name={user.name} />
         {loading ? (
@@ -64,7 +71,7 @@ const UserPage = () => {
           <BookList books={books} />
         )}
       </>
-    </div>
+    </motion.div>
   )
 }
 

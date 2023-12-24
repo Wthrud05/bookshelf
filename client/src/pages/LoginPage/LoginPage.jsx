@@ -6,6 +6,7 @@ import styles from './LoginPage.module.scss'
 import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
 import {setUser, setError, setLoading} from '../../redux/auth/slice'
+import {motion} from 'framer-motion'
 
 const LoginPage = () => {
   const dispatch = useDispatch()
@@ -51,14 +52,20 @@ const LoginPage = () => {
   }
 
   return (
-    <div className={styles.Login}>
+    <motion.div
+      className={styles.Login}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.2}}
+    >
       <h1>С возвращением в Bookshelf!</h1>
       <LoginForm title={'Авторизация'} handler={loginUser} error={err} loading={loading} />
       <span>
         У вас ещё нет аккаунта? <NavLink to={'/register'}>Регистрация</NavLink>
       </span>
       <img className={styles.Pattern} src={pattern} alt="pattern" />
-    </div>
+    </motion.div>
   )
 }
 

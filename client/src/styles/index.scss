@@ -31,7 +31,8 @@ html {
   position: relative;
 }
 
-.content {
+.content,
+.content-about {
   width: 100%;
   padding: 0 40px;
   margin: 0 auto;
@@ -41,4 +42,9 @@ html {
   flex-direction: column;
   margin-top: 65px;
   max-width: 1440px;
+}
+
+.content-about {
+  max-width: 100%;
+  padding: 0;
 }
