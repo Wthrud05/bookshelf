@@ -15,7 +15,6 @@ function App() {
 
   const navigator = useNavigate()
   const location = useLocation()
-  console.log(location.pathname)
 
   const dispatch = useDispatch()
 
@@ -30,7 +29,10 @@ function App() {
       localStorage.removeItem('guest')
     }
 
-    isAuth ? null : isGuest ? navigator(`${location.pathname}`) : navigator('/login')
+    if (!isAuth && isGuest) {
+      location.pathname.includes('/user') ? navigator(`${location.pathname}`) : navigator('/login')
+    }
+
     user ? dispatch(setUser({id: user.id, name: user.name})) : null
 
     if (!JSON.parse(localStorage.getItem('sort'))) {
