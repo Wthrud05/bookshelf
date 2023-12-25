@@ -12,9 +12,11 @@ import {useGuest} from './hooks/useGuest'
 function App() {
   const {user, isAuth} = useAuth()
   const isGuest = useGuest()
-  console.log(isGuest)
 
   const navigator = useNavigate()
+  const location = useLocation()
+  console.log(location.pathname)
+
   const dispatch = useDispatch()
 
   const navigation = useLocation()
@@ -28,8 +30,7 @@ function App() {
       localStorage.removeItem('guest')
     }
 
-    // navigator('/')
-    isAuth ? null : navigator('/login')
+    isAuth ? null : isGuest ? navigator(`${location.pathname}`) : navigator('/login')
     user ? dispatch(setUser({id: user.id, name: user.name})) : null
 
     if (!JSON.parse(localStorage.getItem('sort'))) {

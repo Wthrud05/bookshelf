@@ -6,7 +6,7 @@ const NavItem = ({name, path, icon}) => {
   return (
     <li className={styles.NavItem}>
       <NavLink className={({isActive}) => (isActive ? styles.Active : '')} to={path}>
-        <img src={icon} alt="icon" />
+        {icon && <img src={icon} alt="icon" />}
         {name}
       </NavLink>
     </li>

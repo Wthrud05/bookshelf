@@ -3,6 +3,7 @@ import Nav from '../Nav/Nav'
 import styles from './Header.module.scss'
 import {NavLink} from 'react-router-dom'
 import {useAuth} from '../../hooks/useAuth'
+import {useGuest} from '../../hooks/useGuest'
 
 const Header = () => {
   const {isAuth} = useAuth()

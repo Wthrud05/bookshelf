@@ -9,9 +9,12 @@ import {setIsSubscribed} from '../../redux/target_user/slice'
 import pen from '../../assets/pen.svg'
 import {setUser} from '../../redux/auth/slice'
 import BookLoader from '../BookLoader/BookLoader'
+import {useGuest} from '../../hooks/useGuest'
 
 const UserData = ({count, name}) => {
   const dispatch = useDispatch()
+
+  const isGuest = useGuest()
 
   const {isSubscribed, loading} = useSelector((state) => state.targetUser)
   const userName = useSelector((state) => state.auth.name)
@@ -123,17 +126,21 @@ const UserData = ({count, name}) => {
         <span>
           Книг: <b>{count}</b>
         </span>
-        {isUser && (
+        {isGuest ? null : (
           <>
-            {isSubscribed && (
-              <button disabled={loading} onClick={() => handleUnsubscribe()}>
-                Отписаться
-              </button>
-            )}
-            {!isSubscribed && (
-              <button disabled={loading} onClick={() => handleSubscribe()}>
-                Подписаться
-              </button>
+            {isUser && (
+              <>
+                {isSubscribed && (
+                  <button disabled={loading} onClick={() => handleUnsubscribe()}>
+                    Отписаться
+                  </button>
+                )}
+                {!isSubscribed && (
+                  <button disabled={loading} onClick={() => handleSubscribe()}>
+                    Подписаться
+                  </button>
+                )}
+              </>
             )}
           </>
         )}
