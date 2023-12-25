@@ -75,7 +75,7 @@ const ProfilePage = () => {
           <button className={styles.Share} title="Поделиться">
             <Link
               target="_blank"
-              to={`https://t.me/share/url?url=https://bookshelf-swart.vercel.app/&text=У меня в коллекции ${booksCount} книг в Bookshelf! Присоединяйся, мой ник ${userName}`}
+              to={`https://t.me/share/url?url=https://bookshelf-swart.vercel.app/user/${userId}&text=У меня в коллекции ${booksCount} книг в Bookshelf! Присоединяйся, мой ник ${userName}`}
             >
               <img src={telegram} alt="telegram" />
             </Link>

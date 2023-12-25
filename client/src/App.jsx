@@ -7,9 +7,12 @@ import {useDispatch} from 'react-redux'
 import {setUser} from './redux/auth/slice'
 import {setSortType} from './redux/books/slice'
 import AnimatedRoutes from './components/AnimatedRoutes'
+import {useGuest} from './hooks/useGuest'
 
 function App() {
   const {user, isAuth} = useAuth()
+  const isGuest = useGuest()
+  console.log(isGuest)
 
   const navigator = useNavigate()
   const dispatch = useDispatch()
@@ -19,7 +22,14 @@ function App() {
   const category = JSON.parse(localStorage.getItem('sort'))
 
   useEffect(() => {
-    isAuth ? navigator('/') : navigator('/login')
+    if (!isAuth) {
+      localStorage.setItem('guest', JSON.stringify('true'))
+    } else {
+      localStorage.removeItem('guest')
+    }
+
+    // navigator('/')
+    isAuth ? null : navigator('/login')
     user ? dispatch(setUser({id: user.id, name: user.name})) : null
 
     if (!JSON.parse(localStorage.getItem('sort'))) {
