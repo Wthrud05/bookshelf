@@ -7,6 +7,7 @@ import {open} from '../../redux/modal/slice'
 import {useClickOutside} from '../../hooks/useClickOutside'
 import {sortTypes} from '../../utils/data'
 import BookSearch from '../BookSearch/BookSearch'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const Controls = () => {
   const dispatch = useDispatch()
@@ -29,17 +30,24 @@ const Controls = () => {
         <span className={styles.Cross}>+</span>
       </button>
       <BookSearch />
-      <div className={styles.Sort} onClick={() => setIsOpen(!isOpen)} ref={sortRef}>
+      <motion.div className={styles.Sort} onClick={() => setIsOpen(!isOpen)} ref={sortRef} layout>
         <span>{sortType}</span>
         <img className={isOpen ? styles.Open : ''} src={arrowDown} alt="arrow-down" />
-        {isOpen && (
-          <ul className={styles.SortList}>
-            {sortTypes.map((item) => (
-              <SortItem category={item} key={item} />
-            ))}
-          </ul>
-        )}
-      </div>
+        <AnimatePresence mode="popLayout">
+          {isOpen && (
+            <motion.ul
+              initial={{opacity: 0, top: '20px'}}
+              animate={{opacity: 1, top: '50px'}}
+              exit={{opacity: 0, top: '20px'}}
+              className={styles.SortList}
+            >
+              {sortTypes.map((item) => (
+                <SortItem category={item} key={item} />
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </div>
   )
 }

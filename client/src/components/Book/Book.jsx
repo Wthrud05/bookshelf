@@ -2,13 +2,20 @@ import React from 'react'
 import styles from './Book.module.scss'
 import {Link, useLocation} from 'react-router-dom'
 import headphones from '../../assets/headphones.svg'
+import {motion} from 'framer-motion'
 
 const Book = ({book}) => {
   const navigation = useLocation()
   const isUser = navigation.pathname === '/' ? true : false
 
   return (
-    <div className={styles.Book}>
+    <motion.div
+      initial={{scale: 1}}
+      whileTap={{scale: 1.15}}
+      whileHover={{scale: 1.1}}
+      transition={{duration: 0.05}}
+      className={styles.Book}
+    >
       <Link to={isUser ? `/book/${book.book_id}` : ''}>
         {book.isaudio && <img className={styles.Audio} src={headphones} alt="audio" />}
         {book.cover ? (
@@ -46,7 +53,7 @@ const Book = ({book}) => {
           </div>
         )}
       </Link>
-    </div>
+    </motion.div>
   )
 }
 

@@ -8,6 +8,7 @@ import {useClickOutside} from '../../hooks/useClickOutside'
 import Search from '../../assets/book-search.svg?react'
 import arrow from '../../assets/arrow-down-black.svg'
 import SearchItem from '../SearchItem/SearchItem'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const BookSearch = () => {
   const dispatch = useDispatch()
@@ -42,17 +43,29 @@ const BookSearch = () => {
         placeholder="Найти книгу"
       />
       <Search className={styles.Search} />
-      <div className={styles.SearchType} ref={typeRef} onClick={() => setIsOpen(!isOpen)}>
+      <motion.div
+        className={styles.SearchType}
+        ref={typeRef}
+        onClick={() => setIsOpen(!isOpen)}
+        layout
+      >
         <span>{searchType}</span>
         <img src={arrow} alt="arrow" />
-        {isOpen && (
-          <ul className={styles.SearchList}>
-            {searchTypes.map((type) => (
-              <SearchItem key={type} type={type} />
-            ))}
-          </ul>
-        )}
-      </div>
+        <AnimatePresence mode="popLayout">
+          {isOpen && (
+            <motion.ul
+              initial={{opacity: 0, top: '20px'}}
+              animate={{opacity: 1, top: '40px'}}
+              exit={{opacity: 0, top: '20px'}}
+              className={styles.SearchList}
+            >
+              {searchTypes.map((type) => (
+                <SearchItem key={type} type={type} />
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </div>
   )
 }
