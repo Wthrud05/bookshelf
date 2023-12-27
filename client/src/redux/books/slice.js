@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
-import {filterBooksByParam, sortByType} from '../../utils/helpers'
+import {sortByType} from '../../utils/helpers'
 
 const initialState = {
   status: '',
@@ -21,6 +21,7 @@ export const getBooksThunk = createAsyncThunk('books/getBooks', async (params) =
   const sortedData = await sortByType(sortType, data.books, str, searchType)
   const count = data.books.length
   const currentCount = sortedData.length
+  localStorage.setItem('booksCount', JSON.stringify(data.books.length))
   return {sortedData, count, currentCount}
 })
 

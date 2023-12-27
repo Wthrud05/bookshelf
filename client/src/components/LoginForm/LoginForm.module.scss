@@ -16,14 +16,6 @@
     margin-bottom: 20px;
     position: relative;
 
-    // &:hover {
-    //   .Icon {
-    //     path {
-    //       fill: #000;
-    //     }
-    //   }
-    // }
-
     input {
       @include input(400px, 50px, 18px, 15px);
 
@@ -44,17 +36,7 @@
       }
     }
 
-    .ShowHidePass {
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-
-     .Icon {
+    .Icon {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -65,6 +47,16 @@
       path {
         transition: $tr-300;
       }
+    }
+
+    .ShowHidePass {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
     }
 
     &:last-of-type {
@@ -99,6 +91,109 @@
       color: $red;
       transition: .3s;
       opacity: 1;
+    }
+  }
+
+  @media (max-width: 992px) {
+    h3 {
+      font-size: $font-l;
+    }
+
+    .InputBox {
+      margin-bottom: 15px;
+
+      input {
+        @include input(320px, 45px, 16px, 15px);
+        padding: 10px 40px;
+      }
+
+      .Icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    button {
+      @include button(320px, 45px, 20px, 15px);
+
+      span {
+        font-size: $font-xs;
+      }
+    }
+
+    .Error {
+      b {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    h3 {
+      font-size: $font-m;
+    }
+
+    .InputBox {
+      margin-bottom: 10px;
+
+      input {
+        @include input(270px, 40px, 14px, 15px);
+        padding: 10px 40px;
+      }
+
+      .Icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    button {
+      @include button(270px, 40px, 16px, 15px);
+
+      span {
+        font-size: $font-xs;
+      }
+    }
+
+    .Error {
+      b {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    h3 {
+      font-size: $font-s;
+      margin-bottom: 7px
+    }
+
+    .InputBox {
+      margin-bottom: 7px;
+
+      input {
+        @include input(220px, 35px, 14px, 15px);
+        padding: 10px 40px;
+      }
+
+      .Icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
+    button {
+      @include button(220px, 35px, 16px, 15px);
+
+      span {
+        font-size: $font-xs;
+      }
+    }
+
+    .Error {
+      b {
+        font-size: 10px;
+      }
     }
   }
 }

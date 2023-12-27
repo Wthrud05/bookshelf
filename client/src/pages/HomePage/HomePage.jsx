@@ -23,15 +23,7 @@ const HomePage = () => {
       : null
   }
 
-  // useEffect(() => {
-  //   dispatch(setSortType({sortType: JSON.parse(localStorage.getItem('sort'))}))
-  //   dispatch(setSearchStr({str: ''}))
-  // }, [])
-
   useEffect(() => {
-    // setTimeout(() => {
-    //   getBooks()
-    // }, 100)
     getBooks()
   }, [sortType, searchStr])
 

@@ -1,18 +1,20 @@
 @import '../../styles/variables.scss';
 
 .Register {
+  height: calc(100vh - 65px - 49px);
   padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   h1 {
-    margin-bottom: 20px;
+    margin-bottom: 35px;
   }
 
   .Pattern {
     margin-top: 40px;
-    width: 400px;
+    width: 25rem;
   }
 
   span {
@@ -25,5 +27,51 @@
     font-weight: $bold;
     text-decoration: underline;
     text-shadow: $t-shadow;
+  }
+
+  @media (max-width: 992px) {
+    h1 {
+      font-size: $font-xl;
+    }
+
+    span {
+      font-size: $font-s;
+    }
+
+    .Pattern {
+      width: 20rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: $font-l;
+    }
+
+    span {
+      font-size: $font-xs;
+    }
+
+    .Pattern {
+      width: 16rem;
+      margin-top: 30px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    h1 {
+      font-size: $font-m;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    span {
+      font-size: $font-xxs;
+    }
+
+    .Pattern {
+      width: 10rem;
+      margin-top: 20px;
+    }
   }
 }

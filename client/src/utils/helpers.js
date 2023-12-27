@@ -46,3 +46,13 @@ export const sortByType = (type, arr, str, searchType) => {
       )
   }
 }
+
+export const changeTextByCount = (count) => {
+  const lastItem = +count.toString().substr(-1)
+
+  if (lastItem === 1) return 'книга'
+
+  if (lastItem < 5 && lastItem !== 0) return 'книги'
+
+  return 'книг'
+}

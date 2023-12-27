@@ -123,7 +123,7 @@ const UserData = ({count, name}) => {
             )}
           </div>
         )}
-        <span>
+        <span className={styles.Count}>
           Книг: <b>{count}</b>
         </span>
         {isGuest ? null : (

@@ -16,6 +16,7 @@ import UserList from '../../components/UserList/UserList'
 import UserSearch from '../../components/UserSearch/UserSearch'
 import search from '../../assets/search-user.svg'
 import UserData from '../../components/UserData/UserData'
+import {changeTextByCount} from '../../utils/helpers'
 
 const ProfilePage = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const ProfilePage = () => {
   const authLoading = useSelector((state) => state.auth.loading)
 
   const {booksCount} = useSelector((state) => state.books)
+  const localBooksCount = JSON.parse(localStorage.getItem('booksCount'))
 
   const userId = useSelector((state) => state.auth.id)
 
@@ -65,7 +67,7 @@ const ProfilePage = () => {
         exit={{opacity: 0}}
         transition={{duration: 0.2}}
       >
-        <UserData count={booksCount} name={userName} />
+        <UserData count={localBooksCount} name={userName} />
         <div className={styles.Socials}>
           <Subscriptions fn={getNameHandler} />
           <Subscribers fn={getNameHandler} />
@@ -75,7 +77,9 @@ const ProfilePage = () => {
           <button className={styles.Share} title="Поделиться">
             <Link
               target="_blank"
-              to={`https://t.me/share/url?url=https://bookshelf-swart.vercel.app/user/${userId}&text=У меня в коллекции ${booksCount} книг в Bookshelf! Присоединяйся, мой ник ${userName}`}
+              to={`https://t.me/share/url?url=https://bookshelf-swart.vercel.app/user/${userId}&text=У меня в коллекции ${localBooksCount} ${changeTextByCount(
+                localBooksCount,
+              )} в Bookshelf! Присоединяйся, мой ник ${userName}`}
             >
               <img src={telegram} alt="telegram" />
             </Link>

@@ -5,12 +5,13 @@ import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
 import {setError, setLoading, setSubscriptions} from '../../../redux/user/slice'
 import {open} from '../../../redux/modal/slice'
+import {useAuth} from '../../../hooks/useAuth'
 import BookLoader from '../../../components/BookLoader/BookLoader'
 
 const Subscriptions = ({fn}) => {
   const dispatch = useDispatch()
 
-  const user_id = useSelector((state) => state.auth.id)
+  const {user} = useAuth()
   const loading = useSelector((state) => state.user.loading)
   const subscriptions = useSelector((state) => state.user.subscriptions)
 
@@ -21,7 +22,7 @@ const Subscriptions = ({fn}) => {
     try {
       const {data} = await axios.post(
         'https://bookshelf-server-blush.vercel.app/api/subscriptions',
-        {id: user_id},
+        {id: user.id},
       )
       dispatch(setSubscriptions({subscriptions: data.subs}))
     } catch (error) {
