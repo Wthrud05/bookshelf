@@ -1,12 +1,10 @@
 @import '../../styles/variables.scss';
 
 .Register {
-  height: calc(100vh - 65px - 49px);
   padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   h1 {
     margin-bottom: 35px;
@@ -53,7 +51,6 @@
     }
 
     .Pattern {
-      width: 16rem;
       margin-top: 30px;
     }
   }
@@ -66,11 +63,12 @@
     }
 
     span {
-      font-size: $font-xxs;
+      font-size: $font-s;
+      text-align: center;
     }
 
     .Pattern {
-      width: 10rem;
+      width: 15rem;
       margin-top: 20px;
     }
   }

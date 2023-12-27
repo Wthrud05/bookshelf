@@ -101,29 +101,11 @@
 
     .InputBox {
       margin-bottom: 15px;
-
-      input {
-        @include input(320px, 45px, 16px, 15px);
-        padding: 10px 40px;
-      }
-
-      .Icon {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-    button {
-      @include button(320px, 45px, 20px, 15px);
-
-      span {
-        font-size: $font-xs;
-      }
     }
 
     .Error {
       b {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
@@ -135,29 +117,12 @@
 
     .InputBox {
       margin-bottom: 10px;
-
-      input {
-        @include input(270px, 40px, 14px, 15px);
-        padding: 10px 40px;
-      }
-
-      .Icon {
-        width: 18px;
-        height: 18px;
-      }
     }
-
-    button {
-      @include button(270px, 40px, 16px, 15px);
-
-      span {
-        font-size: $font-xs;
-      }
-    }
+    
 
     .Error {
       b {
-        font-size: 12px;
+        font-size: 14px;
       }
     }
   }
@@ -172,21 +137,21 @@
       margin-bottom: 7px;
 
       input {
-        @include input(220px, 35px, 14px, 15px);
+        @include input(320px, 45px, 16px, 15px);
         padding: 10px 40px;
       }
 
       .Icon {
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
       }
     }
 
     button {
-      @include button(220px, 35px, 16px, 15px);
+      @include button(320px, 50px, 16px, 15px);
 
       span {
-        font-size: $font-xs;
+        font-size: $font-s;
       }
     }
 
