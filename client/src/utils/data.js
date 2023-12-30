@@ -1,3 +1,7 @@
+import main from '../assets/main.svg'
+import profile from '../assets/profile.svg'
+import about from '../assets/about.svg'
+
 export const userInfo = [
   {books: [0, 10], status: 'Новичок', img: '/statuses/newbie-reader.svg'},
   {books: [10, 20], status: 'Читатель', img: '/statuses/reader.svg'},
@@ -19,3 +23,14 @@ export const userInfo = [
 
 export const sortTypes = ['Новые', 'Старые', 'Печатные', 'Аудио']
 export const searchTypes = ['Название', 'Автор']
+
+export const nav = [
+  {name: 'Главная', path: '/', icon: main},
+  {name: 'Профиль', path: '/profile', icon: profile},
+  {name: 'О Bookshelf', path: '/about', icon: about},
+]
+
+export const guestNav = [
+  {name: 'Авторизация', path: '/login', icon: null},
+  {name: 'Регистрация', path: '/register', icon: null},
+]

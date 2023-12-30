@@ -2,6 +2,7 @@
 
 .NavItem {
   margin-right: 35px;
+  width: 136px;
 
   &:last-child {
     margin: 0;
@@ -12,10 +13,6 @@
     align-items: center;
     font-weight: $bold;
     font-size: $font-primary;
-    transition: $tr-200;
-  }
-
-  img {
     transition: $tr-200;
   }
 
@@ -32,6 +29,22 @@
   &:hover {
     a {
       text-shadow: $t-shadow;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    width: 190px;
+    margin-bottom: 30px;
+
+    a {
+      font-size: $font-l;
+    }
+
+    img {
+      margin-right: 10px;
+      width: 27px;
+      height: 27px;
     }
   }
 }

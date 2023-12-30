@@ -12,13 +12,22 @@
   background: $white;
   z-index: 10;
 
-  svg {
+  img {
     cursor: pointer;
     transition: $tr-300;
     height: 55px;
 
     &:active {
       transform: scale(0.92);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 5px 10px;
+    height: 45px;
+
+    img {
+      height: 45px;
     }
   }
 }

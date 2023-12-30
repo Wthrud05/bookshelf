@@ -4,6 +4,7 @@
   padding: 5px 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   box-shadow: $-shadow;
 
   img {
@@ -15,5 +16,16 @@
   span {
     font-size: $font-s;
     font-weight: $medium;
+  }
+
+  @media (max-width: 576px) {
+    img {
+      height: 25px;
+      width: 25px;
+    }
+
+    span {
+      font-size: $font-xxs;
+    }
   }
 }

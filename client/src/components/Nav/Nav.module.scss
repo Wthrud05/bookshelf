@@ -1,7 +1,64 @@
+@import '../../styles/variables.scss';
+
+
 .Nav {
-  ul {
+
+  .NavList {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .MobileNavList {
+    display: none;
+  }
+
+  .Burger {
+    display: none;
+    cursor: pointer;
+    transform-origin: center;
+
+    div {
+      background: $black;
+      height: 4px;
+      width: 24px;
+      margin-bottom: 3px;
+      border-radius: 3px;
+      transform-origin: center;
+      transition: transform .3s, opacity .1s;
+
+      &:nth-child(2n) {
+        width: 28px;
+      }
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .Burger {
+      display: block;
+    }
+
+    .NavList {
+      display: none;
+    }
+
+    .MobileNavList {
+      position: absolute;
+      top: 46px;
+      left: 0;
+      height: calc(100vh - 46px);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: $white;
+      padding-top: 100px;
+      z-index: 100;
+    }
   }
 }
