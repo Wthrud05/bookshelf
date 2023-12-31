@@ -12,4 +12,28 @@
     flex-direction: column;
     align-items: center;
   }
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(5, 220px);
+    gap: 10px;
+  }
+
+  @media (max-width: 1220px) {
+    grid-template-columns: repeat(4, 220px);
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(3, 220px);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 220px);
+    justify-content: center;
+    gap: 30px;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(2, 150px);
+    max-width: 350px;
+  }
 }

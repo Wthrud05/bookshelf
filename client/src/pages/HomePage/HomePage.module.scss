@@ -4,9 +4,12 @@
 .HomePage {
   text-align: center;
   padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
-    font-size: 32px;
+    font-size: $font-l;
     margin-bottom: 10px;
   }
 
@@ -16,6 +19,22 @@
   }
 
   .Loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 992px) {
+    h1 {
+      font-size: $font-m;
+    }
+
+    .Count {
+      font-size: $font-s;
+    }
+  }
+
+  @media (max-width: 576px) {
     display: flex;
     flex-direction: column;
     align-items: center;

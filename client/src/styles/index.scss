@@ -45,11 +45,13 @@ html {
   max-width: 1440px;
 }
 
-.content {
-  // justify-content: center;
-}
-
 .content-about {
   max-width: 100%;
   padding: 0;
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 0 10px;
+  }
 }

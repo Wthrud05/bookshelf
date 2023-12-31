@@ -1,20 +1,17 @@
 @import '../../styles/variables.scss';
 
-.Nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.NavList {
 
-  .NavList {
+  .DesktopNavList {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
+  
   .MobileNavList {
     display: none;
   }
-
+  
   .Burger {
     display: none;
     cursor: pointer;
@@ -44,7 +41,7 @@
       display: block;
     }
 
-    .NavList {
+    .DesktopNavList {
       display: none;
     }
 
@@ -64,3 +61,4 @@
     }
   }
 }
+

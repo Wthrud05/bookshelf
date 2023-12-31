@@ -43,12 +43,7 @@ const BookSearch = () => {
         placeholder="Найти книгу"
       />
       <Search className={styles.Search} />
-      <motion.div
-        className={styles.SearchType}
-        ref={typeRef}
-        onClick={() => setIsOpen(!isOpen)}
-        layout
-      >
+      <motion.div className={styles.SearchType} ref={typeRef} onClick={() => setIsOpen(!isOpen)}>
         <span>{searchType}</span>
         <img src={arrow} alt="arrow" />
         <AnimatePresence mode="popLayout">

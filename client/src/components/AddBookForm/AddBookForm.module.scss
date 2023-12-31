@@ -260,4 +260,45 @@
       }
     }
   }
+
+  @media (max-width: 576px) {
+    .Wrapper {
+      align-items: center;
+
+      button {
+        @include button(300px, 40px, 16px, 10px)
+      }
+      
+      .InputBox {
+        input {
+          @include input(300px, 40px, 16px, 10px)
+        }
+
+        textarea {
+          @include input(300px, 80px, 16px, 10px);
+        }
+      }
+
+      .Options {
+
+        .Cover {
+          .Preview {
+            width: 150px;
+            height: 250px;
+          }
+        }
+
+        .isAudio {
+          width: 150px;
+          height: 250px;
+        }
+      }
+
+      .Buttons {
+        button {
+          @include button(150px, 40px, 14px, 10px);
+        }
+      }
+    }
+  }
 }

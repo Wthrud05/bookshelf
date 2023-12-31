@@ -6,6 +6,8 @@
   justify-content: space-between;
   align-items: center;
   margin: 20px 0 30px 0;
+  max-width: 1440px;
+  width: 100%;
 
   button {
     @include button(150px, 45px, 18px, 15px);
@@ -68,6 +70,16 @@
       box-shadow: $bx-shadow;
       text-align: left;
       z-index: 2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      @include button(150px, 45px, 18px, 15px);
+      margin-bottom: 15px;
     }
   }
 }
