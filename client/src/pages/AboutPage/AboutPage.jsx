@@ -45,22 +45,22 @@ const About = () => {
 
         <div className={styles.Header}>
           <motion.img
-            initial={{opacity: 0, x: '-200px'}}
-            whileInView={{opacity: 1, x: 0}}
+            initial={{opacity: 0, right: '-100px'}}
+            whileInView={{opacity: 1, right: 0}}
             transition={{duration: 0.8}}
             src={bs}
             alt="bs"
           />
           <motion.h1
-            initial={{opacity: 0, y: '100px'}}
+            initial={{opacity: 1, y: '100px'}}
             whileInView={{opacity: 1, y: 0}}
             transition={{duration: 0.5}}
           >
             Создайте свою электронную книжную полку!
           </motion.h1>
           <motion.img
-            initial={{opacity: 0, x: '200px'}}
-            whileInView={{opacity: 1, x: 0}}
+            initial={{opacity: 0, left: '-100px'}}
+            whileInView={{opacity: 1, left: 0}}
             transition={{duration: 0.8}}
             src={bs}
             alt="bs"
@@ -116,10 +116,11 @@ const About = () => {
         </motion.div>
 
         <motion.button
-          initial={{rotate: 0, scale: 1}}
+          initial={{rotate: 0, scale: 1, y: '100px'}}
           whileHover={{scale: 1.05}}
+          whileInView={{y: 0}}
           whileTap={{scale: 0.95}}
-          transition={{duration: 0.05}}
+          transition={{duration: 0.1}}
         >
           <NavLink to={'/'}>Начать</NavLink>
         </motion.button>

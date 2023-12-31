@@ -34,19 +34,11 @@
       text-align: center;
       text-shadow: $bx-shadow;
     }
-    
-    .Triangle {
-      position: absolute;
-      bottom: 0;
-      border: 30px solid transparent;
-      border-top: 30px solid $white;
-      border-radius: 10px;
-      filter: blur(1px);
-    }
   }
 
   .SecondScreen {
     position: relative;
+    overflow-x: hidden;
     height: 100%;
     padding: 120px 0;
     background: rgb(47,47,47);
@@ -94,6 +86,7 @@
       text-align: center;
       display: flex;
       justify-content: space-around;
+      align-items: center;
       width: 80%;
       margin: 0 auto;
       margin-bottom: 200px;
@@ -101,6 +94,7 @@
 
       img {
         width: 150px;
+        position: absolute;
       }
 
       h1 {
@@ -153,6 +147,193 @@
         font-weight: 700;
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .SecondScreen {
+      .Header {
+        img {
+          width: 100px;
+        }
+
+        h1 {
+          font-size: $font-m;
+        }
+      }
+    }
+  }
+
+
+  @media (max-width: 768px) {
+
+    .FirstScreen {
+      height: calc(101vh - 45px);
+
+      img {
+        width: 250px;
+        height: 220px;
+      }
+
+      p {
+        width: 500px;
+        font-size: $font-m;
+      }
+    }
+
+    .SecondScreen {
+
+      .BooksV {
+      position: absolute;
+      opacity: .1;
+      width: 200px;
+      height: 180px;
+
+      &:nth-child(1) {
+        left: 10%;
+        top: 25%;
+      }
+
+      &:nth-child(2) {
+        right: 10%;
+        top: 80%;
+      }
+    }
+
+    .BooksH {
+      position: absolute;
+      opacity: .1;
+      width: 200px;
+      height: 180px;
+
+      &:nth-child(3) {
+        right: 10%;
+        top: 35%;
+      }
+
+      &:nth-child(4) {
+        left: 10%;
+        top: 70%;
+      }
+    }
+
+      .Header {
+        img {
+          width: 80px;
+        }
+
+        h1 {
+          font-size: $font-m;
+          width: 50%;
+        }
+      }
+
+      .Section {
+        margin-bottom: 150px;
+
+        div {
+          img {
+            width: 100px;
+            height: 80px;
+          }
+
+          h3 {
+            font-size: $font-m;
+          }
+        }
+      }
+
+      button {
+        width: 250px;
+        height: 60px;
+        font-size: $font-m;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .FirstScreen {
+      height: calc(101vh - 45px);
+
+      img {
+        width: 200px;
+        height: 170px;
+      }
+
+      p {
+        width: 320px;
+        font-size: $font-s;
+      }
+    }
+
+    .SecondScreen {
+
+      .BooksV {
+        position: absolute;
+        opacity: .1;
+        width: 150px;
+        height: 130px;
+  
+        &:nth-child(1) {
+          left: 10%;
+          top: 25%;
+        }
+  
+        &:nth-child(2) {
+          right: 10%;
+          top: 80%;
+        }
+      }
+  
+      .BooksH {
+        position: absolute;
+        opacity: .1;
+        width: 150px;
+        height: 130px;
+  
+        &:nth-child(3) {
+          right: 10%;
+          top: 35%;
+        }
+  
+        &:nth-child(4) {
+          left: 10%;
+          top: 70%;
+        }
+      }
+
+      .Header {
+        img {
+          width: 70px;
+        }
+
+        h1 {
+          font-size: $font-s;
+          width: 50%;
+        }
+      }
+
+      .Section {
+        margin-bottom: 100px;
+
+        div {
+          img {
+            width: 80px;
+            height: 60px;
+          }
+
+          h3 {
+            font-size: $font-s;
+            width: 320px;
+          }
+        }
+      }
+
+      button {
+        width: 200px;
+        height: 50px;
+        font-size: $font-s;
       }
     }
   }

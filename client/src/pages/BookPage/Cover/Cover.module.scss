@@ -44,4 +44,13 @@
       @include button(120px, 30px, $font-xs, 7px)
      }
   }
+
+  @media (max-width: 992px) {
+    width: 300px;
+    height: 450px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 }

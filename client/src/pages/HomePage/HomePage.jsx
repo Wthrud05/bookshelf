@@ -3,7 +3,7 @@ import styles from './HomePage.module.scss'
 import Controls from '../../components/Controls/Controls'
 import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
-import {getBooksThunk} from '../../redux/books/slice'
+import {getBooksThunk, setSearchStr} from '../../redux/books/slice'
 import {motion} from 'framer-motion'
 import Modal from '../../components/Modal/Modal'
 import AddBookForm from '../../components/AddBookForm/AddBookForm'
@@ -22,6 +22,10 @@ const HomePage = () => {
       ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
       : null
   }
+
+  useEffect(() => {
+    dispatch(setSearchStr({str: ''}))
+  }, [])
 
   useEffect(() => {
     getBooks()

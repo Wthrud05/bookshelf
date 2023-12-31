@@ -46,6 +46,12 @@
     opacity: 1;
     transition: $tr-300;
   }
+
+  @media (max-width: 576px) {
+    .Content {
+      padding: 15px 10px;
+    }
+  }
 }
 
 .Open {

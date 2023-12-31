@@ -4,7 +4,6 @@
 .UserPage {
   display: flex;
   flex-direction: column;
-  // align-items: center;
   margin-top: 35px;
 
   .Loader {
@@ -14,6 +13,14 @@
 
     h1 {
       margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 0;
+
+    h1 {
+      font-size: $font-xl;
     }
   }
 }

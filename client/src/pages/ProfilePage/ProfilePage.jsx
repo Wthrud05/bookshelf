@@ -23,7 +23,6 @@ const ProfilePage = () => {
   const navigator = useNavigate()
 
   const userName = useSelector((state) => state.auth.name)
-  const loading = useSelector((state) => state.user.loading)
   const authLoading = useSelector((state) => state.auth.loading)
 
   const {booksCount} = useSelector((state) => state.books)
@@ -67,12 +66,6 @@ const ProfilePage = () => {
         exit={{opacity: 0}}
         transition={{duration: 0.2}}
       >
-        <UserData count={localBooksCount} name={userName} />
-        <div className={styles.Socials}>
-          <Subscriptions fn={getNameHandler} />
-          <Subscribers fn={getNameHandler} />
-        </div>
-        <img className={styles.Pattern} src={pattern} alt="pattern" />
         <div className={styles.Actions}>
           <button className={styles.Share} title="Поделиться">
             <Link
@@ -98,6 +91,12 @@ const ProfilePage = () => {
             {authLoading ? <BookLoader w={'18px'} h={'18px'} /> : 'Выйти'}
           </button>
         </div>
+        <UserData count={localBooksCount} name={userName} />
+        <div className={styles.Socials}>
+          <Subscriptions fn={getNameHandler} />
+          <Subscribers fn={getNameHandler} />
+        </div>
+        <img className={styles.Pattern} src={pattern} alt="pattern" />
       </motion.div>
 
       <Modal>

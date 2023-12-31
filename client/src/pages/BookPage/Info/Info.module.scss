@@ -33,6 +33,7 @@
   
     span, p {
       font-size: $font-m;
+      text-align: center;
     }
 
     .updTitle {
@@ -92,7 +93,6 @@
   }
 
   .Buttons {
-    width: 40%;
     display: flex;
     justify-content: space-around;
 
@@ -104,6 +104,11 @@
           background-color: $grey;
         }
       }
+
+      &:first-of-type {
+        margin-right: 20px;
+      }
+
       @include button(150px, 40px, $font-s, 10px);
     }
 
@@ -113,6 +118,46 @@
         &:hover {
           background-color: $hover-red;
         }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .Details {
+      h1 {
+        font-size: $font-xl;
+      }
+
+      h3 {
+        font-size: $font-m;
+      }
+
+      span {
+        font-size: $font-primary;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+
+    .Details {
+      .updTitle {
+        margin-bottom: 15px;
+
+        h3 {
+          font-size: $font-m;
+        }
+      }
+
+      .InputBox {
+        input, textarea {
+          @include input(320px, 45px, $font-s, 10px);
+        }
+
+        textarea {
+          height: 150px;
+        }
+      }
     }
   }
 }

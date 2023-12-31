@@ -100,7 +100,7 @@ const AddBookForm = () => {
 
       const newBook = data.book
       dispatch(setNewBook({book: newBook}))
-      const items = [...books, newBook]
+      const items = [newBook, ...books]
 
       dispatch(setBooks({books: items}))
       dispatch(setBooksCount({booksCount: booksCount + 1}))

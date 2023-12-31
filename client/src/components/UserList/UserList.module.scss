@@ -48,4 +48,8 @@
       margin-bottom: 30px;
     }
   }
+
+  @media (max-width: 576px) {
+    width: 320px;
+  }
 }

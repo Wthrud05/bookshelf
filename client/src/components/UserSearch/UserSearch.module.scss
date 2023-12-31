@@ -67,4 +67,12 @@
       }
     }
   }
+
+  @media (max-width: 576px) {
+    .InputBox {
+      input {
+        @include input(280px, 40px, 16px, 10px);
+      }
+    }
+  }
 }

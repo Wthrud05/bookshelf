@@ -50,6 +50,12 @@ html {
   padding: 0;
 }
 
+@media (max-width: 768px) {
+  .content-about {
+    margin-top: 45px;
+  }
+}
+
 @media (max-width: 480px) {
   .content {
     padding: 0 10px;

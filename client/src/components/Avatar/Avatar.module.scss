@@ -28,6 +28,21 @@
     width: 150px;
     height: 150px;
   }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    span {
+      width: 150px;
+      font-size: $font-xs;
+    }
+  }
 }
 
 .UserAvatar {
@@ -55,5 +70,20 @@
   img {
     width: 150px;
     height: 150px;
+  }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    span {
+      width: 150px;
+      font-size: $font-xs;
+    }
   }
 }

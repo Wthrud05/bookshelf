@@ -101,7 +101,7 @@ const BookPage = () => {
     <>
       {book ? (
         <motion.div
-          className={styles.Book}
+          className={styles.BookPage}
           initial={{opacity: 0}}
           animate={{opacity: 1}}
           exit={{opacity: 0}}

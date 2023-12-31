@@ -37,4 +37,20 @@
   span {
     font-size: $font-m;
   }
+
+  @media (max-width: 576px) {
+    .Header {
+      flex-direction: column-reverse;
+      text-align: center;
+
+      h3 {
+        font-size: $font-s;
+      }
+
+      img {
+        margin: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
