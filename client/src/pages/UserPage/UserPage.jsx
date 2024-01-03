@@ -37,8 +37,11 @@ const UserPage = () => {
     dispatch(setLoading({loading: true}))
     try {
       const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {id})
+
+      const sortedBooks = data.books.sort((a, b) => b.book_id - a.book_id)
+
       dispatch(setBooksCount({booksCount: data.books.length}))
-      dispatch(setUserBooks({books: data.books}))
+      dispatch(setUserBooks({books: sortedBooks}))
     } catch (error) {
       console.log(error)
     } finally {

@@ -16,8 +16,9 @@
     }
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 576px) {    
     margin-top: 0;
+    align-items: center;
 
     h1 {
       font-size: $font-xl;

@@ -1,4 +1,7 @@
+@import '../../styles/variables.scss';
+
 .BookList {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(5, 240px);
   justify-content: space-between;
@@ -13,12 +16,64 @@
     align-items: center;
   }
 
-  @media (max-width: 1440px) {
-    grid-template-columns: repeat(5, 220px);
-    gap: 10px;
+  .Error {
+    margin-top: 30px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+
+    h2 {
+      font-size: $font-m;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
 
-  @media (max-width: 1220px) {
+  .NoBooks {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    grid-template-columns: repeat(5, 220px);
+    gap: 0;
+    row-gap: 30px;
+  }
+
+  @media (max-width: 1280px) {
     grid-template-columns: repeat(4, 220px);
   }
 

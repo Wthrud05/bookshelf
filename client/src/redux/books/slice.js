@@ -69,6 +69,7 @@ const booksSlice = createSlice({
         state.booksCount = 0
         state.currentBooksCount = 0
         state.status = 'Error'
+        state.error = 'Произошла ошибка при загузке книг'
       })
   },
 })

@@ -37,14 +37,14 @@
   }
 
   .Loader {
-    height: 300px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     
     h3 {
-      font-size: $font-l;
+      font-size: $font-m;
       margin-bottom: 30px;
     }
   }

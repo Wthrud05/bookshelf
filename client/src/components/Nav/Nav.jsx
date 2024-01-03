@@ -10,20 +10,13 @@ import NavList from '../NavList/NavList'
 const Nav = () => {
   const location = useLocation()
   const isGuest = useGuest()
-
   const [isOpen, setIsOpen] = useState(false)
-
-  // const variants = {
-  //   open: {transform: 'translate(0%, 0px)'},
-  //   closed: {transform: 'translate(100%, 0px)'},
-  // }
 
   useEffect(() => {
     isOpen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'unset')
   }, [isOpen])
 
   return (
-    // АДАПТИРОВАТЬ НАВИГАЦИЮ ДЛЯ ГОСТЯ, стилизовать список
     <div className={styles.Nav}>
       {isGuest ? (
         <>
@@ -31,46 +24,6 @@ const Nav = () => {
             ''
           ) : (
             <>
-              {/* <ul className={styles.NavList}>
-                {guestNav.map((i) => (
-                  <NavItem key={i.name} name={i.name} path={i.path} icon={i.icon} />
-                ))}
-              </ul>
-              <motion.ul
-                className={styles.MobileNavList}
-                animate={isOpen ? 'open' : 'closed'}
-                transition={{type: 'spring', duration: 0.5}}
-                variants={variants}
-              >
-                {guestNav.map((i) => (
-                  <NavItem
-                    key={i.name}
-                    name={i.name}
-                    path={i.path}
-                    icon={i.icon}
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                  />
-                ))}
-              </motion.ul>
-              <div onClick={() => setIsOpen(!isOpen)} className={styles.Burger}>
-                <div
-                  style={{
-                    transform: isOpen && 'rotate(-45deg) translate(0, 10px)',
-                  }}
-                ></div>
-                <div
-                  style={{
-                    transform: isOpen && 'translate(30px, 0) rotate(90deg)',
-                    opacity: isOpen && 0,
-                  }}
-                ></div>
-                <div
-                  style={{
-                    transform: isOpen && 'rotate(45deg) translate(0, -10px)',
-                  }}
-                ></div>
-              </div> */}
               <NavList list={guestNav} />
             </>
           )}
@@ -82,46 +35,6 @@ const Nav = () => {
           ) : (
             <>
               <NavList list={nav} />
-              {/* <ul className={styles.NavList}>
-                {nav.map((i) => (
-                  <NavItem key={i.name} name={i.name} path={i.path} icon={i.icon} />
-                ))}
-              </ul>
-              <motion.ul
-                className={styles.MobileNavList}
-                animate={isOpen ? 'open' : 'closed'}
-                transition={{type: 'spring', duration: 0.5}}
-                variants={variants}
-              >
-                {nav.map((i) => (
-                  <NavItem
-                    key={i.name}
-                    name={i.name}
-                    path={i.path}
-                    icon={i.icon}
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                  />
-                ))}
-              </motion.ul>
-              <div onClick={() => setIsOpen(!isOpen)} className={styles.Burger}>
-                <div
-                  style={{
-                    transform: isOpen && 'rotate(-45deg) translate(0, 10px)',
-                  }}
-                ></div>
-                <div
-                  style={{
-                    transform: isOpen && 'translate(30px, 0) rotate(90deg)',
-                    opacity: isOpen && 0,
-                  }}
-                ></div>
-                <div
-                  style={{
-                    transform: isOpen && 'rotate(45deg) translate(0, -10px)',
-                  }}
-                ></div>
-              </div> */}
             </>
           )}
         </>

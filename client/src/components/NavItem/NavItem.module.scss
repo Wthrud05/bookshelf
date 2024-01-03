@@ -17,19 +17,13 @@
   }
 
   .Active {
-    text-shadow: $t-shadow;
+    text-decoration: underline;
   }
 
   img {
     margin-right: 10px;
     width: 22px;
     height: 22px;
-  }
-
-  &:hover {
-    a {
-      text-shadow: $t-shadow;
-    }
   }
 
   @media (max-width: 768px) {

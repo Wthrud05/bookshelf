@@ -44,7 +44,7 @@
         margin: 5px 0;
 
         button {
-          @include button(100px, 30px, 14px, 10px)
+          @include button(100px, 30px, 14px, 10px);
         }
       }
     }
@@ -71,10 +71,11 @@
   align-items: center;
   margin-bottom: 20px;
   border-bottom: 1px solid $grey;
+  
 
   .Data {
     position: relative;
-    margin-left: 30px;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,8 +85,11 @@
     }
 
     button {
-      @include button(120px, 30px, 14px, 10px);
+      @include button(120px, 35px, 14px, 10px);
       margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }  
 }

@@ -13,6 +13,7 @@ import {useGuest} from '../../hooks/useGuest'
 
 const UserData = ({count, name}) => {
   const dispatch = useDispatch()
+  const [localLoading, setLoading] = useState(false)
 
   const isGuest = useGuest()
 
@@ -33,26 +34,30 @@ const UserData = ({count, name}) => {
   }, [res])
 
   const handleSubscribe = async () => {
+    setLoading(true)
     try {
-      const {data} = await axios.post('http://localhost:5000/api/sub', {
+      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/sub', {
         sub_id: id,
         user_id: userId,
         name: userName,
         sub_name: name,
       })
       dispatch(setIsSubscribed(true))
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleUnsubscribe = async () => {
+    setLoading(true)
     try {
-      const {data} = await axios.delete('http://localhost:5000/api/sub', {
+      const {data} = await axios.delete('https://bookshelf-server-blush.vercel.app/api/sub', {
         data: {id: id},
       })
       console.log(data)
       dispatch(setIsSubscribed(false))
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -60,7 +65,7 @@ const UserData = ({count, name}) => {
 
   const changeNameHandler = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/api/change-name', {
+      const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/change-name', {
         name: nameValue,
         id: userId,
       })
@@ -132,12 +137,12 @@ const UserData = ({count, name}) => {
               <>
                 {isSubscribed && (
                   <button disabled={loading} onClick={() => handleUnsubscribe()}>
-                    Отписаться
+                    {localLoading ? <BookLoader w={'15px'} h={'15px'} /> : 'Отписаться'}
                   </button>
                 )}
                 {!isSubscribed && (
                   <button disabled={loading} onClick={() => handleSubscribe()}>
-                    Подписаться
+                    {localLoading ? <BookLoader w={'15px'} h={'15px'} /> : 'Подписаться'}
                   </button>
                 )}
               </>

@@ -14,11 +14,19 @@ const NavList = ({list}) => {
     <div className={styles.NavList}>
       <ul className={styles.DesktopNavList}>
         {list.map((i) => (
-          <NavItem key={i.name} name={i.name} path={i.path} icon={i.icon} />
+          <NavItem
+            key={i.name}
+            name={i.name}
+            path={i.path}
+            icon={i.icon}
+            isOpen={true}
+            setIsOpen={() => {}}
+          />
         ))}
       </ul>
       <motion.ul
         className={styles.MobileNavList}
+        initial={{transform: 'translate(100%, 0px)'}}
         animate={isOpen ? 'open' : 'closed'}
         transition={{type: 'spring', duration: 0.5}}
         variants={variants}

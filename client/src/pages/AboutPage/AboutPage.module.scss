@@ -10,6 +10,7 @@
   .FirstScreen {
     position: relative;
     height: calc(101vh - 65px);
+    background: $black;
     background-image: url('../../assets/aboutpage-bg.png');
     background-repeat: no-repeat;
     background-size: cover;

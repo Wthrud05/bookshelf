@@ -15,8 +15,6 @@ const Subscriptions = ({fn}) => {
   const loading = useSelector((state) => state.user.loading)
   const subscriptions = useSelector((state) => state.user.subscriptions)
 
-  const [isOpen, setIsOpen] = useState(false)
-
   const getSubscriptions = async () => {
     dispatch(setLoading({loading: true}))
     try {
