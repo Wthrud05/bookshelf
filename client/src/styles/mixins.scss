@@ -3,7 +3,7 @@
 
 @mixin input($width, $height, $fz, $radius) {
   font-family: 'Lobster', cursive;
-  border: 3px solid $middle-grey;
+  border: 3px solid $light-grey;
   border-radius: $radius;
   width: $width;
   height: $height;
@@ -57,7 +57,7 @@
   }
 
   &:disabled {
-    background-color: $light-grey;
+    background-color: $middle-grey;
     color: $light;
   }
 }

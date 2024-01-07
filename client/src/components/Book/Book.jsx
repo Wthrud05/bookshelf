@@ -12,15 +12,15 @@ const Book = ({book}) => {
     <motion.div
       initial={{scale: 1}}
       whileTap={{
-        scale: 1.05,
+        scale: 0.95,
         zIndex: 100,
-        y: '-25px',
+        y: '-15px',
         boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.7)',
       }}
       whileHover={{
-        scale: 1.1,
+        scale: 1.02,
         zIndex: 100,
-        y: '-25px',
+        y: '-15px',
         boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.7)',
       }}
       transition={{duration: 0.05}}
