@@ -57,10 +57,6 @@ const UserSearch = () => {
     dispatch(setSearchStr({str: ''}))
   }, [isOpen])
 
-  useEffect(() => {
-    inputRef.current.focus()
-  }, [isOpen])
-
   return (
     <div className={styles.UserSearch}>
       <h3>Поиск пользователей</h3>
