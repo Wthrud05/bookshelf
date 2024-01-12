@@ -34,7 +34,7 @@ const manifestPWA = {
         purpose: 'apple touch icon',
       },
     ],
-    theme_color: '#ffffff',
+    theme_color: '#171717',
     background_color: '#ffffff',
     display: 'standalone',
     scope: '/',
