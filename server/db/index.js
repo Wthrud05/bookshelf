@@ -8,23 +8,20 @@ const pool = new Pool({
 })
 
 pool.on('error', (err) => {
-  console.log('Произошла ошибка подключения к Базе Данных')
-  console.log(err)
+  console.error('Произошла ошибка подключения к Базе Данных')
+  console.error(err)
 })
 
-pool.connect((err) => {
-  console.log('GG')
-  if (err) {
-    console.log('Произошла ошибка подключения к Базе Данных')
-    pool.connect((e) => {
-      if (e) {
-        console.log('Error while connect to DB')
-      }
-      console.log('Reconnect!')
-    })
-    throw err
-  }
-  console.log('Connect to PostgreSQL successfully!')
-})
+pool
+  .connect()
+  .then(() => {
+    console.log('Connect to PostgreSQL successfully!')
+  })
+  .catch((err) => {
+    console.error('Произошла ошибка подключения к Базе Данных')
+    console.error(err)
+  })
+
+module.exports = pool
 
 module.exports = pool
