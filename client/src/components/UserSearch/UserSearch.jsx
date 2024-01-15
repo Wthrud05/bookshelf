@@ -18,9 +18,11 @@ const UserSearch = () => {
   const [value, setValue] = useState('')
 
   const getUsers = async () => {
+    const API_URL = import.meta.env.VITE_API_URL
+
     dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios('https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/users')
+      const {data} = await axios(`${API_URL}/users`)
       const filteredUsers = filterUsersByParam(data.users, searchStr)
       dispatch(setUsers({users: filteredUsers}))
     } catch (error) {

@@ -13,6 +13,8 @@ import Info from './Info/Info'
 import {motion} from 'framer-motion'
 
 const BookPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const {id} = useParams()
   const [loading, setLoading] = useState(false)
 
@@ -24,7 +26,7 @@ const BookPage = () => {
   const getBook = async () => {
     setLoading(true)
     try {
-      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/book', {id})
+      const {data} = await axios.post(`${API_URL}/book`, {id})
       dispatch(setBook({book: data.book}))
     } catch (error) {
       console.log(error)
@@ -50,7 +52,7 @@ const BookPage = () => {
     }
 
     try {
-      const {data} = await axios.put('https://bookshelf-server-blush.vercel.app/api/books', {
+      const {data} = await axios.put(`${API_URL}/books`, {
         book_id: book.book_id,
         title: book.title,
         author: book.author,
@@ -73,7 +75,7 @@ const BookPage = () => {
     setLoading(true)
     dispatch(close())
     try {
-      await axios.delete('https://bookshelf-server-blush.vercel.app/api/books', {
+      await axios.delete(`${API_URL}/books`, {
         data: {id: id},
       })
       navigate('/')

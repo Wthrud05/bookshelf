@@ -16,6 +16,8 @@ import BookLoader from '../../components/BookLoader/BookLoader'
 import {motion} from 'framer-motion'
 
 const UserPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const {id} = useParams()
 
   const dispatch = useDispatch()
@@ -25,7 +27,7 @@ const UserPage = () => {
   const getUser = async () => {
     dispatch(setUser({user: {}}))
     try {
-      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/user', {id})
+      const {data} = await axios.post(`${API_URL}/user`, {id})
       setUser(data.user)
       dispatch(setUser({user: data.user}))
     } catch (error) {
@@ -36,7 +38,7 @@ const UserPage = () => {
   const getUserBooks = async () => {
     dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {id})
+      const {data} = await axios.post(`${API_URL}/books`, {id})
 
       const sortedBooks = data.books.sort((a, b) => b.book_id - a.book_id)
 

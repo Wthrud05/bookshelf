@@ -9,6 +9,8 @@ import {setUser, setError, setLoading} from '../../redux/auth/slice'
 import {motion} from 'framer-motion'
 
 const LoginPage = () => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const dispatch = useDispatch()
   const navigator = useNavigate()
 
@@ -29,7 +31,7 @@ const LoginPage = () => {
         dispatch(setLoading({loading: false}))
       } else {
         const res = await axios
-          .post('https://bookshelf-server-cb5y8i595-wthrud05.vercel.app/api/login', {
+          .post(`${API_URL}/login`, {
             name: userName,
             password,
           })

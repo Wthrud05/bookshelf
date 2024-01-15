@@ -2,6 +2,8 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios'
 import {sortByType} from '../../utils/helpers'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 const initialState = {
   status: '',
   books: [],
@@ -16,7 +18,7 @@ const initialState = {
 export const getBooksThunk = createAsyncThunk('books/getBooks', async (params) => {
   const {id, sortType, str, searchType} = params
 
-  const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/books', {id: id})
+  const {data} = await axios.post(`${API_URL}/books`, {id: id})
 
   const sortedData = await sortByType(sortType, data.books, str, searchType)
   const count = data.books.length

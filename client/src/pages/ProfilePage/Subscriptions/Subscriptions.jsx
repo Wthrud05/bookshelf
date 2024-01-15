@@ -9,6 +9,8 @@ import {useAuth} from '../../../hooks/useAuth'
 import BookLoader from '../../../components/BookLoader/BookLoader'
 
 const Subscriptions = ({fn}) => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const dispatch = useDispatch()
 
   const {user} = useAuth()
@@ -18,10 +20,7 @@ const Subscriptions = ({fn}) => {
   const getSubscriptions = async () => {
     dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios.post(
-        'https://bookshelf-server-blush.vercel.app/api/subscriptions',
-        {id: user.id},
-      )
+      const {data} = await axios.post(`${API_URL}/subscriptions`, {id: user.id})
       dispatch(setSubscriptions({subscriptions: data.subs}))
     } catch (error) {
       console.log(error)

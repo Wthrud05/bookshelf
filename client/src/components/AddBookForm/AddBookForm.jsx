@@ -19,6 +19,7 @@ import ModalError from '../ModalError/ModalError'
 
 const AddBookForm = () => {
   const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
+  const API_URL = import.meta.env.VITE_API_URL
 
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
@@ -93,10 +94,7 @@ const AddBookForm = () => {
         description: description,
       }
 
-      const {data} = await axios.post(
-        'https://bookshelf-server-blush.vercel.app/api/books-create',
-        book,
-      )
+      const {data} = await axios.post(`${API_URL}/books-create`, book)
 
       const newBook = data.book
       dispatch(setNewBook({book: newBook}))

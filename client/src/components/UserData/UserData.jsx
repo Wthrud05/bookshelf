@@ -12,6 +12,8 @@ import BookLoader from '../BookLoader/BookLoader'
 import {useGuest} from '../../hooks/useGuest'
 
 const UserData = ({count, name}) => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const dispatch = useDispatch()
   const [localLoading, setLoading] = useState(false)
 
@@ -36,7 +38,7 @@ const UserData = ({count, name}) => {
   const handleSubscribe = async () => {
     setLoading(true)
     try {
-      const {data} = await axios.post('https://bookshelf-server-blush.vercel.app/api/sub', {
+      const {data} = await axios.post(`${API_URL}/sub`, {
         sub_id: id,
         user_id: userId,
         name: userName,
@@ -52,7 +54,7 @@ const UserData = ({count, name}) => {
   const handleUnsubscribe = async () => {
     setLoading(true)
     try {
-      const {data} = await axios.delete('https://bookshelf-server-blush.vercel.app/api/sub', {
+      const {data} = await axios.delete(`${API_URL}/sub`, {
         data: {id: id},
       })
       console.log(data)
@@ -65,7 +67,7 @@ const UserData = ({count, name}) => {
 
   const changeNameHandler = async () => {
     try {
-      const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/change-name', {
+      const res = await axios.post(`${API_URL}/change-name`, {
         name: nameValue,
         id: userId,
       })

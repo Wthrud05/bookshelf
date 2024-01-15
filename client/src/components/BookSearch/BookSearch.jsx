@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styles from './BookSearch.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
 import {setSearchStr} from '../../redux/books/slice'
@@ -33,6 +33,12 @@ const BookSearch = () => {
   useClickOutside(typeRef, () => {
     setIsOpen(false)
   })
+
+  useEffect(() => {
+    return () => {
+      dispatch(setSearchStr({str: ''}))
+    }
+  }, [])
 
   return (
     <div className={styles.BookSearch}>

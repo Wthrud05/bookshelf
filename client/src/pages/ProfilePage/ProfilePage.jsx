@@ -19,6 +19,8 @@ import UserData from '../../components/UserData/UserData'
 import {changeTextByCount} from '../../utils/helpers'
 
 const ProfilePage = () => {
+  const API_URL = import.meta.env.VITE_API_URL
+
   const dispatch = useDispatch()
   const navigator = useNavigate()
 
@@ -39,7 +41,7 @@ const ProfilePage = () => {
     try {
       dispatch(setLoading({loading: true}))
 
-      const res = await axios.post('https://bookshelf-server-blush.vercel.app/api/logout', {
+      const res = await axios.post(`${API_URL}/logout`, {
         user_id: id,
       })
       const msg = await res.data.message
