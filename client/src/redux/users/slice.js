@@ -1,4 +1,8 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {filterUsersByParam} from '../../utils/helpers'
+import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL
 
 const initialState = {
   loading: false,
@@ -6,6 +10,12 @@ const initialState = {
   searchStr: '',
   error: '',
 }
+
+export const getUsersThunk = createAsyncThunk('users/getUsers', async ({searchStr}) => {
+  const {data} = await axios(`${API_URL}/users`)
+  const filteredUsers = filterUsersByParam(data.users, searchStr)
+  return filteredUsers
+})
 
 const usersSlice = createSlice({
   name: 'users',
@@ -23,6 +33,21 @@ const usersSlice = createSlice({
     setSearchStr: (state, action) => {
       state.searchStr = action.payload.str
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getUsersThunk.pending, (state, action) => {
+      state.error = ''
+      state.loading = true
+    }),
+      builder.addCase(getUsersThunk.fulfilled, (state, action) => {
+        state.error = ''
+        state.loading = false
+        state.users = action.payload
+      }),
+      builder.addCase(getUsersThunk.rejected, (state, action) => {
+        state.error = 'Произошла ошибка'
+        state.loading = false
+      })
   },
 })
 

@@ -18,9 +18,13 @@ const HomePage = () => {
   const {sortType, searchType, searchStr} = useSelector((state) => state.books)
 
   const getBooks = () => {
-    user && sortType
-      ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
-      : null
+    try {
+      user && sortType
+        ? dispatch(getBooksThunk({id: user.id, sortType, str: searchStr, searchType: searchType}))
+        : null
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {

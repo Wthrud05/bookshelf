@@ -1,88 +1,53 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
-import axios from 'axios'
 import styles from './BookPage.module.scss'
 import Modal from '../../components/Modal/Modal'
 import BookLoader from '../../components/BookLoader/BookLoader'
 import {useDispatch, useSelector} from 'react-redux'
 import {close} from '../../redux/modal/slice'
-import {setBook, setError, setIsTouched, setIsUpdate} from '../../redux/book/slice'
+import {
+  deleteBookThunk,
+  getBookThunk,
+  setError,
+  setIsTouched,
+  setIsUpdate,
+  updateBookThunk,
+} from '../../redux/book/slice'
 import Cover from './Cover/Cover'
 import Placeholder from './Placeholder/Placeholder'
 import Info from './Info/Info'
 import {motion} from 'framer-motion'
 
 const BookPage = () => {
-  const API_URL = import.meta.env.VITE_API_URL
-
   const {id} = useParams()
-  const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const navigator = useNavigate()
 
-  const book = useSelector((state) => state.book.book)
+  const {book, loading} = useSelector((state) => state.book)
 
-  const getBook = async () => {
-    setLoading(true)
+  const getBook = () => {
     try {
-      const {data} = await axios.post(`${API_URL}/book`, {id})
-      dispatch(setBook({book: data.book}))
+      dispatch(getBookThunk(id))
     } catch (error) {
       console.log(error)
-    } finally {
-      setLoading(false)
     }
   }
 
-  const updateBook = async () => {
-    setLoading(true)
-    dispatch(setError({error: ''}))
-
-    if (book.title.length < 3) {
-      setLoading(false)
-      dispatch(setError({error: 'Название должно содержать хотя-бы 3 символа'}))
-      return
-    }
-
-    if (book.author.length < 3) {
-      setLoading(false)
-      dispatch(setError({error: 'Имя автора должно содержать хотя-бы 3 символа'}))
-      return
-    }
-
+  const updateBook = () => {
     try {
-      const {data} = await axios.put(`${API_URL}/books`, {
-        book_id: book.book_id,
-        title: book.title,
-        author: book.author,
-        cover: book.cover,
-        read_date: book.read_date,
-        description: book.description,
-      })
-
-      dispatch(setBook({book: data.book}))
+      dispatch(updateBookThunk(book))
     } catch (error) {
       console.log(error)
-    } finally {
-      setLoading(false)
-      dispatch(setIsUpdate({isUpdate: false}))
-      dispatch(setIsTouched(false))
     }
   }
 
   const deleteBook = async () => {
-    setLoading(true)
     dispatch(close())
     try {
-      await axios.delete(`${API_URL}/books`, {
-        data: {id: id},
-      })
-      navigate('/')
+      dispatch(deleteBookThunk({id, navigator}))
     } catch (error) {
-      dispatch(setError({error: 'Произошла ошибка при удалении книги'}))
-    } finally {
-      setLoading(false)
+      console.log(error)
     }
   }
 
@@ -133,7 +98,11 @@ const BookPage = () => {
           </Modal>
         </motion.div>
       ) : (
-        <h1>Произошла ошибка!</h1>
+        <div>
+          <h1 style={{fontSize: '24px', textAlign: 'center', marginTop: '20px'}}>
+            Произошла ошибка при загрузке книги
+          </h1>
+        </div>
       )}
     </>
   )

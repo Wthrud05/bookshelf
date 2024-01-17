@@ -3,7 +3,7 @@ import styles from './AddBookForm.module.scss'
 import axios from 'axios'
 import {useAuth} from '../../hooks/useAuth'
 import {useDispatch, useSelector} from 'react-redux'
-import {setLoading, setNewBook, setError} from '../../redux/new_book/slice'
+import {setError, createBookThunk} from '../../redux/new_book/slice'
 import {setBooks, setBooksCount} from '../../redux/books/slice'
 import {close} from '../../redux/modal/slice'
 import BookLoader from '../BookLoader/BookLoader'
@@ -19,13 +19,13 @@ import ModalError from '../ModalError/ModalError'
 
 const AddBookForm = () => {
   const updUrl = import.meta.env.VITE_UPLOAD_IMG_URL
-  const API_URL = import.meta.env.VITE_API_URL
 
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.books)
   const loading = useSelector((state) => state.newBook.loading)
   const error = useSelector((state) => state.newBook.error)
   const booksCount = useSelector((state) => state.books.booksCount)
+  const newBook = useSelector((state) => state.newBook.book)
 
   const [coverLoading, setCoverLoading] = useState(false)
 
@@ -76,10 +76,7 @@ const AddBookForm = () => {
     setCoverLoading(false)
   }
 
-  const createBookHandler = async () => {
-    dispatch(setLoading({loading: true}))
-    dispatch(setError({error: ''}))
-
+  const createBook = async () => {
     try {
       const book = {
         title: title.charAt(0).toUpperCase() + title.slice(1),
@@ -94,21 +91,18 @@ const AddBookForm = () => {
         description: description,
       }
 
-      const {data} = await axios.post(`${API_URL}/books-create`, book)
+      dispatch(createBookThunk(book)).then((res) => {
+        const newBook = res.payload
+        const items = [newBook, ...books]
 
-      const newBook = data.book
-      dispatch(setNewBook({book: newBook}))
-      const items = [newBook, ...books]
+        dispatch(setBooks({books: items}))
+        dispatch(setBooksCount({booksCount: booksCount + 1}))
+        dispatch(close())
 
-      dispatch(setBooks({books: items}))
-      dispatch(setBooksCount({booksCount: booksCount + 1}))
-      dispatch(close())
-
-      reset()
+        reset()
+      })
     } catch (error) {
-      dispatch(setError({error: 'Произошла ошибка при загрузке книги'}))
-    } finally {
-      dispatch(setLoading({loading: false}))
+      console.log(error)
     }
   }
 
@@ -215,7 +209,7 @@ const AddBookForm = () => {
           <button
             className={styles.AddBook}
             disabled={title.length < 3 || author.length < 3 || coverLoading}
-            onClick={createBookHandler}
+            onClick={createBook}
           >
             {loading ? 'Loading...' : 'Добавить книгу'}
           </button>

@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {setLoading, removeUser} from '../../redux/auth/slice'
+import {logoutThunk} from '../../redux/auth/slice'
 import {Link, useNavigate} from 'react-router-dom'
-import axios from 'axios'
 import styles from './ProfilePage.module.scss'
 import {open} from '../../redux/modal/slice'
 import {motion} from 'framer-motion'
@@ -19,8 +18,6 @@ import UserData from '../../components/UserData/UserData'
 import {changeTextByCount} from '../../utils/helpers'
 
 const ProfilePage = () => {
-  const API_URL = import.meta.env.VITE_API_URL
-
   const dispatch = useDispatch()
   const navigator = useNavigate()
 
@@ -39,19 +36,9 @@ const ProfilePage = () => {
 
   const logout = async (id) => {
     try {
-      dispatch(setLoading({loading: true}))
-
-      const res = await axios.post(`${API_URL}/logout`, {
-        user_id: id,
-      })
-      const msg = await res.data.message
-      localStorage.removeItem('user')
-      dispatch(setLoading({loading: false}))
-      dispatch(removeUser())
-      navigator('/login')
+      dispatch(logoutThunk({id, navigator}))
     } catch (error) {
       console.log(error.message)
-      setError(error.message)
     }
   }
 

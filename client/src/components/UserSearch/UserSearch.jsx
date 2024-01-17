@@ -1,12 +1,10 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import styles from './UserSearch.module.scss'
 import Search from '../../assets/search-user-grey.svg?react'
-import axios from 'axios'
 import UserList from '../UserList/UserList'
 import cross from '../../assets/cross-black.svg'
 import {useDispatch, useSelector} from 'react-redux'
-import {setLoading, setSearchStr, setUsers} from '../../redux/users/slice'
-import {filterUsersByParam} from '../../utils/helpers'
+import {getUsersThunk, setSearchStr} from '../../redux/users/slice'
 import {debounce} from 'lodash'
 
 const UserSearch = () => {
@@ -18,18 +16,10 @@ const UserSearch = () => {
   const [value, setValue] = useState('')
 
   const getUsers = async () => {
-    const API_URL = import.meta.env.VITE_API_URL
-
-    dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios(`${API_URL}/users`)
-      const filteredUsers = filterUsersByParam(data.users, searchStr)
-      dispatch(setUsers({users: filteredUsers}))
+      dispatch(getUsersThunk({searchStr}))
     } catch (error) {
       console.log(error)
-    } finally {
-      dispatch(setLoading({loading: false}))
-      inputRef.current.focus()
     }
   }
 

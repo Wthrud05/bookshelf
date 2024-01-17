@@ -3,30 +3,25 @@ import Avatar from '../Avatar/Avatar'
 import styles from './UserData.module.scss'
 import {useIsUser} from '../../hooks/useIsUser'
 import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios'
 import {useParams} from 'react-router-dom'
-import {setIsSubscribed} from '../../redux/target_user/slice'
+import {subscribeThunk, unSubscribeThunk} from '../../redux/target_user/slice'
 import pen from '../../assets/pen.svg'
-import {setUser} from '../../redux/auth/slice'
+import {changeNameThunk} from '../../redux/auth/slice'
 import BookLoader from '../BookLoader/BookLoader'
 import {useGuest} from '../../hooks/useGuest'
 
 const UserData = ({count, name}) => {
-  const API_URL = import.meta.env.VITE_API_URL
-
-  const dispatch = useDispatch()
-  const [localLoading, setLoading] = useState(false)
-
   const isGuest = useGuest()
-
-  const {isSubscribed, loading} = useSelector((state) => state.targetUser)
-  const userName = useSelector((state) => state.auth.name)
-  const userId = useSelector((state) => state.auth.id)
   const {id} = useParams()
-
-  const [isUser, setIsUser] = useState(false)
   const res = useIsUser()
 
+  const dispatch = useDispatch()
+  const {isSubscribed, loading, error} = useSelector((state) => state.targetUser)
+  const userName = useSelector((state) => state.auth.name)
+  const userId = useSelector((state) => state.auth.id)
+
+  const [localLoading, setLoading] = useState(false)
+  const [isUser, setIsUser] = useState(false)
   const [nameValue, setNameValue] = useState(userName)
   const [isUpdate, setIsUpdate] = useState(false)
   const [isTouched, setIsTouched] = useState(false)
@@ -35,31 +30,25 @@ const UserData = ({count, name}) => {
     setIsUser(res)
   }, [res])
 
-  const handleSubscribe = async () => {
+  const handleUnsubscribe = async () => {
     setLoading(true)
     try {
-      const {data} = await axios.post(`${API_URL}/sub`, {
-        sub_id: id,
-        user_id: userId,
-        name: userName,
-        sub_name: name,
+      dispatch(unSubscribeThunk(id)).then(() => {
+        setLoading(false)
       })
-      dispatch(setIsSubscribed(true))
-      setLoading(false)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleUnsubscribe = async () => {
+  const handleSubscribe = () => {
     setLoading(true)
     try {
-      const {data} = await axios.delete(`${API_URL}/sub`, {
-        data: {id: id},
-      })
-      console.log(data)
-      dispatch(setIsSubscribed(false))
-      setLoading(false)
+      dispatch(subscribeThunk({sub_id: id, user_id: userId, name: userName, sub_name: name})).then(
+        () => {
+          setLoading(false)
+        },
+      )
     } catch (error) {
       console.log(error)
     }
@@ -67,12 +56,7 @@ const UserData = ({count, name}) => {
 
   const changeNameHandler = async () => {
     try {
-      const res = await axios.post(`${API_URL}/change-name`, {
-        name: nameValue,
-        id: userId,
-      })
-      dispatch(setUser({name: nameValue, id: userId}))
-      localStorage.setItem('user', JSON.stringify({id: userId, name: nameValue}))
+      dispatch(changeNameThunk({name: nameValue, id: userId}))
       setIsTouched(false)
       setIsUpdate(false)
     } catch (error) {
@@ -97,7 +81,7 @@ const UserData = ({count, name}) => {
                   <div className={styles.ChangeName}>
                     <input
                       type="text"
-                      value={nameValue}
+                      value={nameValue || userName}
                       onChange={(e) => {
                         setIsTouched(true)
                         setNameValue(e.target.value)
@@ -147,6 +131,7 @@ const UserData = ({count, name}) => {
                     {localLoading ? <BookLoader w={'15px'} h={'15px'} /> : 'Подписаться'}
                   </button>
                 )}
+                {error && <span>{error}</span>}
               </>
             )}
           </>

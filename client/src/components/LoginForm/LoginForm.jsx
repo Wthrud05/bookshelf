@@ -5,11 +5,14 @@ import Pass from '../../assets/pass.svg?react'
 import BookLoader from '../BookLoader/BookLoader'
 import hidePass from '../../assets/hide-pass.svg'
 import showPass from '../../assets/show-pass.svg'
+import {useSelector} from 'react-redux'
 
-const LoginForm = ({title, handler, error, loading}) => {
+const LoginForm = ({title, handler}) => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [isHidden, setIsHidden] = useState(true)
+
+  const {error, loading} = useSelector((state) => state.auth)
 
   const keyDownHandler = (e) => {
     if (e.key === 'Enter') {

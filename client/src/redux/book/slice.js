@@ -1,4 +1,7 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL
 
 const initialState = {
   loading: false,
@@ -17,6 +20,46 @@ const initialState = {
   },
   error: '',
 }
+
+export const getBookThunk = createAsyncThunk('book/getBook', async (id) => {
+  const {data} = await axios.post(`${API_URL}/book`, {id}).catch((e) => {
+    if (e.response) throw new Error(e.response.data.message)
+  })
+  return data.book
+})
+
+export const updateBookThunk = createAsyncThunk('book/updateBook', async (book) => {
+  if (book.title.length < 3) {
+    throw new Error('Название должно содержать хотя-бы 3 символа')
+  }
+
+  if (book.author.length < 3) throw new Error('Имя автора должно содержать хотя-бы 3 символа')
+
+  const {data} = await axios
+    .put(`${API_URL}/books`, {
+      book_id: book.book_id,
+      title: book.title,
+      author: book.author,
+      cover: book.cover,
+      read_date: book.read_date,
+      description: book.description,
+    })
+    .catch((e) => {
+      if (e.response) throw new Error(e.response.data.message)
+    })
+  return data.book
+})
+
+export const deleteBookThunk = createAsyncThunk('book/deleteBook', async ({id, navigator}) => {
+  await axios
+    .delete(`${API_URL}/books`, {
+      data: {id: id},
+    })
+    .catch((e) => {
+      if (e.response) throw new Error(e.response.data.message)
+    })
+  navigator('/')
+})
 
 const bookSlice = createSlice({
   name: 'book',
@@ -52,6 +95,44 @@ const bookSlice = createSlice({
     setIsTouched: (state, action) => {
       state.isTouched = action.payload.isTouched
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getBookThunk.pending, (state, action) => {
+      state.loading = true
+      state.error = ''
+    }),
+      builder.addCase(getBookThunk.fulfilled, (state, action) => {
+        state.loading = false
+        state.book = action.payload
+      }),
+      builder.addCase(getBookThunk.rejected, (state, action) => {
+        state.loading = false
+        state.error = 'Произошла ошибка при загрузке книги'
+      }),
+      builder.addCase(updateBookThunk.pending, (state, action) => {
+        state.loading = true
+        state.error = ''
+      }),
+      builder.addCase(updateBookThunk.fulfilled, (state, action) => {
+        state.loading = false
+        state.book = action.payload
+        state.isTouched = false
+        state.isUpdate = false
+      }),
+      builder.addCase(updateBookThunk.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      }),
+      builder.addCase(deleteBookThunk.pending, (state, action) => {
+        state.loading = true
+      }),
+      builder.addCase(deleteBookThunk.fulfilled, (state, action) => {
+        state.loading = false
+      }),
+      builder.addCase(deleteBookThunk.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message
+      })
   },
 })
 

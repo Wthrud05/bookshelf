@@ -1,16 +1,13 @@
 import React, {useEffect} from 'react'
 import styles from './Subscribers.module.scss'
 import subs from '../../../assets/subscribers.svg'
-import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
-import {setError, setLoading, setSubscribers} from '../../../redux/user/slice'
+import {getSubscirbersThunk} from '../../../redux/user/slice'
 import {open} from '../../../redux/modal/slice'
 import BookLoader from '../../../components/BookLoader/BookLoader'
 import {useAuth} from '../../../hooks/useAuth'
 
 const Subscribers = ({fn}) => {
-  const API_URL = import.meta.env.VITE_API_URL
-
   const dispatch = useDispatch()
 
   const {user} = useAuth()
@@ -18,17 +15,10 @@ const Subscribers = ({fn}) => {
   const subscribers = useSelector((state) => state.user.subscribers)
 
   const getSubscribers = async () => {
-    dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios.post(`${API_URL}/subscribers`, {
-        id: user.id,
-      })
-      dispatch(setSubscribers({subscribers: data.subs}))
+      dispatch(getSubscirbersThunk({id: user.id}))
     } catch (error) {
       console.log(error)
-      dispatch(setError({error: 'Произошла ошибка при загрузке подписок'}))
-    } finally {
-      dispatch(setLoading({loading: false}))
     }
   }
 

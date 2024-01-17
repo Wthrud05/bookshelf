@@ -1,35 +1,28 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import styles from './UserPage.module.scss'
 import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios'
 import UserData from '../../components/UserData/UserData'
 import {
-  setUser,
-  setBooksCount,
   setIsSubscribed,
-  setUserBooks,
   setLoading,
+  getTargetUserThunk,
+  getTargetUserBooksThunk,
 } from '../../redux/target_user/slice'
 import BookList from '../../components/BookList/BookList'
 import BookLoader from '../../components/BookLoader/BookLoader'
 import {motion} from 'framer-motion'
 
 const UserPage = () => {
-  const API_URL = import.meta.env.VITE_API_URL
-
   const {id} = useParams()
 
   const dispatch = useDispatch()
   const {subscriptions} = useSelector((state) => state.user)
-  const {user, isSubscribed, books, booksCount, loading} = useSelector((state) => state.targetUser)
+  const {user, books, booksCount, loading} = useSelector((state) => state.targetUser)
 
   const getUser = async () => {
-    dispatch(setUser({user: {}}))
     try {
-      const {data} = await axios.post(`${API_URL}/user`, {id})
-      setUser(data.user)
-      dispatch(setUser({user: data.user}))
+      dispatch(getTargetUserThunk(id))
     } catch (error) {
       console.log(error)
     }
@@ -38,16 +31,9 @@ const UserPage = () => {
   const getUserBooks = async () => {
     dispatch(setLoading({loading: true}))
     try {
-      const {data} = await axios.post(`${API_URL}/books`, {id})
-
-      const sortedBooks = data.books.sort((a, b) => b.book_id - a.book_id)
-
-      dispatch(setBooksCount({booksCount: data.books.length}))
-      dispatch(setUserBooks({books: sortedBooks}))
+      dispatch(getTargetUserBooksThunk(id))
     } catch (error) {
       console.log(error)
-    } finally {
-      dispatch(setLoading({loading: false}))
     }
   }
 

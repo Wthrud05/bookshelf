@@ -1,56 +1,25 @@
 import React, {useEffect} from 'react'
 import LoginForm from '../../components/LoginForm/LoginForm'
-import axios from 'axios'
 import {NavLink, useNavigate} from 'react-router-dom'
 import pattern from '../../assets/pattern.jpg'
 import styles from './RegisterPage.module.scss'
-import {useDispatch, useSelector} from 'react-redux'
-import {setUser, setError, setLoading} from '../../redux/auth/slice'
+import {useDispatch} from 'react-redux'
+import {setError, loginUserThunk} from '../../redux/auth/slice'
 import {motion} from 'framer-motion'
 
 const RegisterPage = () => {
-  const API_URL = import.meta.env.VITE_API_URL
-
   const dispatch = useDispatch()
   const navigator = useNavigate()
-
-  const err = useSelector((state) => state.auth.error)
-  const loading = useSelector((state) => state.auth.loading)
 
   useEffect(() => {
     dispatch(setError({error: ''}))
   }, [])
 
-  const registerUser = async (userName, password) => {
+  const registerUser = (userName, password) => {
     try {
-      dispatch(setLoading({loading: true}))
-      dispatch(setError({error: ''}))
-
-      if (userName.length < 2 || password.length < 6) {
-        dispatch(setError({error: 'Имя должно содержать хотя-бы 2 символа, пароль 6 символов'}))
-        dispatch(setLoading({loading: false}))
-      } else {
-        const res = await axios
-          .post(`${API_URL}/register`, {
-            name: userName,
-            password,
-          })
-          .catch((error) => {
-            if (error.response) {
-              const msg = error.response.data.message
-              dispatch(setError({error: msg}))
-            }
-          })
-        console.log(res)
-        const {id, name} = await res.data.user
-        dispatch(setUser({id, name}))
-        localStorage.setItem('user', JSON.stringify({id, name}))
-        dispatch(setLoading({loading: false}))
-        navigator('/')
-      }
+      dispatch(loginUserThunk({userName, password, navigator, type: 'register'}))
     } catch (error) {
-      console.log(error.message)
-      dispatch(setLoading({loading: false}))
+      console.log(error)
     }
   }
 
@@ -63,7 +32,7 @@ const RegisterPage = () => {
       transition={{duration: 0.2}}
     >
       <h1>Добро пожаловать в Bookshelf!</h1>
-      <LoginForm title={'Регистрация'} handler={registerUser} error={err} loading={loading} />
+      <LoginForm title={'Регистрация'} handler={registerUser} />
       <span>
         У вас уже есть аккаунт? <NavLink to={'/login'}>Авторизация</NavLink>
       </span>
