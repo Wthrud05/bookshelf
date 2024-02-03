@@ -1,6 +1,7 @@
 # Bookshelf
 
 Application for collecting read books
+PERN stack App (PostgreSQL, Express, ReactJS, NodeJS)
 
 ## Installation
 
