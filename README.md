@@ -15,7 +15,7 @@ To install this project, you need to run the following commands:
 
 ## Running
 
-To run my project, run the following commands:
+To run this project, run the following commands:
 
 1. Change to the directory `server`.
 2. Start the server using the command `npm start`.
