@@ -11,9 +11,7 @@ const initialState = {
 }
 
 export const getSubscirbersThunk = createAsyncThunk('user/getSubscribers', async ({id}) => {
-  console.log('gg')
   const {data} = await axios.post(`${API_URL}/subscribers`, {id: id})
-  console.log(data)
   return data.subs
 })
 
