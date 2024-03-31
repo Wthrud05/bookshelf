@@ -61,3 +61,19 @@ html {
     padding: 0 10px;
   }
 }
+
+*::-webkit-scrollbar {
+  height: 2px;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+}

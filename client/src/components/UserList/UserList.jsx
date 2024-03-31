@@ -12,7 +12,7 @@ const UserList = ({users, name}) => {
       {name === 'Пользователи' ? '' : <h3>{name}</h3>}
       {loading ? (
         <div className={styles.Loader}>
-          <h3>Загрузка...</h3>
+          <h3>Загрузка…</h3>
           <BookLoader w={'30px'} h={'30px'} black={true} />
         </div>
       ) : (

@@ -7,6 +7,7 @@ import bookReducer from './book/slice'
 import userReduer from './user/slice'
 import usersReducer from './users/slice'
 import targetUserReducer from './target_user/slice'
+import searchBooksReducer from './search_books/slice'
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     user: userReduer,
     users: usersReducer,
     targetUser: targetUserReducer,
+    searchBooks: searchBooksReducer,
   },
 })

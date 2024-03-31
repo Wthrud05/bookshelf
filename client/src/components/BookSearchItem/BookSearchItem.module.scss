@@ -1,0 +1,238 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.BookSearchItem {
+  display: flex;
+  gap: 30px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  padding: 35px;
+  transition: background $tr-300;
+  
+  .Cover {
+    img {
+      width: 250px;
+      height: 370px;
+      border: 1px solid $light-grey;
+      border-radius: 5px;
+      box-shadow: $bx-shadow;
+    }
+
+    .Placeholder {
+      width: 250px;
+      height: 370px;
+      background: rgb(255,255,255);
+      background: $radial-grey;
+      border-radius: 5px;
+      border: 1px solid $light-grey;
+      box-shadow: $bx-shadow;
+  
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+  
+      h1 {
+        font-size: $font-s;
+        word-break: break-all;
+      }
+  
+      span {
+        font-size: $font-xs;
+      }
+    }
+  }
+
+  .Info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h1 {
+      font-size: $font-m;
+      margin-bottom: 10px;
+    }
+
+    span {
+      font-size: $font-s;
+      font-weight: bold;
+    }
+
+    p {
+      margin-top: 10px;
+      line-height: 25px;
+    }
+
+    .InputBox {
+      position: relative;
+
+      input {
+        @include input(600px, 40px, 16px, 10px);
+
+        &:focus ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+
+        &:hover ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+      }
+
+      .Icon {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+
+        path {
+          transition: $tr-300
+        }
+      }
+
+      textarea {
+        @include input(600px, 120px, 16px, 10px);
+        resize: none;
+
+        &:focus ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+
+        &:hover ~ {
+          .Icon {
+            path {
+              fill: $black;
+            }
+          }
+        }
+      }
+
+      &:nth-child(4) {
+        .Icon {
+          top: 20%;
+          transform: translateY(-30%);
+        }
+      }
+    }
+
+    .Checkbox {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border-radius: 3px;
+      outline: 2px solid $black;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+
+      span {
+        transform: translateX(70px);
+      }
+
+      .Check {
+        position: absolute;
+        top: -7px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        width: 22px;
+        height: 22px;
+        opacity: 0;
+        transition: $tr-200;
+      }
+
+      .Checked {
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: $tr-200;
+      }
+    }
+
+    .Buttons {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      gap: 15px;
+
+      button {
+        @include button(120px, 35px, 14px, 8px)
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .Info {
+      .InputBox {
+        input {
+          @include input(450px, 40px, 16px, 10px);        
+        }
+
+        textarea {
+          @include input(450px, 120px, 16px, 10px);
+        }
+      }
+    }
+
+    .Cover {
+      img {
+        width: 200px;
+        height: 300px;
+      }
+
+      .Placeholder {
+        width: 180px;
+        height: 300px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .Info {
+
+      .Buttons {
+        justify-content: center;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .Info {
+      .InputBox {
+        input {
+          @include input(280px, 40px, 16px, 10px);        
+        }
+
+        textarea {
+          @include input(280px, 120px, 16px, 10px);
+        }
+      }
+    }
+  }
+}
+
+.Choosen {
+  background: rgba(220, 220, 220, 0.7);
+  transition: background $tr-300;
+}

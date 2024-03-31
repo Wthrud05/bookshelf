@@ -1,0 +1,102 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.SearchBooks {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+
+  h1 {
+    font-size: $font-l;
+    margin-bottom: 20px;
+  }
+
+  .Search {
+    position: relative;
+
+    .SearchIcon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+
+      path {
+        transition: $tr-300
+      }
+    }
+
+    input {
+      @include input(450px, 40px, 16px, 15px);
+      padding: 15px 100px 15px 40px;
+  
+      &:hover ~ {
+        .SearchIcon {
+          path {
+            fill: $black;
+          }
+        }
+
+        button {
+          border-color: $black;
+        }
+      }
+  
+      &:focus ~ {
+        .SearchIcon {
+          path {
+            fill: $black;
+          }
+        }
+
+        button {
+          border-color: $black;
+        }
+      }
+    }
+
+    button {
+      font-family: 'Lobster', cursive;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background: transparent;
+      padding:  10px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: $black;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-left: 2px solid $light-grey;
+      transition: $tr-200;
+
+      &:active {
+        background-color: $black;
+        color: $white;
+        border-color: $black;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .Search {
+      input {
+        @include input(350px, 40px, 16px, 15px);
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+   .Search {
+      input {
+        @include input(300px, 40px, 14px, 15px);
+      }
+    }
+  }
+}

@@ -76,7 +76,7 @@ const BookPage = () => {
         >
           {loading ? (
             <div className={styles.Loader}>
-              <h1>Загрузка...</h1>
+              <h1>Загрузка…</h1>
               <BookLoader w={'50px'} h={'50px'} black={true} />
             </div>
           ) : (

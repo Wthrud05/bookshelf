@@ -8,6 +8,7 @@ import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import UserPage from '../pages/UserPage/UserPage'
 import AboutPage from '../pages/AboutPage/AboutPage'
 import {AnimatePresence} from 'framer-motion'
+import SearchBooks from '../pages/SearchBooks/SearchBooks'
 
 const AnimatedRoutes = () => {
   const location = useLocation()
@@ -22,6 +23,7 @@ const AnimatedRoutes = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/search" element={<SearchBooks />} />
       </Routes>
     </AnimatePresence>
   )

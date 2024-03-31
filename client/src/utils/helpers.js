@@ -10,6 +10,9 @@ export const filterBooksByParam = (arr, str, param) => {
     case 'Автор':
       return arr.filter((item) => item.author.toLowerCase().includes(str.toLowerCase()))
 
+    case 'Дата':
+      return arr.filter((item) => item.read_date.includes(str))
+
     case '':
       return arr
   }

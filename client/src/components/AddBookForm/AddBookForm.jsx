@@ -111,7 +111,7 @@ const AddBookForm = () => {
       {loading ? (
         <div className={loading ? styles.Loader + ' ' + styles.Loading : styles.Loader}>
           <BookLoader w={'40px'} h={'40px'} black={true} />
-          <h1>Загрузка...</h1>
+          <h1>Загрузка…</h1>
         </div>
       ) : (
         ''
@@ -211,7 +211,7 @@ const AddBookForm = () => {
             disabled={title.length < 3 || author.length < 3 || coverLoading}
             onClick={createBook}
           >
-            {loading ? 'Loading...' : 'Добавить книгу'}
+            {loading ? 'Загрузка…' : 'Добавить книгу'}
           </button>
           <button
             className={styles.Cancel}
