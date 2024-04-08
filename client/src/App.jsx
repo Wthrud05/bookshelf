@@ -9,8 +9,6 @@ import {setSortType} from './redux/books/slice'
 import AnimatedRoutes from './components/AnimatedRoutes'
 import {useGuest} from './hooks/useGuest'
 
-// ИЗИ ПОИСК КНИГ ИЗ ГУГЛА https://www.googleapis.com/books/v1/volumes?q=эдичка&key=AIzaSyDnBNzhjYDn4dvQKNJ22JEVklSj8cGI8Vg !!!!!!!!!!!!!!!!!!!!!!!
-
 function App() {
   const {user, isAuth} = useAuth()
   const isGuest = useGuest()

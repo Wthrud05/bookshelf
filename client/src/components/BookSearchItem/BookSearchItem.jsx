@@ -12,9 +12,12 @@ import BookLoader from '../BookLoader/BookLoader'
 import {setBooks, setBooksCount} from '../../redux/books/slice'
 
 const BookSearchItem = ({book}) => {
-  const cover = book.volumeInfo.imageLinks?.thumbnail
+  console.log(book)
+  const cover = book.volumeInfo.imageLinks
     ? book.volumeInfo.imageLinks?.thumbnail
-    : book.volumeInfo.imageLinks?.smallThumbnail
+      ? book.volumeInfo.imageLinks?.thumbnail
+      : book.volumeInfo.imageLinks?.smallThumbnail
+    : ''
 
   const {user} = useAuth()
 
@@ -49,7 +52,7 @@ const BookSearchItem = ({book}) => {
           .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
           .join(' '),
         user_id: user.id,
-        cover: cover + '&w=1280',
+        cover: cover.length ? cover + '&w=1280' : '',
         read_date: date,
         isAudio: isAudio,
         description: description,
